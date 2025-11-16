@@ -50,6 +50,15 @@ namespace Cliffhanger
         }
         #endregion
 
+        #region Overrides
+        public override void ShowInformation()
+        {
+            Console.WriteLine("Actor Id:    " + Id);
+            Console.WriteLine("Actor Name:  " + Name);
+            Console.WriteLine("Actor Birth: " + DateOfBirth + "\n");
+        }
+        #endregion
+
         #region Other Methods
         // quando houver listas, verificar se este id não existe nas listas
         protected static bool CheckId(int id)
@@ -104,9 +113,7 @@ namespace Cliffhanger
                 Actor? element = groupOfActors[i];
                 if (element != null)
                 {
-                    Console.WriteLine("Actor Id:    " + element.Id);
-                    Console.WriteLine("Actor Name:  " + element.Name);
-                    Console.WriteLine("Actor Birth: " + element.DateOfBirth + "\n");
+                    element.ShowInformation();
                 }
             }
         }

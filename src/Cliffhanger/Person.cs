@@ -22,7 +22,6 @@ namespace Cliffhanger
 
         #region Methods
 
-        // ver melhor estas propriedades
         #region Properties
         public string Name
         {
@@ -53,7 +52,6 @@ namespace Cliffhanger
             dateOfBirth = new DateOnly(DefaultYear, DefaultMonth, DefaultDay);
         }
 
-        // os parametros têm de ser verificados antes de passar
         protected Person(string name, int year, int month, int day)
         {
             if (CheckName(name))
@@ -74,6 +72,10 @@ namespace Cliffhanger
                 dateOfBirth = new DateOnly(DefaultYear, DefaultMonth, DefaultDay);
             }
         }
+        #endregion
+
+        #region Overrides
+        public abstract void ShowInformation();
         #endregion
 
         #region Other Methods

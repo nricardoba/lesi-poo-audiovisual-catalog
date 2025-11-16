@@ -18,6 +18,8 @@ namespace Cliffhanger
             character1.CharacterId = 8;
             character1.ActorWhoPlays = actor2;
 
+            Actor actor3 = new Actor(7, "Rainn Wilson", 1966, 1, 20);
+
             Actor.ShowGroupOfActors();
             Character.ShowgroupOfCharacters();
         }

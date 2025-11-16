@@ -60,7 +60,6 @@ namespace Cliffhanger
             characterId = DefaultId;
             characterName = DefaultName;
 
-            // quando igualar a um ator, este fica a ocupar espaço
             actorWhoPlays = new Actor();
 
             AddElement(this);
@@ -125,7 +124,6 @@ namespace Cliffhanger
             return false;
         }
 
-        // usar interface para estes métodos
         public static bool RemoveElement(Character element)
         {
             if (element == null) return false;
