@@ -2,8 +2,19 @@ namespace Cliffhanger
 {
     public abstract class Person
     {
-        // acho que esta class tem de ser abstrata (só quero criar uma pessoa quando criar por exemplo um ator)
-        // (um ator tambem pode ser um escritor ou realizador, depois ver melhor esta parte)
+        #region Constants
+        protected const string DefaultName = "Unknown";
+        const int StringMaxLength = 50;
+
+        // eu não quero que uma pessoa possa mudar! (ver como melhorar)
+        static int CurrentYear = DateTime.Today.Year;
+        const int MinYear = 1850;
+        const int DefaultYear = 1950;
+        const int DefaultMonth = 1;
+        const int DefaultDay = 1;
+        #endregion
+
+        // um ator tambem pode ser um escritor ou realizador, depois ver melhor esta parte
         #region Attributes
         string name = string.Empty;
         DateOnly dateOfBirth;
@@ -13,45 +24,88 @@ namespace Cliffhanger
 
         // ver melhor estas propriedades
         #region Properties
-        public string Name
+        protected string Name
         {
             get { return name; }
             set
             {
-                if (value.Length < 15) name = value;
+                if (CheckName(value)) name = value;
             }
         }
 
-        public DateOnly DateOfBirth
+        protected DateOnly DateOfBirth
         {
             get { return dateOfBirth; }
             set
             {
-                if (value.Year > 1800) dateOfBirth = value;
+                if (CheckDate(value.Year, value.Month, value.Day))
+                {
+                    dateOfBirth = value;
+                }
             }
         }
         #endregion
 
         #region Constructors
-        // devo criar constantes para as variaveis default?
-        public Person()
+        protected Person()
         {
-            name = "Unknown";   // não usei a propriedades, para ter a certeza que fica assim
-            dateOfBirth = new DateOnly(1950, 1, 1);
+            name = DefaultName;
+            dateOfBirth = new DateOnly(DefaultYear, DefaultMonth, DefaultDay);
         }
 
         // os parametros têm de ser verificados antes de passar
-        public Person(string name, DateOnly dateOfBirth)
+        protected Person(string name, int year, int month, int day)
         {
-            this.name = name;
-            this.dateOfBirth = dateOfBirth;
+            if (CheckName(name))
+            {
+                this.name = name;
+            }
+            else
+            {
+                this.name = DefaultName;
+            }
+
+            if (CheckDate(year, month, day))
+            {
+                dateOfBirth = new DateOnly(year, month, day);
+            }
+            else
+            {
+                dateOfBirth = new DateOnly(DefaultYear, DefaultMonth, DefaultDay);
+            }
         }
         #endregion
 
-        #region Overrides
-        #endregion
-
         #region Other Methods
+        protected static bool CheckName(string name)
+        {
+            if (name.Length < StringMaxLength)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        static bool CheckDate(int year, int month, int day)
+        {
+            if (year <= MinYear || year > CurrentYear)
+            {
+                return false;
+            }
+
+            if (month < 1 || month > 12)
+            {
+                return false;
+            }
+
+            int aux = DateTime.DaysInMonth(year, month);
+            if (day < 1 || day > aux)
+            {
+                return false;
+            }
+
+            return true;
+        }
         #endregion
 
         #endregion
