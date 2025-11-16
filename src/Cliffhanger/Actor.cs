@@ -32,6 +32,7 @@ namespace Cliffhanger
         public Actor() : base()
         {
             id = DefaultId;
+            if (counter < groupOfActors.Length) groupOfActors[counter++] = this;
         }
 
         public Actor(int id, string name, int year, int month, int day) : base(name, year, month, day)
@@ -44,6 +45,8 @@ namespace Cliffhanger
             {
                 this.id = DefaultId;
             }
+
+            if (counter < groupOfActors.Length) groupOfActors[counter++] = this;
         }
         #endregion
 
@@ -56,6 +59,16 @@ namespace Cliffhanger
                 return true;
             }
             return false;
+        }
+
+        public static void ShowGroupOfActors()
+        {
+            for (int i = 0; i < counter; i++)
+            {
+                Console.WriteLine("Actor Id:    " + groupOfActors[i].Id);
+                Console.WriteLine("Actor Name:  " + groupOfActors[i].Name);
+                Console.WriteLine("Actor Birth: " + groupOfActors[i].DateOfBirth + "\n");
+            }
         }
         #endregion
 

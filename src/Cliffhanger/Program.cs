@@ -17,6 +17,9 @@ namespace Cliffhanger
             character1.CharacterName = "Jules Winnfield";
             character1.CharacterId = 8;
             character1.ActorWhoPlays = actor2;
+
+            Actor.ShowGroupOfActors();
+            Character.ShowgroupOfCharacters();
         }
     }
 }

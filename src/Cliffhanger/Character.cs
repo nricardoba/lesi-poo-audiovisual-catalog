@@ -1,14 +1,20 @@
+using System.Diagnostics.Metrics;
+
 namespace Cliffhanger
 {
     public class Character
     {
         #region Constants
+        const int MaxCharacters = 5;
         const int DefaultId = -1;
         const string DefaultName = "Unknown";
         const int StringMaxLength = 50;
         #endregion
 
         #region Attributes
+        static Character[] groupOfCharacters = new Character[MaxCharacters];
+        static int counter = 0;
+
         int characterId;
         string characterName = string.Empty;
 
@@ -48,7 +54,11 @@ namespace Cliffhanger
         {
             characterId = DefaultId;
             characterName = DefaultName;
+
+            // quando igualar a um ator, este fica a ocupar espaço
             actorWhoPlays = new Actor();
+
+            if (counter < groupOfCharacters.Length) groupOfCharacters[counter++] = this;
         }
 
         public Character(int id, string name, Actor actorWhoPlays)
@@ -72,6 +82,8 @@ namespace Cliffhanger
             }
 
             this.actorWhoPlays = actorWhoPlays;
+
+            if (counter < groupOfCharacters.Length) groupOfCharacters[counter++] = this;
         }
         #endregion
 
@@ -92,6 +104,16 @@ namespace Cliffhanger
                 return true;
             }
             return false;
+        }
+
+        public static void ShowgroupOfCharacters()
+        {
+            for (int i = 0; i < counter; i++)
+            {
+                Console.WriteLine("Character Id:    " + groupOfCharacters[i].CharacterId);
+                Console.WriteLine("Character Name:  " + groupOfCharacters[i].CharacterName);
+                Console.WriteLine("Character Name:  " + groupOfCharacters[i].ActorWhoPlays.Name + "\n");
+            }
         }
         #endregion
 
