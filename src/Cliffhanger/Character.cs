@@ -64,7 +64,10 @@ namespace Cliffhanger
             {
                 if (value != null)
                 {
-                    Actor.RemoveElement(actorWhoPlays);
+                    if (actorWhoPlays.Id == DefaultId)
+                    {
+                        Actor.RemoveElement(actorWhoPlays);
+                    }
                     actorWhoPlays = value;
                 }
             }
