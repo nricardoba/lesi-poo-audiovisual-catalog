@@ -1,5 +1,3 @@
-using System.Diagnostics.Metrics;
-
 namespace Cliffhanger
 {
     public class Character
@@ -12,7 +10,7 @@ namespace Cliffhanger
         #endregion
 
         #region Attributes
-        static Character[] groupOfCharacters = new Character[MaxCharacters];
+        static Character?[] groupOfCharacters = new Character[MaxCharacters];
         static int counter = 0;
 
         int characterId;
@@ -45,7 +43,14 @@ namespace Cliffhanger
         public Actor ActorWhoPlays
         {
             get { return actorWhoPlays; }
-            set { actorWhoPlays = value; }
+            set
+            {
+                if (value != null)
+                {
+                    Actor.RemoveElement(actorWhoPlays);
+                    actorWhoPlays = value;
+                }
+            }
         }
         #endregion
 
@@ -58,7 +63,7 @@ namespace Cliffhanger
             // quando igualar a um ator, este fica a ocupar espaço
             actorWhoPlays = new Actor();
 
-            if (counter < groupOfCharacters.Length) groupOfCharacters[counter++] = this;
+            AddElement(this);
         }
 
         public Character(int id, string name, Actor actorWhoPlays)
@@ -83,7 +88,7 @@ namespace Cliffhanger
 
             this.actorWhoPlays = actorWhoPlays;
 
-            if (counter < groupOfCharacters.Length) groupOfCharacters[counter++] = this;
+            AddElement(this);
         }
         #endregion
 
@@ -106,13 +111,54 @@ namespace Cliffhanger
             return false;
         }
 
+        // não é aqui que se verifica se o ID é o mesmo!!!
+        static bool AddElement(Character aux)
+        {
+            if (aux == null) return false;
+
+            if (counter < groupOfCharacters.Length)
+            {
+                groupOfCharacters[counter++] = aux;
+                return true;
+            }
+
+            return false;
+        }
+
+        // usar interface para estes métodos
+        static bool RemoveElement(Character aux)
+        {
+            if (aux == null) return false;
+
+            for (int i = 0; i < counter; i++)
+            {
+                if (groupOfCharacters[i] == aux)
+                {
+                    for (int j = i; j < counter - 1; j++)
+                    {
+                        groupOfCharacters[j] = groupOfCharacters[j + 1];
+                    }
+
+                    groupOfCharacters[counter - 1] = null;
+                    counter--;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static void ShowgroupOfCharacters()
         {
             for (int i = 0; i < counter; i++)
             {
-                Console.WriteLine("Character Id:    " + groupOfCharacters[i].CharacterId);
-                Console.WriteLine("Character Name:  " + groupOfCharacters[i].CharacterName);
-                Console.WriteLine("Character Name:  " + groupOfCharacters[i].ActorWhoPlays.Name + "\n");
+                Character? aux = groupOfCharacters[i];
+                if (aux != null)
+                {
+                    Console.WriteLine("Character Id:    " + aux.CharacterId);
+                    Console.WriteLine("Character Name:  " + aux.CharacterName);
+                    Console.WriteLine("Character Name:  " + aux.ActorWhoPlays.Name + "\n");
+                }
             }
         }
         #endregion
