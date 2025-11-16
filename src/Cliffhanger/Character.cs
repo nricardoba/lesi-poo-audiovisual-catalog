@@ -39,6 +39,7 @@ namespace Cliffhanger
         public Actor ActorWhoPlays
         {
             get { return actorWhoPlays; }
+            set { actorWhoPlays = value; }
         }
         #endregion
 

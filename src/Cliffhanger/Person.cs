@@ -24,7 +24,7 @@ namespace Cliffhanger
 
         // ver melhor estas propriedades
         #region Properties
-        protected string Name
+        public string Name
         {
             get { return name; }
             set
@@ -33,7 +33,7 @@ namespace Cliffhanger
             }
         }
 
-        protected DateOnly DateOfBirth
+        public DateOnly DateOfBirth
         {
             get { return dateOfBirth; }
             set
