@@ -1,6 +1,6 @@
 namespace Cliffhanger
 {
-    public class Character
+    public class Character : IElement<Character>
     {
         #region Constants
         const int MaxCharacters = 5;
@@ -112,13 +112,13 @@ namespace Cliffhanger
         }
 
         // não é aqui que se verifica se o ID é o mesmo!!!
-        static bool AddElement(Character aux)
+        public static bool AddElement(Character element)
         {
-            if (aux == null) return false;
+            if (element == null) return false;
 
             if (counter < groupOfCharacters.Length)
             {
-                groupOfCharacters[counter++] = aux;
+                groupOfCharacters[counter++] = element;
                 return true;
             }
 
@@ -126,13 +126,13 @@ namespace Cliffhanger
         }
 
         // usar interface para estes métodos
-        static bool RemoveElement(Character aux)
+        public static bool RemoveElement(Character element)
         {
-            if (aux == null) return false;
+            if (element == null) return false;
 
             for (int i = 0; i < counter; i++)
             {
-                if (groupOfCharacters[i] == aux)
+                if (groupOfCharacters[i] == element)
                 {
                     for (int j = i; j < counter - 1; j++)
                     {
@@ -152,12 +152,12 @@ namespace Cliffhanger
         {
             for (int i = 0; i < counter; i++)
             {
-                Character? aux = groupOfCharacters[i];
-                if (aux != null)
+                Character? element = groupOfCharacters[i];
+                if (element != null)
                 {
-                    Console.WriteLine("Character Id:    " + aux.CharacterId);
-                    Console.WriteLine("Character Name:  " + aux.CharacterName);
-                    Console.WriteLine("Character Name:  " + aux.ActorWhoPlays.Name + "\n");
+                    Console.WriteLine("Character Id:    " + element.CharacterId);
+                    Console.WriteLine("Character Name:  " + element.CharacterName);
+                    Console.WriteLine("Character Name:  " + element.ActorWhoPlays.Name + "\n");
                 }
             }
         }

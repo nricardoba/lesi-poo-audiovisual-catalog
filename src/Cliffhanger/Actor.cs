@@ -1,6 +1,6 @@
 namespace Cliffhanger
 {
-    public class Actor : Person
+    public class Actor : Person, IElement<Actor>
     {
         #region Constants
         const int MaxActors = 5;
@@ -62,26 +62,26 @@ namespace Cliffhanger
         }
 
         // não é aqui que se verifica se o ID é o mesmo!!!
-        static bool AddElement(Actor aux)
+        public static bool AddElement(Actor element)
         {
-            if (aux == null) return false;
+            if (element == null) return false;
 
             if (counter < groupOfActors.Length)
             {
-                groupOfActors[counter++] = aux;
+                groupOfActors[counter++] = element;
                 return true;
             }
 
             return false;
         }
 
-        public static bool RemoveElement(Actor aux)
+        public static bool RemoveElement(Actor element)
         {
-            if (aux == null) return false;
+            if (element == null) return false;
 
             for (int i = 0; i < counter; i++)
             {
-                if (groupOfActors[i] == aux)
+                if (groupOfActors[i] == element)
                 {
                     for (int j = i; j < counter - 1; j++)
                     {
@@ -101,12 +101,12 @@ namespace Cliffhanger
         {
             for (int i = 0; i < counter; i++)
             {
-                Actor? aux = groupOfActors[i];
-                if (aux != null)
+                Actor? element = groupOfActors[i];
+                if (element != null)
                 {
-                    Console.WriteLine("Actor Id:    " + aux.Id);
-                    Console.WriteLine("Actor Name:  " + aux.Name);
-                    Console.WriteLine("Actor Birth: " + aux.DateOfBirth + "\n");
+                    Console.WriteLine("Actor Id:    " + element.Id);
+                    Console.WriteLine("Actor Name:  " + element.Name);
+                    Console.WriteLine("Actor Birth: " + element.DateOfBirth + "\n");
                 }
             }
         }
