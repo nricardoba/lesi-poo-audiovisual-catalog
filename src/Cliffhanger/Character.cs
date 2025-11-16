@@ -1,5 +1,9 @@
 namespace Cliffhanger
 {
+    /// <summary>
+    /// Class that represents an character.
+    /// Inherits the interface IElement.
+    /// </summary>
     public class Character : IElement<Character>
     {
         #region Constants
@@ -22,6 +26,10 @@ namespace Cliffhanger
         #region Methods
 
         #region Properties
+        /// <summary>
+        /// Property of attribute characterId.
+        /// If the variable value is valid, it's assigned.
+        /// </summary>
         public int CharacterId
         {
             get { return characterId; }
@@ -31,6 +39,10 @@ namespace Cliffhanger
             }
         }
 
+        /// <summary>
+        /// Property of attribute characterName.
+        /// If the variable value is valid, it's assigned.
+        /// </summary>
         public string CharacterName
         {
             get { return characterName; }
@@ -40,6 +52,11 @@ namespace Cliffhanger
             }
         }
 
+        /// <summary>
+        /// Property of attribute actorWhoPlays.
+        /// If the variable value is valid, it's assigned.
+        /// Before assigning the value, remove the Actor object created in the default constructor.
+        /// </summary>
         public Actor ActorWhoPlays
         {
             get { return actorWhoPlays; }
@@ -55,6 +72,11 @@ namespace Cliffhanger
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Default constructor of class Character.
+        /// Assigns the default values.
+        /// Creates a new object of type Actor.
+        /// </summary>
         public Character()
         {
             characterId = DefaultId;
@@ -65,6 +87,13 @@ namespace Cliffhanger
             AddElement(this);
         }
 
+        /// <summary>
+        /// Constructor with all the parameters of class Character.
+        /// Checks and assigns the values ​​passed as parameters.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="actorWhoPlays"></param>
         public Character(int id, string name, Actor actorWhoPlays)
         {
             if (CheckId(id))
@@ -92,6 +121,13 @@ namespace Cliffhanger
         #endregion
 
         #region Other Methods
+        /// <summary>
+        /// Checks if an id is valid.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// If the id is valid, returns true if it is invalid, returns false.
+        /// </returns>
         static bool CheckId(int id)
         {
             if (id > DefaultId)
@@ -101,6 +137,13 @@ namespace Cliffhanger
             return false;
         }
 
+        /// <summary>
+        /// Checks if a name is valid.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>
+        /// If the name is valid, returns true if it is invalid, returns false.
+        /// </returns>
         static bool CheckName(string name)
         {
             if (name.Length < StringMaxLength)
@@ -110,6 +153,13 @@ namespace Cliffhanger
             return false;
         }
 
+        /// <summary>
+        /// Implementation of method AddElement defined in interface IElement.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>
+        /// If successful insertion occurs, returns true, otherwise, returns false.
+        /// </returns>
         // não é aqui que se verifica se o ID é o mesmo!!!
         public static bool AddElement(Character element)
         {
@@ -124,6 +174,13 @@ namespace Cliffhanger
             return false;
         }
 
+        /// <summary>
+        /// Implementation of method RemoveElement defined in interface IElement.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>
+        /// If successful removal occurs, returns true, otherwise, returns false.
+        /// </returns>
         public static bool RemoveElement(Character element)
         {
             if (element == null) return false;
@@ -146,6 +203,9 @@ namespace Cliffhanger
             return false;
         }
 
+        /// <summary>
+        /// Displays information about all elements of the array.
+        /// </summary>
         public static void ShowgroupOfCharacters()
         {
             for (int i = 0; i < counter; i++)
