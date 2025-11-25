@@ -41,17 +41,17 @@ namespace Cliffhanger
         #region Constructors
         public Star() : base()
         {
-            dateOfBirth = ProgramConfig.DefaultDate;
-            job = ProgramConfig.DefaultJob;
+            dateOfBirth = Config.DefaultDate;
+            job = Config.DefaultJob;
         }
 
         public Star(int id, string name, DateOnly date, JobType job) : base(id, name)
         {
             if (IsValidDate(date)) dateOfBirth = date;
-            else dateOfBirth = ProgramConfig.DefaultDate;
+            else dateOfBirth = Config.DefaultDate;
 
             if (IsValidJob(job)) this.job = job;
-            else this.job = ProgramConfig.DefaultJob;
+            else this.job = Config.DefaultJob;
         }
         #endregion
 
@@ -61,7 +61,7 @@ namespace Cliffhanger
         #region Other Methods
         static bool IsValidDate(DateOnly date)
         {
-            if (date.Year >= ProgramConfig.MinYear && date.Year <= ProgramConfig.CurrentYear)
+            if (date.Year >= Config.MinYear && date.Year <= Config.CurrentYear)
                 return true;
             return false;
         }
@@ -69,7 +69,7 @@ namespace Cliffhanger
         static bool IsValidJob(JobType job)
         {
             int aux = (int)job;
-            if (aux > ProgramConfig.MinJobType && aux < ProgramConfig.JobTypeLength)
+            if (aux > Config.MinJobType && aux < Config.JobTypeLength)
                 return true;
             return false;
         }

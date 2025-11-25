@@ -32,7 +32,7 @@ namespace Cliffhanger
 
         public static bool DoesIdExist(int id)
         {
-            if (id < ProgramConfig.MinId || id > ProgramConfig.MaxId)
+            if (id < Config.MinId || id > Config.MaxId)
                 return true;
 
             foreach (User item in repository)

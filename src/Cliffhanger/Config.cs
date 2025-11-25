@@ -3,7 +3,7 @@ namespace Cliffhanger
     /// <summary>
     /// Class that contains the project constants.
     /// </summary>
-    public static class ProgramConfig
+    public static class Config
     {
         #region Person
         public const int DefaultId = -1;

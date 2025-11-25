@@ -28,13 +28,13 @@ namespace Cliffhanger
         #region Constructors
         public User() : base()
         {
-            account = ProgramConfig.DefaultAccount;
+            account = Config.DefaultAccount;
         }
 
         public User(int id, string name, AccountType account) : base(id, name)
         {
             if (IsValidAccount(account)) this.account = account;
-            else this.account = ProgramConfig.DefaultAccount;
+            else this.account = Config.DefaultAccount;
         }
         #endregion
 
@@ -45,7 +45,7 @@ namespace Cliffhanger
         static bool IsValidAccount(AccountType account)
         {
             int aux = (int)account;
-            if (aux >= ProgramConfig.MinAccountType && aux < ProgramConfig.AccountTypeLength)
+            if (aux >= Config.MinAccountType && aux < Config.AccountTypeLength)
                 return true;
             return false;
         }

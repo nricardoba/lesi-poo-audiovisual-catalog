@@ -32,18 +32,18 @@ namespace Cliffhanger
         #region Constructors
         public Person()
         {
-            id = ProgramConfig.DefaultId;
-            name = ProgramConfig.DefaultName;
+            id = Config.DefaultId;
+            name = Config.DefaultName;
         }
 
         // talvez tirar as verificações, o construtor só é chamado se as variaveis forem verificadas anteriormente
         public Person(int id, string name)
         {
             if (IsValidId(id)) this.id = id;
-            else this.id = ProgramConfig.DefaultId;
+            else this.id = Config.DefaultId;
 
             if (IsValidName(name)) this.name = name;
-            else this.name = ProgramConfig.DefaultName;
+            else this.name = Config.DefaultName;
         }
         #endregion
 
@@ -54,7 +54,7 @@ namespace Cliffhanger
         // protected?
         static bool IsValidId(int id)
         {
-            if (id >= ProgramConfig.MinId && id <= ProgramConfig.MaxId)
+            if (id >= Config.MinId && id <= Config.MaxId)
                 return true;
             return false;
         }
@@ -62,7 +62,7 @@ namespace Cliffhanger
         // não tenho a certeza se as posso usar no constructor e nas properties
         static bool IsValidName(string name)
         {
-            if (name.Length >= ProgramConfig.StringMinLength && name.Length <= ProgramConfig.StringMaxLength)
+            if (name.Length >= Config.StringMinLength && name.Length <= Config.StringMaxLength)
                 return true;
             return false;
         }
