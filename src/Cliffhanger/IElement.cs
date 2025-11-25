@@ -27,5 +27,20 @@ namespace Cliffhanger
         /// The result of removal.
         /// </returns>
         static abstract bool RemoveElement(ObjectType element);
+
+        /// <summary>
+        /// Signature of method DoesIdExist.
+        /// The purpose of the method is...
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// The result...
+        /// </returns>
+        static abstract bool DoesIdExist(int id);
+
+        /// <summary>
+        /// Show in console all elements in a data data structure.
+        /// </summary>
+        static abstract void ShowAllElements();
     }
 }

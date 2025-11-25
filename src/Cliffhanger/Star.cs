@@ -16,7 +16,6 @@ namespace Cliffhanger
         static DateOnly DefaultDate = new DateOnly(CurrentYear, 1, 1);
 
         const JobType DefaultJob = JobType.Unemployed;
-        // depois deve dar para colocar numa interface ou alguma coisa assim
         static int JobTypeLength = Enum.GetValues<JobType>().Length;
         #endregion
 
@@ -33,7 +32,7 @@ namespace Cliffhanger
             get { return dateOfBirth; }
             set
             {
-                if (CheckDate(value)) dateOfBirth = value;
+                if (IsValidDate(value)) dateOfBirth = value;
             }
         }
 
@@ -43,7 +42,7 @@ namespace Cliffhanger
             get { return job; }
             set
             {
-                if (CheckJob(value)) job = value;
+                if (IsValidJob(value)) job = value;
             }
         }
         #endregion
@@ -57,10 +56,10 @@ namespace Cliffhanger
 
         public Star(int id, string name, DateOnly date, JobType job) : base(id, name)
         {
-            if (CheckDate(date)) dateOfBirth = date;
+            if (IsValidDate(date)) dateOfBirth = date;
             else dateOfBirth = DefaultDate;
 
-            if (CheckJob(job)) this.job = job;
+            if (IsValidJob(job)) this.job = job;
             else this.job = DefaultJob;
         }
         #endregion
@@ -69,13 +68,13 @@ namespace Cliffhanger
         #endregion
 
         #region Other Methods
-        static bool CheckDate(DateOnly date)
+        static bool IsValidDate(DateOnly date)
         {
             if (date.Year > MinYear && date.Year <= CurrentYear) return true;
             return false;
         }
         
-        static bool CheckJob(JobType job)
+        static bool IsValidJob(JobType job)
         {
             int aux = (int)job;
             if (aux > 0 && aux < JobTypeLength) return true;

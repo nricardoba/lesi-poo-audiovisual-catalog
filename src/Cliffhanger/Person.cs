@@ -18,13 +18,12 @@ namespace Cliffhanger
         #region Methods
 
         #region Properties
-        // se estas forem protected, ver se dá para usar no main com a class filha
         public int Id
         {
             get { return id; }
             set
             {
-                if (CheckId(value)) id = value;
+                if (IsValidId(value)) id = value;
             }
         }
 
@@ -33,7 +32,7 @@ namespace Cliffhanger
             get { return name; }
             set
             {
-                if (CheckName(value)) name = value;
+                if (IsValidName(value)) name = value;
             }
         }
         #endregion
@@ -45,12 +44,13 @@ namespace Cliffhanger
             name = DefaultName;
         }
 
+        // talvez tirar as verificações, o construtor só é chamado se as variaveis forem verificadas anteriormente
         public Person(int id, string name)
         {
-            if (CheckId(id)) this.id = id;
+            if (IsValidId(id)) this.id = id;
             else this.id = DefaultId;
 
-            if (CheckName(name)) this.name = name;
+            if (IsValidName(name)) this.name = name;
             else this.name = DefaultName;
         }
         #endregion
@@ -60,14 +60,14 @@ namespace Cliffhanger
 
         #region Other Methods
         // protected?
-        static bool CheckId(int id)
+        static bool IsValidId(int id)
         {
-            if (id > 0 && id <= MaxId) return true;
+            if (id >= 0 && id <= MaxId) return true;
             return false;
         }
 
         // não tenho a certeza se as posso usar no constructor e nas properties
-        static bool CheckName(string name)
+        static bool IsValidName(string name)
         {
             if (name.Length > 0 && name.Length <= StringMaxLength) return true;
             return false;
