@@ -1,13 +1,29 @@
 namespace Cliffhanger
 {
-    public abstract class UserRepository : IElement<User>
+    public class UserRepository : IElement<User>
     {
         #region Attributes
-        static List<User> repository = new List<User>();
+        List<User> repository;
+        #endregion
+        
+        #region Methods
+        
+        #region Properties
+        public List<User> Repository
+        {
+            get { return repository; }
+        }
         #endregion
 
-        #region Methods
-        public static bool AddElement(User element)
+        #region Constructors
+        public UserRepository()
+        {
+            repository = new List<User>();
+        }
+        #endregion
+        
+        #region Other Methods
+        public bool AddElement(User element)
         {
             if (!DoesIdExist(element.Id))
             {
@@ -17,7 +33,7 @@ namespace Cliffhanger
             return false;
         }
 
-        public static bool RemoveElement(User element)
+        public bool RemoveElement(User element)
         {
             foreach (User item in repository)
             {
@@ -30,7 +46,7 @@ namespace Cliffhanger
             return false;
         }
 
-        public static bool DoesIdExist(int id)
+        public bool DoesIdExist(int id)
         {
             if (id < Config.MinId || id > Config.MaxId)
                 return true;
@@ -42,7 +58,7 @@ namespace Cliffhanger
             return false;
         }
 
-        public static void ShowAllElements()
+        public void ShowAllElements()
         {
             foreach (User item in repository)
             {
@@ -51,6 +67,8 @@ namespace Cliffhanger
                 Console.WriteLine("Job:  " + item.Account + "\n");
             }
         }
+        #endregion
+        
         #endregion
     }
 }

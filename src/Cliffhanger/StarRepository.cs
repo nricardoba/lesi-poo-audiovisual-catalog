@@ -1,13 +1,29 @@
 namespace Cliffhanger
 {
-    public abstract class StarRepository : IElement<Star>
+    public class StarRepository : IElement<Star>
     {
         #region Attributes
-        static List<Star> repository = new List<Star>();
+        List<Star> repository;
+        #endregion
+        
+        #region Methods
+        
+        #region Properties
+        public List<Star> Repository
+        {
+            get { return repository; }
+        }
         #endregion
 
-        #region Methods
-        public static bool AddElement(Star element)
+        #region Constructors
+        public StarRepository()
+        {
+            repository = new List<Star>();
+        }
+        #endregion
+        
+        #region Other Methods
+        public bool AddElement(Star element)
         {
             if (!DoesIdExist(element.Id))
             {
@@ -17,7 +33,7 @@ namespace Cliffhanger
             return false;
         }
 
-        public static bool RemoveElement(Star element)
+        public bool RemoveElement(Star element)
         {
             foreach (Star item in repository)
             {
@@ -30,7 +46,7 @@ namespace Cliffhanger
             return false;
         }
 
-        public static bool DoesIdExist(int id)
+        public bool DoesIdExist(int id)
         {
             if (id < Config.MinId || id > Config.MaxId)
                 return true;
@@ -42,7 +58,7 @@ namespace Cliffhanger
             return false;
         }
 
-        public static void ShowAllElements()
+        public void ShowAllElements()
         {
             foreach (Star item in repository)
             {
@@ -52,6 +68,8 @@ namespace Cliffhanger
                 Console.WriteLine("Job:  " + item.Job + "\n");
             }
         }
+        #endregion
+        
         #endregion
     }
 }

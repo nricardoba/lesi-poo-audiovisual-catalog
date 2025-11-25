@@ -16,7 +16,7 @@ namespace Cliffhanger
         /// <returns>
         /// The result of insertion.
         /// </returns>
-        static abstract bool AddElement(ObjectType element);
+        bool AddElement(ObjectType element);
 
         /// <summary>
         /// Signature of method RemoveElement.
@@ -26,7 +26,7 @@ namespace Cliffhanger
         /// <returns>
         /// The result of removal.
         /// </returns>
-        static abstract bool RemoveElement(ObjectType element);
+        bool RemoveElement(ObjectType element);
 
         /// <summary>
         /// Signature of method DoesIdExist.
@@ -36,11 +36,11 @@ namespace Cliffhanger
         /// <returns>
         /// The result...
         /// </returns>
-        static abstract bool DoesIdExist(int id);
+        bool DoesIdExist(int id);
 
         /// <summary>
         /// Show in console all elements in a data data structure.
         /// </summary>
-        static abstract void ShowAllElements();
+        void ShowAllElements();
     }
 }
