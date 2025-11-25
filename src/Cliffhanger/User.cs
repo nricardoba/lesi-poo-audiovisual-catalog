@@ -8,11 +8,6 @@ namespace Cliffhanger
 
     public class User : Person
     {
-        #region Constants
-        const AccountType DefaultAccount = AccountType.Normal;
-        static int AccountTypeLength = Enum.GetValues<AccountType>().Length;
-        #endregion
-
         #region Attributes
         AccountType account;
         #endregion
@@ -33,13 +28,13 @@ namespace Cliffhanger
         #region Constructors
         public User() : base()
         {
-            account = DefaultAccount;
+            account = ProgramConfig.DefaultAccount;
         }
 
         public User(int id, string name, AccountType account) : base(id, name)
         {
             if (IsValidAccount(account)) this.account = account;
-            else this.account = DefaultAccount;
+            else this.account = ProgramConfig.DefaultAccount;
         }
         #endregion
 
@@ -50,7 +45,8 @@ namespace Cliffhanger
         static bool IsValidAccount(AccountType account)
         {
             int aux = (int)account;
-            if (aux >= 0 && aux < AccountTypeLength) return true;
+            if (aux >= ProgramConfig.MinAccountType && aux < ProgramConfig.AccountTypeLength)
+                return true;
             return false;
         }
         #endregion

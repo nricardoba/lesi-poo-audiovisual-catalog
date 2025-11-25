@@ -2,14 +2,6 @@ namespace Cliffhanger
 {
     public abstract class Person
     {
-        #region Constants
-        const int DefaultId = -1;
-        const int MaxId = 999;
-
-        const string DefaultName = "Unknown";
-        const int StringMaxLength = 50;
-        #endregion
-
         #region Attributes
         int id;
         string name = string.Empty;
@@ -40,18 +32,18 @@ namespace Cliffhanger
         #region Constructors
         public Person()
         {
-            id = DefaultId;
-            name = DefaultName;
+            id = ProgramConfig.DefaultId;
+            name = ProgramConfig.DefaultName;
         }
 
         // talvez tirar as verificações, o construtor só é chamado se as variaveis forem verificadas anteriormente
         public Person(int id, string name)
         {
             if (IsValidId(id)) this.id = id;
-            else this.id = DefaultId;
+            else this.id = ProgramConfig.DefaultId;
 
             if (IsValidName(name)) this.name = name;
-            else this.name = DefaultName;
+            else this.name = ProgramConfig.DefaultName;
         }
         #endregion
 
@@ -62,14 +54,16 @@ namespace Cliffhanger
         // protected?
         static bool IsValidId(int id)
         {
-            if (id >= 0 && id <= MaxId) return true;
+            if (id >= ProgramConfig.MinId && id <= ProgramConfig.MaxId)
+                return true;
             return false;
         }
 
         // não tenho a certeza se as posso usar no constructor e nas properties
         static bool IsValidName(string name)
         {
-            if (name.Length > 0 && name.Length <= StringMaxLength) return true;
+            if (name.Length >= ProgramConfig.StringMinLength && name.Length <= ProgramConfig.StringMaxLength)
+                return true;
             return false;
         }
         #endregion

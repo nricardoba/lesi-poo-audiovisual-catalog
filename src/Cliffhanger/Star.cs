@@ -10,15 +10,6 @@ namespace Cliffhanger
 
     public class Star : Person
     {
-        #region Constants
-        const int MinYear = 1850;
-        static int CurrentYear = DateTime.Today.Year;
-        static DateOnly DefaultDate = new DateOnly(CurrentYear, 1, 1);
-
-        const JobType DefaultJob = JobType.Unemployed;
-        static int JobTypeLength = Enum.GetValues<JobType>().Length;
-        #endregion
-
         #region Attributes
         DateOnly dateOfBirth;
         JobType job;
@@ -50,17 +41,17 @@ namespace Cliffhanger
         #region Constructors
         public Star() : base()
         {
-            dateOfBirth = DefaultDate;
-            job = DefaultJob;
+            dateOfBirth = ProgramConfig.DefaultDate;
+            job = ProgramConfig.DefaultJob;
         }
 
         public Star(int id, string name, DateOnly date, JobType job) : base(id, name)
         {
             if (IsValidDate(date)) dateOfBirth = date;
-            else dateOfBirth = DefaultDate;
+            else dateOfBirth = ProgramConfig.DefaultDate;
 
             if (IsValidJob(job)) this.job = job;
-            else this.job = DefaultJob;
+            else this.job = ProgramConfig.DefaultJob;
         }
         #endregion
 
@@ -70,14 +61,16 @@ namespace Cliffhanger
         #region Other Methods
         static bool IsValidDate(DateOnly date)
         {
-            if (date.Year > MinYear && date.Year <= CurrentYear) return true;
+            if (date.Year >= ProgramConfig.MinYear && date.Year <= ProgramConfig.CurrentYear)
+                return true;
             return false;
         }
         
         static bool IsValidJob(JobType job)
         {
             int aux = (int)job;
-            if (aux > 0 && aux < JobTypeLength) return true;
+            if (aux > ProgramConfig.MinJobType && aux < ProgramConfig.JobTypeLength)
+                return true;
             return false;
         }
         #endregion
