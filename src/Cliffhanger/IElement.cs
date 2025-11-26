@@ -26,7 +26,7 @@ namespace Cliffhanger
         /// <returns>
         /// The result of removal.
         /// </returns>
-        bool RemoveElement(ObjectType element);
+        bool RemoveElement(int id);
 
         /// <summary>
         /// Signature of method DoesIdExist.
@@ -36,7 +36,7 @@ namespace Cliffhanger
         /// <returns>
         /// The result...
         /// </returns>
-        bool DoesIdExist(int id);
+        bool IsIdValid(int id);
 
         /// <summary>
         /// Show in console all elements in a data data structure.

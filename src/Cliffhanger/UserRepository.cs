@@ -3,68 +3,53 @@ namespace Cliffhanger
     public class UserRepository : IElement<User>
     {
         #region Attributes
-        List<User> repository;
+        Dictionary<int, User> repository;
         #endregion
-        
+
         #region Methods
-        
-        #region Properties
-        public List<User> Repository
-        {
-            get { return repository; }
-        }
-        #endregion
 
         #region Constructors
         public UserRepository()
         {
-            repository = new List<User>();
+            repository = new Dictionary<int, User>();
         }
         #endregion
         
         #region Other Methods
         public bool AddElement(User element)
         {
-            if (!DoesIdExist(element.Id))
+            if (IsIdValid(element.Id))
             {
-                repository.Add(element);
+                repository.Add(element.Id, element);
                 return true;
             }
+
             return false;
         }
-
-        public bool RemoveElement(User element)
+        
+        public bool RemoveElement(int id)
         {
-            foreach (User item in repository)
-            {
-                if (item.Id == element.Id)
-                {
-                    repository.Remove(item);
-                    return true;
-                }
-            }
-            return false;
+            if (!repository.ContainsKey(id)) return false;
+
+            repository.Remove(id);
+            return true;
         }
 
-        public bool DoesIdExist(int id)
+        public bool IsIdValid(int id)
         {
-            if (id < Config.MinId || id > Config.MaxId)
-                return true;
+            if (id < Config.MinId || id > Config.MaxId || repository.ContainsKey(id))
+                return false;
 
-            foreach (User item in repository)
-            {
-                if (item.Id == id) return true;
-            }
-            return false;
+            return true;
         }
 
         public void ShowAllElements()
         {
-            foreach (User item in repository)
+            foreach (KeyValuePair<int, User> item in repository)
             {
-                Console.WriteLine("Id:   " + item.Id);
-                Console.WriteLine("Name: " + item.Name);
-                Console.WriteLine("Job:  " + item.Account + "\n");
+                Console.WriteLine("Id:   " + item.Value.Id);
+                Console.WriteLine("Name: " + item.Value.Name);
+                Console.WriteLine("Job:  " + item.Value.Account + "\n");
             }
         }
         #endregion
