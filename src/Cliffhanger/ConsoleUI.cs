@@ -37,17 +37,17 @@ namespace Cliffhanger
 
             input = ReadString(message + " year: ");
             success = int.TryParse(input, out int yearNum);
-            if (success && Star.IsYearValid(yearNum)) year = yearNum;
+            if (success && DateRules.IsYearValid(yearNum)) year = yearNum;
             else year = Config.CurrentYear;
 
             input = ReadString(message + " month: ");
             success = int.TryParse(input, out int monthNum);
-            if (success && Star.IsMonthValid(monthNum)) month = monthNum;
+            if (success && DateRules.IsMonthValid(monthNum)) month = monthNum;
             else month = Config.DefaultMonth;
 
             input = ReadString(message + " day: ");
             success = int.TryParse(input, out int dayNum);
-            if (success && Star.IsDayValid(year, month, dayNum)) day = dayNum;
+            if (success && DateRules.IsDayValid(year, month, dayNum)) day = dayNum;
             else day = Config.DefaultDay;
 
             return new DateOnly(year, month, day);

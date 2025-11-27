@@ -1,5 +1,3 @@
-using System.Reflection;
-
 namespace Cliffhanger
 {
     public enum JobType
@@ -25,7 +23,8 @@ namespace Cliffhanger
             get { return dateOfBirth; }
             set
             {
-                if (IsYearValid(value.Year)) dateOfBirth = value;
+                if (IsDateValid(value.Year, value.Month, value.Day))
+                    dateOfBirth = value;
             }
         }
 
@@ -48,7 +47,7 @@ namespace Cliffhanger
 
         public Star(int id, string name, DateOnly date, JobType job) : base(id, name)
         {
-            if (IsYearValid(date.Year)) dateOfBirth = date;
+            if (IsDateValid(date.Year, date.Month, date.Day)) dateOfBirth = date;
             else dateOfBirth = Config.DefaultDate;
 
             if (IsJobValid(job)) this.job = job;
@@ -60,26 +59,11 @@ namespace Cliffhanger
         #endregion
 
         #region Other Methods
-        public static bool IsYearValid(int year)
+        public static bool IsDateValid(int year, int month, int day)
         {
-            if (year >= Config.MinYear && year <= Config.CurrentYear)
-                return true;
-            return false;
-        }
-
-        public static bool IsMonthValid(int month)
-        {
-            if (month >= 1 && month <= 12) return true;
-            return false;
-        }
-
-        public static bool IsDayValid(int year, int month, int day)
-        {
-            if (!IsYearValid(year)) return false;
-            if (!IsMonthValid(month)) return false;
-
-            if (day <= 0 || day > DateTime.DaysInMonth(year, month))
-                return false;
+            if (!DateRules.IsYearValid(year) || year > Config.CurrentYear) return false;
+            if (!DateRules.IsMonthValid(month)) return false;
+            if (!DateRules.IsDayValid(year, month, day)) return false;
 
             return true;
         }
