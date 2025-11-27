@@ -43,6 +43,12 @@ namespace Cliffhanger
             return false;
         }
 
+        public bool IsRepositoryFull()
+        {
+            if (repository.Count <= Config.MaxId) return false;
+            return true;
+        }
+
         public void ShowAllElements()
         {
             foreach (KeyValuePair<int, User> item in repository)

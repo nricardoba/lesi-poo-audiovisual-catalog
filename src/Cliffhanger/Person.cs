@@ -36,7 +36,6 @@ namespace Cliffhanger
             name = Config.DefaultName;
         }
 
-        // talvez tirar as verificações, o construtor só é chamado se as variaveis forem verificadas anteriormente
         public Person(int id, string name)
         {
             if (IsIdValid(id)) this.id = id;
@@ -47,11 +46,7 @@ namespace Cliffhanger
         }
         #endregion
 
-        #region Overrides
-        #endregion
-
         #region Other Methods
-        // protected?
         public static bool IsIdValid(int id)
         {
             if (id >= Config.MinId && id <= Config.MaxId)
@@ -59,9 +54,9 @@ namespace Cliffhanger
             return false;
         }
 
-        // não tenho a certeza se as posso usar no constructor e nas properties
         public static bool IsNameValid(string name)
         {
+            // string.IsNullOrWhiteSpace?
             if (name.Length >= Config.StringMinLength && name.Length <= Config.StringMaxLength)
                 return true;
             return false;

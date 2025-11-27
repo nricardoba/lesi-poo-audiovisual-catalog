@@ -16,6 +16,8 @@ namespace Cliffhanger
         #endregion
 
         #region Other Methods
+        // tás a passar o objeto já criado
+        // tens que verificar se os atributos são validos antes de criar o objeto
         public bool AddElement(Star element)
         {
             if (IsIdAvailable(element.Id))
@@ -41,6 +43,12 @@ namespace Cliffhanger
                 return true;
 
             return false;
+        }
+
+        public bool IsRepositoryFull()
+        {
+            if (repository.Count <= Config.MaxId) return false;
+            return true;
         }
 
         public void ShowAllElements()
