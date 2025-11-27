@@ -18,7 +18,7 @@ namespace Cliffhanger
         #region Other Methods
         public bool AddElement(User element)
         {
-            if (CheckId(element.Id))
+            if (IsIdAvailable(element.Id))
             {
                 repository.Add(element.Id, element);
                 return true;
@@ -35,12 +35,12 @@ namespace Cliffhanger
             return true;
         }
 
-        public bool CheckId(int id)
+        public bool IsIdAvailable(int id)
         {
-            if (id < Config.MinId || id > Config.MaxId || repository.ContainsKey(id))
-                return false;
+            if (Person.IsIdValid(id) && !repository.ContainsKey(id))
+                return true;
 
-            return true;
+            return false;
         }
 
         public void ShowAllElements()

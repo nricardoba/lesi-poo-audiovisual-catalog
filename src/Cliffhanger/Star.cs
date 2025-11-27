@@ -59,14 +59,14 @@ namespace Cliffhanger
         #endregion
 
         #region Other Methods
-        static bool IsDateValid(DateOnly date)
+        public static bool IsDateValid(DateOnly date)
         {
             if (date.Year >= Config.MinYear && date.Year <= Config.CurrentYear)
                 return true;
             return false;
         }
         
-        static bool IsJobValid(JobType job)
+        public static bool IsJobValid(JobType job)
         {
             int aux = (int)job;
             if (aux > Config.MinJobType && aux < Config.JobTypeLength)

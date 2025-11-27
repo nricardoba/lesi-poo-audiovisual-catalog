@@ -42,7 +42,7 @@ namespace Cliffhanger
         #endregion
 
         #region Other Methods
-        static bool IsAccountValid(AccountType account)
+        public static bool IsAccountValid(AccountType account)
         {
             int aux = (int)account;
             if (aux >= Config.MinAccountType && aux < Config.AccountTypeLength)

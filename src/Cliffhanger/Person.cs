@@ -52,7 +52,7 @@ namespace Cliffhanger
 
         #region Other Methods
         // protected?
-        static bool IsIdValid(int id)
+        public static bool IsIdValid(int id)
         {
             if (id >= Config.MinId && id <= Config.MaxId)
                 return true;
@@ -60,7 +60,7 @@ namespace Cliffhanger
         }
 
         // não tenho a certeza se as posso usar no constructor e nas properties
-        static bool IsNameValid(string name)
+        public static bool IsNameValid(string name)
         {
             if (name.Length >= Config.StringMinLength && name.Length <= Config.StringMaxLength)
                 return true;
