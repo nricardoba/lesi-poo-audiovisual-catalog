@@ -20,7 +20,7 @@ namespace Cliffhanger
             get { return account; }
             set
             {
-                if (IsValidAccount(value)) account = value;
+                if (IsAccountValid(value)) account = value;
             }
         }
         #endregion
@@ -33,7 +33,7 @@ namespace Cliffhanger
 
         public User(int id, string name, AccountType account) : base(id, name)
         {
-            if (IsValidAccount(account)) this.account = account;
+            if (IsAccountValid(account)) this.account = account;
             else this.account = Config.DefaultAccount;
         }
         #endregion
@@ -42,7 +42,7 @@ namespace Cliffhanger
         #endregion
 
         #region Other Methods
-        static bool IsValidAccount(AccountType account)
+        static bool IsAccountValid(AccountType account)
         {
             int aux = (int)account;
             if (aux >= Config.MinAccountType && aux < Config.AccountTypeLength)

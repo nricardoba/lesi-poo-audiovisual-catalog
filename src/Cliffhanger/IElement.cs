@@ -36,7 +36,7 @@ namespace Cliffhanger
         /// <returns>
         /// The result...
         /// </returns>
-        bool IsIdValid(int id);
+        bool CheckId(int id);
 
         /// <summary>
         /// Show in console all elements in a data data structure.

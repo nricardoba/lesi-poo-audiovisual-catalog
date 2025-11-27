@@ -15,7 +15,7 @@ namespace Cliffhanger
             get { return id; }
             set
             {
-                if (IsValidId(value)) id = value;
+                if (IsIdValid(value)) id = value;
             }
         }
 
@@ -24,7 +24,7 @@ namespace Cliffhanger
             get { return name; }
             set
             {
-                if (IsValidName(value)) name = value;
+                if (IsNameValid(value)) name = value;
             }
         }
         #endregion
@@ -39,10 +39,10 @@ namespace Cliffhanger
         // talvez tirar as verificações, o construtor só é chamado se as variaveis forem verificadas anteriormente
         public Person(int id, string name)
         {
-            if (IsValidId(id)) this.id = id;
+            if (IsIdValid(id)) this.id = id;
             else this.id = Config.DefaultId;
 
-            if (IsValidName(name)) this.name = name;
+            if (IsNameValid(name)) this.name = name;
             else this.name = Config.DefaultName;
         }
         #endregion
@@ -52,7 +52,7 @@ namespace Cliffhanger
 
         #region Other Methods
         // protected?
-        static bool IsValidId(int id)
+        static bool IsIdValid(int id)
         {
             if (id >= Config.MinId && id <= Config.MaxId)
                 return true;
@@ -60,7 +60,7 @@ namespace Cliffhanger
         }
 
         // não tenho a certeza se as posso usar no constructor e nas properties
-        static bool IsValidName(string name)
+        static bool IsNameValid(string name)
         {
             if (name.Length >= Config.StringMinLength && name.Length <= Config.StringMaxLength)
                 return true;

@@ -23,7 +23,7 @@ namespace Cliffhanger
             get { return dateOfBirth; }
             set
             {
-                if (IsValidDate(value)) dateOfBirth = value;
+                if (IsDateValid(value)) dateOfBirth = value;
             }
         }
 
@@ -33,7 +33,7 @@ namespace Cliffhanger
             get { return job; }
             set
             {
-                if (IsValidJob(value)) job = value;
+                if (IsJobValid(value)) job = value;
             }
         }
         #endregion
@@ -47,10 +47,10 @@ namespace Cliffhanger
 
         public Star(int id, string name, DateOnly date, JobType job) : base(id, name)
         {
-            if (IsValidDate(date)) dateOfBirth = date;
+            if (IsDateValid(date)) dateOfBirth = date;
             else dateOfBirth = Config.DefaultDate;
 
-            if (IsValidJob(job)) this.job = job;
+            if (IsJobValid(job)) this.job = job;
             else this.job = Config.DefaultJob;
         }
         #endregion
@@ -59,14 +59,14 @@ namespace Cliffhanger
         #endregion
 
         #region Other Methods
-        static bool IsValidDate(DateOnly date)
+        static bool IsDateValid(DateOnly date)
         {
             if (date.Year >= Config.MinYear && date.Year <= Config.CurrentYear)
                 return true;
             return false;
         }
         
-        static bool IsValidJob(JobType job)
+        static bool IsJobValid(JobType job)
         {
             int aux = (int)job;
             if (aux > Config.MinJobType && aux < Config.JobTypeLength)
