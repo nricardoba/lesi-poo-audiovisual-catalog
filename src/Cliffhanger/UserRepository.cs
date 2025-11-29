@@ -37,7 +37,7 @@ namespace Cliffhanger
 
         public bool IsIdAvailable(int id)
         {
-            if (Person.IsIdValid(id) && !repository.ContainsKey(id))
+            if (Person.IsKeyValid(id) && !repository.ContainsKey(id))
                 return true;
 
             return false;
@@ -47,16 +47,6 @@ namespace Cliffhanger
         {
             if (repository.Count <= Config.MaxId) return false;
             return true;
-        }
-
-        public void ShowAllElements()
-        {
-            foreach (KeyValuePair<int, User> item in repository)
-            {
-                Console.WriteLine("Id:   " + item.Value.Id);
-                Console.WriteLine("Name: " + item.Value.Name);
-                Console.WriteLine("Job:  " + item.Value.Account + "\n");
-            }
         }
         #endregion
         

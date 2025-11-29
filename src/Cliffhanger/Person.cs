@@ -4,7 +4,7 @@ namespace Cliffhanger
     {
         #region Attributes
         int id;
-        string name = string.Empty;
+        string name;
         #endregion
 
         #region Methods
@@ -36,10 +36,9 @@ namespace Cliffhanger
             name = Config.DefaultName;
         }
 
-        public Person(int id, string name)
+        public Person(string name)
         {
-            if (IsIdValid(id)) this.id = id;
-            else this.id = Config.DefaultId;
+            id = Config.DefaultId;
 
             if (IsNameValid(name)) this.name = name;
             else this.name = Config.DefaultName;
@@ -51,14 +50,15 @@ namespace Cliffhanger
         {
             if (id >= Config.MinId && id <= Config.MaxId)
                 return true;
+            
             return false;
         }
 
         public static bool IsNameValid(string name)
         {
-            // string.IsNullOrWhiteSpace?
-            if (name.Length >= Config.StringMinLength && name.Length <= Config.StringMaxLength)
+            if (!string.IsNullOrWhiteSpace(name) && name.Length <= Config.StringMaxLength)
                 return true;
+                
             return false;
         }
         #endregion

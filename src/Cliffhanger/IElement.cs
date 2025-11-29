@@ -37,10 +37,5 @@ namespace Cliffhanger
         /// The result...
         /// </returns>
         bool IsIdAvailable(int id);
-
-        /// <summary>
-        /// Show in console all elements in a data data structure.
-        /// </summary>
-        void ShowAllElements();
     }
 }

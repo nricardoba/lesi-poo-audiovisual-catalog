@@ -2,6 +2,7 @@ namespace Cliffhanger
 {
     public static class DateRules
     {
+        // o ano maximo que pode existir no projeto é o atual + 100
         public static bool IsYearValid(int year)
         {
             if (year >= Config.MinYear && year <= Config.CurrentYear + 100)

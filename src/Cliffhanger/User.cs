@@ -20,7 +20,7 @@ namespace Cliffhanger
             get { return account; }
             set
             {
-                if (IsAccountValid(value)) account = value;
+                if (IsAccountValid((int)value)) account = value;
             }
         }
         #endregion
@@ -31,22 +31,19 @@ namespace Cliffhanger
             account = Config.DefaultAccount;
         }
 
-        public User(int id, string name, AccountType account) : base(id, name)
+        public User(string name, AccountType account) : base(name)
         {
-            if (IsAccountValid(account)) this.account = account;
+            if (IsAccountValid((int)account)) this.account = account;
             else this.account = Config.DefaultAccount;
         }
         #endregion
 
-        #region Overrides
-        #endregion
-
         #region Other Methods
-        public static bool IsAccountValid(AccountType account)
+        public static bool IsAccountValid(int accountNum)
         {
-            int aux = (int)account;
-            if (aux >= Config.MinAccountType && aux < Config.AccountTypeLength)
+            if (accountNum >= Config.MinAccountType && accountNum < Config.AccountTypeLength)
                 return true;
+            
             return false;
         }
         #endregion

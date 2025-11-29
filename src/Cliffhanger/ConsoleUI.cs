@@ -60,8 +60,7 @@ namespace Cliffhanger
             bool success = int.TryParse(input, out int jobNum);
             if (success)
             {
-                JobType aux = (JobType)jobNum;
-                if (Star.IsJobValid(aux)) return aux;
+                if (Star.IsJobValid(jobNum)) return (JobType)jobNum;
             }
 
             return Config.DefaultJob;

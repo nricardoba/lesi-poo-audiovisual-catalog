@@ -18,6 +18,7 @@ namespace Cliffhanger
         #region Other Methods
         // tás a passar o objeto já criado
         // tens que verificar se os atributos são validos antes de criar o objeto
+        // o ID entra semore como -1
         public bool AddElement(Star element)
         {
             if (IsIdAvailable(element.Id))
@@ -25,10 +26,11 @@ namespace Cliffhanger
                 repository.Add(element.Id, element);
                 return true;
             }
+            // else if ()
 
             return false;
         }
-        
+
         public bool RemoveElement(int id)
         {
             if (!repository.ContainsKey(id)) return false;
@@ -36,30 +38,28 @@ namespace Cliffhanger
             repository.Remove(id);
             return true;
         }
-
-        public bool IsIdAvailable(int id)
+        
+        public static bool IsKeyValid(int key)
         {
-            if (Person.IsIdValid(id) && !repository.ContainsKey(id))
+            if (key >= Config.MinId && key <= Config.MaxId)
                 return true;
 
             return false;
         }
 
+        public bool IsIdAvailable(int id)
+        {
+            if (IsKeyValid(id) && !repository.ContainsKey(id))
+                return true;
+
+            return false;
+        }
+
+        // acho que está correto, mas verificar melhor mais tarde!
         public bool IsRepositoryFull()
         {
             if (repository.Count <= Config.MaxId) return false;
             return true;
-        }
-
-        public void ShowAllElements()
-        {
-            foreach (KeyValuePair<int, Star> item in repository)
-            {
-                Console.WriteLine("Id:   " + item.Value.Id);
-                Console.WriteLine("Name: " + item.Value.Name);
-                Console.WriteLine("Date: " + item.Value.DateOfBirth);
-                Console.WriteLine("Job:  " + item.Value.Job + "\n");
-            }
         }
         #endregion
         

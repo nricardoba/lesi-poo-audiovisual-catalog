@@ -23,7 +23,7 @@ namespace Cliffhanger
             get { return dateOfBirth; }
             set
             {
-                if (IsDateValid(value.Year, value.Month, value.Day))
+                if (IsDateOfBirthValid(value.Year, value.Month, value.Day))
                     dateOfBirth = value;
             }
         }
@@ -33,7 +33,7 @@ namespace Cliffhanger
             get { return job; }
             set
             {
-                if (IsJobValid(value)) job = value;
+                if (IsJobValid((int)value)) job = value;
             }
         }
         #endregion
@@ -45,34 +45,30 @@ namespace Cliffhanger
             job = Config.DefaultJob;
         }
 
-        public Star(int id, string name, DateOnly date, JobType job) : base(id, name)
+        public Star(string name, DateOnly date, JobType job) : base(name)
         {
-            if (IsDateValid(date.Year, date.Month, date.Day)) dateOfBirth = date;
+            if (IsDateOfBirthValid(date.Year, date.Month, date.Day)) dateOfBirth = date;
             else dateOfBirth = Config.DefaultDate;
 
-            if (IsJobValid(job)) this.job = job;
+            if (IsJobValid((int)job)) this.job = job;
             else this.job = Config.DefaultJob;
         }
         #endregion
 
-        #region Overrides
-        #endregion
-
         #region Other Methods
-        public static bool IsDateValid(int year, int month, int day)
+        public static bool IsDateOfBirthValid(int year, int month, int day)
         {
-            if (!DateRules.IsYearValid(year) || year > Config.CurrentYear) return false;
-            if (!DateRules.IsMonthValid(month)) return false;
+            if (year > Config.CurrentYear) return false;
             if (!DateRules.IsDayValid(year, month, day)) return false;
 
             return true;
         }
         
-        public static bool IsJobValid(JobType job)
+        public static bool IsJobValid(int jobNum)
         {
-            int aux = (int)job;
-            if (aux > Config.MinJobType && aux < Config.JobTypeLength)
+            if (jobNum > Config.MinJobType && jobNum < Config.JobTypeLength)
                 return true;
+
             return false;
         }
         #endregion
