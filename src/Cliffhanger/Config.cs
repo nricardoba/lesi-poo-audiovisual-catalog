@@ -1,21 +1,16 @@
 namespace Cliffhanger
 {
-    /// <summary>
-    /// Class that contains the project constants.
-    /// </summary>
     public static class Config
     {
-        #region Person
+        #region Constants
         public const int DefaultId = -1;
         public const int MinId = 0;
         public const int MaxId = 999;
+        public const int RepositoryMaxElements = 1000;
 
         public const string DefaultName = "Unknown";
-        public const int StringMinLength = 2;
         public const int StringMaxLength = 50;
-        #endregion
 
-        #region Star
         public const int MinYear = 1850;
         public static int CurrentYear = DateTime.Today.Year;
         public static int DefaultMonth = 1;
@@ -27,10 +22,60 @@ namespace Cliffhanger
         public static int JobTypeLength = Enum.GetValues<JobType>().Length;
         #endregion
 
-        #region User
-        public const int MinAccountType = 0;
-        public const AccountType DefaultAccount = AccountType.Normal;
-        public static int AccountTypeLength = Enum.GetValues<AccountType>().Length;
+        #region Methods
+        // perguntar ao professor se estes metodos podem estar neste ficheiro
+        public static bool IsIdValid(int id)
+        {
+            if (id >= MinId && id <= MaxId)
+                return true;
+            return false;
+        }
+
+        // name or title?
+        public static bool IsNameValid(string name)
+        {
+            if (!string.IsNullOrWhiteSpace(name) && name.Length <= StringMaxLength)
+                return true;
+            return false;
+        }
+
+        public static bool IsDateOfBirthValid(int year, int month, int day)
+        {
+            if (IsDayValid(year, month, day) && year <= CurrentYear)
+                return true;
+            return false;
+        }
+
+        public static bool IsJobValid(int jobNum)
+        {
+            if (jobNum > MinJobType && jobNum < JobTypeLength)
+                return true;
+            return false;
+        }
+
+        public static bool IsYearValid(int year)
+        {
+            if (year >= MinYear && year <= CurrentYear + 100)
+                return true;
+            return false;
+        }
+
+        public static bool IsMonthValid(int month)
+        {
+            if (month >= 1 && month <= 12)
+                return true;
+            return false;
+        }
+
+        public static bool IsDayValid(int year, int month, int day)
+        {
+            if (!IsYearValid(year) || !IsMonthValid(month))
+                return false;
+
+            if (day <= 0 || day > DateTime.DaysInMonth(year, month))
+                return false;
+            return true;
+        }
         #endregion
     }
 }

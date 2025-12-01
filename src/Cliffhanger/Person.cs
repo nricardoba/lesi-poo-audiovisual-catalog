@@ -10,12 +10,13 @@ namespace Cliffhanger
         #region Methods
 
         #region Properties
+        // depois ver melhor, porque só queres mudar o id em contexto da lista principal
         public int Id
         {
             get { return id; }
             set
             {
-                if (IsIdValid(value)) id = value;
+                if (Config.IsIdValid(value)) id = value;
             }
         }
 
@@ -24,7 +25,7 @@ namespace Cliffhanger
             get { return name; }
             set
             {
-                if (IsNameValid(value)) name = value;
+                if (Config.IsNameValid(value)) name = value;
             }
         }
         #endregion
@@ -40,26 +41,8 @@ namespace Cliffhanger
         {
             id = Config.DefaultId;
 
-            if (IsNameValid(name)) this.name = name;
+            if (Config.IsNameValid(name)) this.name = name;
             else this.name = Config.DefaultName;
-        }
-        #endregion
-
-        #region Other Methods
-        public static bool IsIdValid(int id)
-        {
-            if (id >= Config.MinId && id <= Config.MaxId)
-                return true;
-            
-            return false;
-        }
-
-        public static bool IsNameValid(string name)
-        {
-            if (!string.IsNullOrWhiteSpace(name) && name.Length <= Config.StringMaxLength)
-                return true;
-                
-            return false;
         }
         #endregion
 
