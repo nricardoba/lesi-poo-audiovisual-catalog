@@ -4,9 +4,7 @@ namespace Cliffhanger
     {
         #region Constants
         public const int DefaultId = -1;
-        public const int MinId = 0;
         public const int MaxId = 999;
-        public const int RepositoryMaxElements = 1000;
 
         public const string DefaultName = "Unknown";
         public const int StringMaxLength = 50;
@@ -26,7 +24,7 @@ namespace Cliffhanger
         // perguntar ao professor se estes metodos podem estar neste ficheiro
         public static bool IsIdValid(int id)
         {
-            if (id >= MinId && id <= MaxId)
+            if (id >= 0 && id <= MaxId)
                 return true;
             return false;
         }

@@ -9,10 +9,9 @@ namespace Cliffhanger
         #region Methods
         public static bool AddElement(Star element)
         {
-            int auxId = GenerateId();
-            if (!Config.IsIdValid(auxId)) return false;
+            if (IsRepositoryFull()) return false;
 
-            element.Id = auxId;
+            element.Id = repository.Count;
             repository.Add(element);
 
             return true;
@@ -38,35 +37,9 @@ namespace Cliffhanger
             return null;
         }
 
-        static int GenerateId()
-        {
-            if (IsRepositoryFull()) return Config.DefaultId;
-
-            int id;
-            do
-            {
-                id = Random.Shared.Next(Config.MinId, Config.MaxId + 1);
-
-            } while (DoesIdExist(id));
-
-            return id;
-        }
-
-        public static bool DoesIdExist(int id)
-        {
-            if (!Config.IsIdValid(id)) return false;
-
-            foreach (Star element in repository)
-            {
-                if (element.Id == id) return true;
-            }
-
-            return false;
-        }
-
         public static bool IsRepositoryFull()
         {
-            if (repository.Count < Config.RepositoryMaxElements)
+            if (repository.Count < Config.MaxId + 1)
                 return false;
             return true;
         }
