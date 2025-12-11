@@ -40,6 +40,35 @@ namespace BusinessObjects
         #endregion
 
         #region Overrides
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || GetType() != obj.GetType())
+                return false;
+
+            Person other = (Person)obj;
+            return id == other.id;
+        }
+
+        public override int GetHashCode()
+        {
+            return id.GetHashCode();
+        }
+
+        public static bool operator ==(Person p1, Person p2)
+        {
+            if (ReferenceEquals(p1, p2))
+                return true;
+
+            if (p1 is null || p2 is null)
+                return false;
+
+            return p1.Equals(p2);
+        }
+
+        public static bool operator !=(Person p1, Person p2)
+        {
+            return !(p1 == p2);
+        }
         #endregion
 
         #region Other Methods
