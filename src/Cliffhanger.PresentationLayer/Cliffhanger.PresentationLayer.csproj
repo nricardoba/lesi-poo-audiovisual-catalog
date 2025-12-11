@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../Cliffhanger.BusinessLogic/Cliffhanger.BusinessLogic.csproj" />
+    <ProjectReference Include="../Cliffhanger.BusinessObjects/Cliffhanger.BusinessObjects.csproj" />
+  </ItemGroup>
+
 </Project>
