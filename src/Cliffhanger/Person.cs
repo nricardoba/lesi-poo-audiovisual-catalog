@@ -40,9 +40,7 @@ namespace Cliffhanger
         public Person(string name)
         {
             id = Config.DefaultId;
-
-            if (Config.IsNameValid(name)) this.name = name;
-            else this.name = Config.DefaultName;
+            this.name = Config.IsNameValid(name) ? name : Config.DefaultName;
         }
         #endregion
 

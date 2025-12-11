@@ -47,12 +47,10 @@ namespace Cliffhanger
 
         public Star(string name, DateOnly date, JobType job) : base(name)
         {
-            if (Config.IsDateOfBirthValid(date.Year, date.Month, date.Day))
-                dateOfBirth = date;
-            else dateOfBirth = Config.DefaultDate;
+            dateOfBirth = Config.IsDateOfBirthValid(date.Year, date.Month, date.Day)
+                ? date : Config.DefaultDate;
 
-            if (Config.IsJobValid((int)job)) this.job = job;
-            else this.job = Config.DefaultJob;
+            this.job = Config.IsJobValid((int)job) ? job : Config.DefaultJob;
         }
         #endregion
 

@@ -9,8 +9,9 @@ namespace Cliffhanger
         #region Methods
         public static bool AddElement(Star element)
         {
-            if (IsRepositoryFull()) return false;
+            if (repository.Contains(element)) return false;
 
+            // usar um sistema de Id (Guid)
             element.Id = repository.Count;
             repository.Add(element);
 
@@ -35,13 +36,6 @@ namespace Cliffhanger
             }
 
             return null;
-        }
-
-        public static bool IsRepositoryFull()
-        {
-            if (repository.Count < Config.MaxId + 1)
-                return false;
-            return true;
         }
         #endregion
     }
