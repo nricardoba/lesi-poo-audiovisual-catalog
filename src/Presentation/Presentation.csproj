@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Cliffhanger.BusinessLogic/Cliffhanger.BusinessLogic.csproj" />
-    <ProjectReference Include="../Cliffhanger.BusinessObjects/Cliffhanger.BusinessObjects.csproj" />
+    <ProjectReference Include="../BusinessLogic/BusinessLogic.csproj" />
+    <ProjectReference Include="../BusinessObjects/BusinessObjects.csproj" />
   </ItemGroup>
 
 </Project>

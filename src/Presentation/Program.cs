@@ -1,6 +1,7 @@
 ﻿using System;
+using BusinessObjects;
 
-namespace Cliffhanger.PresentationLayer
+namespace Presentation
 {
     internal class Program
     {
