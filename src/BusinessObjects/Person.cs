@@ -10,6 +10,10 @@ namespace BusinessObjects
         #region Methods
 
         #region Properties
+        // ver melhor o readonly
+        // acho que só pode ser alterado em duas ocasiões
+        // 1 - Ao criar a variavel (aqui)
+        // 2 - No construtor
         public Guid Id
         {
             get { return id; }
