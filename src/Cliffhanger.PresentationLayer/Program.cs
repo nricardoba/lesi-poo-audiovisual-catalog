@@ -1,13 +1,11 @@
 ﻿using System;
 
-namespace Cliffhanger
+namespace Cliffhanger.PresentationLayer
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int aux = Enum.GetValues<JobType>().Length;
-            Console.WriteLine(aux);
         }
     }
 }
