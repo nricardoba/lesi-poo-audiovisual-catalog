@@ -49,6 +49,9 @@ namespace BusinessObjects
             if (obj is null || GetType() != obj.GetType())
                 return false;
 
+            if (ReferenceEquals(this, obj))
+                return true;
+
             Person other = (Person)obj;
             return id == other.id;
         }
@@ -60,11 +63,13 @@ namespace BusinessObjects
 
         public static bool operator ==(Person p1, Person p2)
         {
-            if (ReferenceEquals(p1, p2))
-                return true;
+            // 0 && 0 --> True
+            // 0 && 1 --> False
+            // 1 && 0 --> False
+            // 1 && 1 --> Result
 
-            if (p1 is null || p2 is null)
-                return false;
+            if (p1 is null)
+                return p2 is null;
 
             return p1.Equals(p2);
         }
