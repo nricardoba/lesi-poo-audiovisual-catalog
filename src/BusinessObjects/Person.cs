@@ -24,7 +24,7 @@ namespace BusinessObjects
             get { return name; }
             set
             {
-                if (Config.IsNameValid(value)) name = value;
+                if (Validator.IsNameValid(value)) name = value;
             }
         }
         #endregion
@@ -39,7 +39,7 @@ namespace BusinessObjects
         public Person(string name)
         {
             id = Guid.NewGuid();
-            this.name = Config.IsNameValid(name) ? name : Config.DefaultName;
+            this.name = Validator.IsNameValid(name) ? name : Config.DefaultName;
         }
         #endregion
 

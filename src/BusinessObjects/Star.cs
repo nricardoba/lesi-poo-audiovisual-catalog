@@ -1,13 +1,5 @@
 namespace BusinessObjects
 {
-    public enum JobType
-    {
-        Unemployed,
-        Director,
-        Writer,
-        Actor
-    }
-
     public class Star : Person
     {
         #region Attributes
@@ -23,7 +15,7 @@ namespace BusinessObjects
             get { return birthDate; }
             set
             {
-                if (IsBirthDateValid(value.Year, value.Month, value.Day))
+                if (Validator.IsBirthDateValid(value.Year, value.Month, value.Day))
                     birthDate = value;
             }
         }
@@ -33,7 +25,7 @@ namespace BusinessObjects
             get { return job; }
             set
             {
-                if (IsJobValid((int)value)) job = value;
+                if (Validator.IsJobValid((int)value)) job = value;
             }
         }
         #endregion
@@ -47,8 +39,8 @@ namespace BusinessObjects
 
         public Star(string name, DateOnly date, JobType job) : base(name)
         {
-            birthDate = IsBirthDateValid(date.Year, date.Month, date.Day) ? date : Config.DefaultDate;
-            this.job = IsJobValid((int)job) ? job : Config.DefaultJob;
+            birthDate = Validator.IsBirthDateValid(date.Year, date.Month, date.Day) ? date : Config.DefaultDate;
+            this.job = Validator.IsJobValid((int)job) ? job : Config.DefaultJob;
         }
         #endregion
 
@@ -56,19 +48,6 @@ namespace BusinessObjects
         #endregion
 
         #region Other Methods
-        public static bool IsBirthDateValid(int year, int month, int day)
-        {
-            if (Config.IsDayValid(year, month, day) && year <= Config.CurrentYear)
-                return true;
-            return false;
-        }
-
-        public static bool IsJobValid(int jobNum)
-        {
-            if (jobNum > Config.MinJobType && jobNum < Config.JobTypeLength)
-                return true;
-            return false;
-        }
         #endregion
 
         #endregion
