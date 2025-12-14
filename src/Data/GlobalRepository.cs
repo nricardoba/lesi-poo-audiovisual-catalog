@@ -31,6 +31,16 @@ namespace Data
             return repository.Remove(element);
         }
 
+        public static bool RemoveElementById(Guid id)
+        {
+            T? element = GetElement(id);
+
+            if (element is null)
+                return false;
+
+            return repository.Remove(element);
+        }
+
         public static T? GetElement(Guid id)
         {
             foreach (T element in repository)
