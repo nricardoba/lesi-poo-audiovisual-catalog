@@ -3,6 +3,10 @@ namespace BusinessObjects
     public abstract class Person
     {
         #region Attributes
+        // ver melhor o readonly
+        // acho que só pode ser alterado em duas ocasiões
+        // 1 - Ao criar a variavel (aqui)
+        // 2 - No construtor
         readonly Guid id;
         string name;
         #endregion
@@ -10,10 +14,6 @@ namespace BusinessObjects
         #region Methods
 
         #region Properties
-        // ver melhor o readonly
-        // acho que só pode ser alterado em duas ocasiões
-        // 1 - Ao criar a variavel (aqui)
-        // 2 - No construtor
         public Guid Id
         {
             get { return id; }
@@ -78,6 +78,8 @@ namespace BusinessObjects
         {
             return !(p1 == p2);
         }
+
+        public abstract PersonClone Clone();
         #endregion
 
         #region Other Methods

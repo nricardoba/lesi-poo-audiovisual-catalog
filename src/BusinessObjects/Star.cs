@@ -45,6 +45,10 @@ namespace BusinessObjects
         #endregion
 
         #region Overrides
+        public override StarClone Clone()
+        {
+            return new StarClone(Id, Name, Birthdate, Job);
+        }
         #endregion
 
         #region Other Methods
