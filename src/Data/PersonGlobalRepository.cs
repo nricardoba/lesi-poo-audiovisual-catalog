@@ -2,7 +2,7 @@ using BusinessObjects;
 
 namespace Data
 {
-    public static class GlobalRepository<T> where T : Person
+    public static class PersonGlobalRepository<T> where T : Person
     {
         #region Attributes
         // Este readonly deixa manipular a lista, mas não deixa fazer
@@ -33,7 +33,7 @@ namespace Data
 
         public static bool RemoveElementById(Guid id)
         {
-            T? element = GetElement(id);
+            T? element = GetElementById(id);
 
             if (element is null)
                 return false;
@@ -41,7 +41,7 @@ namespace Data
             return repository.Remove(element);
         }
 
-        public static T? GetElement(Guid id)
+        public static T? GetElementById(Guid id)
         {
             foreach (T element in repository)
             {
@@ -50,6 +50,14 @@ namespace Data
             }
 
             return null;
+        }
+
+        public static T? GetElementByIndex(int index)
+        {
+            if (index < 0 || index >= repository.Count)
+                return null;
+
+            return repository[index];
         }
         #endregion
     }
