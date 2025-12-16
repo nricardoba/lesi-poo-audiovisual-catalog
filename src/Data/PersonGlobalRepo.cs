@@ -2,7 +2,7 @@ using BusinessObjects;
 
 namespace Data
 {
-    public static class PersonGlobalRepository<T> where T : Person
+    public static class PersonGlobalRepo<T> where T : Person
     {
         #region Attributes
         // Este readonly deixa manipular a lista, mas não deixa fazer
