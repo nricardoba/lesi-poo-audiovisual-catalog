@@ -1,10 +1,10 @@
 namespace BusinessObjects
 {
-    public abstract class PersonClone
+    public abstract class PersonDTO
     {
         #region Attributes
         readonly Guid id;
-        readonly string name;
+        string name;
         #endregion
 
         #region Methods
@@ -18,11 +18,20 @@ namespace BusinessObjects
         public string Name
         {
             get { return name; }
+            set { name = value; }
         }
         #endregion
 
         #region Constructors
-        public PersonClone(Guid id, string name)
+        // sem id neste
+        // é para passar dados
+        public PersonDTO(string name)
+        {
+            this.name = name;
+        }
+
+        // é para criar clone
+        public PersonDTO(Guid id, string name)
         {
             this.id = id;
             this.name = name;

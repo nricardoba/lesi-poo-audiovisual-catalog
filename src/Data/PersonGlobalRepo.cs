@@ -41,6 +41,16 @@ namespace Data
             return repository.Remove(element);
         }
 
+        public static bool RemoveElementByIndex(int index)
+        {
+            T? element = GetElementByIndex(index);
+
+            if (element is null)
+                return false;
+
+            return repository.Remove(element);
+        }
+
         public static T? GetElementById(Guid id)
         {
             foreach (T element in repository)
@@ -61,12 +71,12 @@ namespace Data
         }
 
         // não sei se está correto!!!
-        public static List<PersonClone>? Clone()
+        public static List<PersonDTO>? Clone()
         {
             if (repository.Count == 0)
                 return null;
 
-            List<PersonClone> cloneList = new List<PersonClone>();
+            List<PersonDTO> cloneList = new List<PersonDTO>();
 
             foreach (T element in repository)
             {

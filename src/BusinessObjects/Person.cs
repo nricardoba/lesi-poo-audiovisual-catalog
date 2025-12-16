@@ -79,7 +79,7 @@ namespace BusinessObjects
             return !(p1 == p2);
         }
 
-        public abstract PersonClone Clone();
+        public abstract PersonDTO Clone();
         #endregion
 
         #region Other Methods

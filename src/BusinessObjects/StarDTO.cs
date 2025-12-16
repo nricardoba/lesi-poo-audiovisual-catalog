@@ -1,10 +1,10 @@
 namespace BusinessObjects
 {
-    public class StarClone : PersonClone
+    public class StarDTO : PersonDTO
     {
         #region Attributes
-        readonly DateOnly birthDate;
-        readonly JobType job;
+        DateOnly birthDate;
+        JobType job;
         #endregion
 
         #region Methods
@@ -13,16 +13,24 @@ namespace BusinessObjects
         public DateOnly Birthdate
         {
             get { return birthDate; }
+            set { birthDate = value; }
         }
 
         public JobType Job
         {
             get { return job; }
+            set { job = value; }
         }
         #endregion
 
         #region Constructors
-        public StarClone(Guid id, string name, DateOnly date, JobType job) : base(id, name)
+        public StarDTO(string name, DateOnly date, JobType job) : base(name)
+        {
+            birthDate = date;
+            this.job = job;
+        }
+
+        public StarDTO(Guid id, string name, DateOnly date, JobType job) : base(id, name)
         {
             birthDate = date;
             this.job = job;
