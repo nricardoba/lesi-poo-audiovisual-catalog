@@ -1,6 +1,6 @@
 namespace BusinessObjects
 {
-    public abstract class Person
+    public abstract class Person : IEquatable<Person>, IComparable<Person>
     {
         #region Attributes
         // ver melhor o readonly
@@ -43,22 +43,35 @@ namespace BusinessObjects
         }
         #endregion
 
-        #region Overrides
-        public override bool Equals(object? obj)
-        {
-            if (obj is null || GetType() != obj.GetType())
-                return false;
-
-            if (ReferenceEquals(this, obj))
-                return true;
-
-            Person other = (Person)obj;
-            return id == other.id;
-        }
-
+        #region Comparators
         public override int GetHashCode()
         {
             return id.GetHashCode();
+        }
+        
+        public override bool Equals(object? other)
+        {
+            if (other is null || GetType() != other.GetType())
+                return false;
+
+            return Equals((Person)other);
+        }
+
+        public bool Equals(Person? other)
+        {
+            if (other is null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return id == other.id;
+        }
+
+        public int CompareTo(Person? other)
+        {
+            if (other is null) return 1;
+            return id.CompareTo(other.id);
         }
 
         public static bool operator ==(Person p1, Person p2)
@@ -78,11 +91,10 @@ namespace BusinessObjects
         {
             return !(p1 == p2);
         }
-
-        public abstract PersonDTO Clone();
         #endregion
 
-        #region Other Methods
+        #region Abstract
+        public abstract PersonDTO Clone();
         #endregion
 
         #endregion
