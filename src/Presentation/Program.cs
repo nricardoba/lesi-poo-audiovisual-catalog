@@ -1,5 +1,6 @@
 ﻿using System;
 using BusinessObjects;
+using BusinessLogic;
 
 namespace Presentation
 {
