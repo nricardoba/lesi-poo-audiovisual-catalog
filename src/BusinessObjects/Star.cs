@@ -10,7 +10,7 @@ namespace BusinessObjects
         #region Methods
 
         #region Properties
-        public DateOnly Birthdate
+        public DateOnly BirthDate
         {
             get { return birthDate; }
             set
@@ -47,11 +47,38 @@ namespace BusinessObjects
         #region Overrides
         public override StarDTO Clone()
         {
-            return new StarDTO(Id, Name, Birthdate, Job);
+            return new StarDTO(Id, Name, BirthDate, Job);
         }
         #endregion
 
         #region Other Methods
+        // se a data for superior à data atual, o metodo devolve -1
+        public int GetAge()
+        {
+            // Invalid
+            int InvalidValue = -1;
+            if (birthDate.Year > Config.CurrentYear)
+                return InvalidValue;
+
+            if (birthDate.Year == Config.CurrentYear)
+            {
+                if (birthDate.Month > Config.CurrentMonth)
+                    return InvalidValue;
+
+                if (birthDate.Month == Config.CurrentMonth
+                    && birthDate.Day > Config.CurrentDay)
+                    return InvalidValue;
+            }
+
+            // Valid
+            int age = Config.CurrentYear - birthDate.Year;
+            if (birthDate.Month > Config.CurrentMonth
+                || (birthDate.Month == Config.CurrentMonth
+                && birthDate.Day > Config.CurrentDay))
+                age--;
+
+            return age;
+        }
         #endregion
 
         #endregion

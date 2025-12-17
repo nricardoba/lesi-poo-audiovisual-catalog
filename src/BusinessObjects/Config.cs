@@ -7,8 +7,11 @@ namespace BusinessObjects
 
         public const int MinYear = 1850;
         public static int CurrentYear = DateTime.Today.Year;
-        public static int DefaultMonth = 1;
-        public static int DefaultDay = 1;
+        public const int DefaultMonth = 1;
+        public static int CurrentMonth = DateTime.Today.Month;
+        public const int DefaultDay = 1;
+        public static int CurrentDay = DateTime.Today.Day;
+        public static DateOnly CurrentDate = new DateOnly(CurrentYear, CurrentMonth, CurrentDay);
         public static DateOnly DefaultDate = new DateOnly(CurrentYear, DefaultMonth, DefaultDay);
 
         public const int MinJobType = 0;
