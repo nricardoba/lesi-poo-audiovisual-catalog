@@ -13,11 +13,7 @@ namespace BusinessObjects
         public DateOnly BirthDate
         {
             get { return birthDate; }
-            set
-            {
-                if (Validator.IsBirthDateValid(value.Year, value.Month, value.Day))
-                    birthDate = value;
-            }
+            set { birthDate = value; }
         }
 
         public JobType Job
@@ -25,7 +21,8 @@ namespace BusinessObjects
             get { return job; }
             set
             {
-                if (Validator.IsJobValid((int)value)) job = value;
+                if (IntegrityValidator.IsJobValid((int)value))
+                    job = value;
             }
         }
         #endregion
@@ -39,8 +36,9 @@ namespace BusinessObjects
 
         public Star(string name, DateOnly date, JobType job) : base(name)
         {
-            birthDate = Validator.IsBirthDateValid(date.Year, date.Month, date.Day) ? date : Config.DefaultDate;
-            this.job = Validator.IsJobValid((int)job) ? job : Config.DefaultJob;
+            birthDate = date;
+            this.job = IntegrityValidator.IsJobValid((int)job)
+                ? job : Config.DefaultJob;
         }
         #endregion
 

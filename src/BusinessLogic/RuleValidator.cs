@@ -1,24 +1,28 @@
-namespace BusinessObjects
+using BusinessObjects;
+
+namespace BusinessLogic
 {
-    public static class Validator
+    public static class RuleValidator
     {
-        public static bool IsNameValid(string name)
+        public static bool IsNameOrTitleValid(string text)
         {
-            if (string.IsNullOrWhiteSpace(name) || name.Length > Config.NameMaxLength)
+            // se chamares isto antes de chamar o construtor, estás a quebrar o DRY
+            // (ver melhor se dá para resolver)
+            if (!IntegrityValidator.IsNameOrTitleValid(text))
                 return false;
+
+            foreach (char c in text)
+            {
+                if (!char.IsLetterOrDigit(c) && c != ' ')
+                    return false;
+            }
+
             return true;
         }
 
         public static bool IsBirthDateValid(int year, int month, int day)
         {
             if (IsDayValid(year, month, day) && year <= Config.CurrentYear)
-                return true;
-            return false;
-        }
-
-        public static bool IsJobValid(int jobNum)
-        {
-            if (jobNum > Config.MinJobType && jobNum < Config.JobTypeLength)
                 return true;
             return false;
         }

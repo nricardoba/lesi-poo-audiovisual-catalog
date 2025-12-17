@@ -24,7 +24,8 @@ namespace BusinessObjects
             get { return name; }
             set
             {
-                if (Validator.IsNameValid(value)) name = value;
+                if (IntegrityValidator.IsNameOrTitleValid(value))
+                    name = value;
             }
         }
         #endregion
@@ -39,7 +40,8 @@ namespace BusinessObjects
         public Person(string name)
         {
             id = Guid.NewGuid();
-            this.name = Validator.IsNameValid(name) ? name : Config.DefaultName;
+            this.name = IntegrityValidator.IsNameOrTitleValid(name)
+                ? name : Config.DefaultName;
         }
         #endregion
 
