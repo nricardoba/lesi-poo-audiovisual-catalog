@@ -11,6 +11,9 @@ namespace BusinessLogic
         #region Generic
         public static bool AddElement(T element)
         {
+            if (!RuleValidator.IsElementValid(element))
+                return false;
+            
             return GlobalRepo<T>.AddElement(element);
         }
 

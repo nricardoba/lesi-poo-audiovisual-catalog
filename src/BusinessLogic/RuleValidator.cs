@@ -4,6 +4,21 @@ namespace BusinessLogic
 {
     public static class RuleValidator
     {
+        public static bool IsElementValid(object element)
+        {
+            var elementType = element.GetType();
+
+            if (elementType == typeof(Star))
+            {
+                Star aux = (Star)element;
+                if (!IsNameValid(aux.Name) || !IsBirthDateValid(aux.BirthDate))
+                    return false;
+                return true;
+            }
+
+            return false;
+        }
+
         public static bool IsNameValid(string text)
         {
             // se chamares isto antes de chamar o construtor, estás a quebrar o DRY
@@ -18,6 +33,11 @@ namespace BusinessLogic
             }
 
             return true;
+        }
+
+        public static bool IsBirthDateValid(DateOnly date)
+        {
+            return IsBirthDateValid(date.Year, date.Month, date.Day);
         }
 
         public static bool IsBirthDateValid(int year, int month, int day)
