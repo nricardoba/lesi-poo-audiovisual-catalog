@@ -4,11 +4,11 @@ namespace BusinessLogic
 {
     public static class RuleValidator
     {
-        public static bool IsNameOrTitleValid(string text)
+        public static bool IsNameValid(string text)
         {
             // se chamares isto antes de chamar o construtor, estás a quebrar o DRY
             // (ver melhor se dá para resolver)
-            if (!IntegrityValidator.IsNameOrTitleValid(text))
+            if (!IntegrityValidator.IsNameValid(text))
                 return false;
 
             foreach (char c in text)

@@ -2,7 +2,7 @@ namespace BusinessObjects
 {
     public static class IntegrityValidator
     {
-        public static bool IsNameOrTitleValid(string text)
+        public static bool IsNameValid(string text)
         {
             if (string.IsNullOrWhiteSpace(text) || text.Length > Config.NameMaxLength)
                 return false;

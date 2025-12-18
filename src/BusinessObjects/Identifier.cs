@@ -1,6 +1,6 @@
 namespace BusinessObjects
 {
-    public abstract class Person : IEquatable<Person>, IComparable<Person>
+    public abstract class Identifier : IEquatable<Identifier>, IComparable<Identifier>
     {
         #region Attributes
         // ver melhor o readonly
@@ -24,23 +24,23 @@ namespace BusinessObjects
             get { return name; }
             set
             {
-                if (IntegrityValidator.IsNameOrTitleValid(value))
+                if (IntegrityValidator.IsNameValid(value))
                     name = value;
             }
         }
         #endregion
 
         #region Constructors
-        public Person()
+        public Identifier()
         {
             id = Guid.NewGuid();
             name = Config.DefaultName;
         }
 
-        public Person(string name)
+        public Identifier(string name)
         {
             id = Guid.NewGuid();
-            this.name = IntegrityValidator.IsNameOrTitleValid(name)
+            this.name = IntegrityValidator.IsNameValid(name)
                 ? name : Config.DefaultName;
         }
         #endregion
@@ -56,10 +56,10 @@ namespace BusinessObjects
             if (other is null || GetType() != other.GetType())
                 return false;
 
-            return Equals((Person)other);
+            return Equals((Identifier)other);
         }
 
-        public bool Equals(Person? other)
+        public bool Equals(Identifier? other)
         {
             if (other is null)
                 return false;
@@ -70,28 +70,28 @@ namespace BusinessObjects
             return id == other.id;
         }
 
-        public int CompareTo(Person? other)
+        public int CompareTo(Identifier? other)
         {
             if (other is null) return 1;
             return id.CompareTo(other.id);
         }
 
-        public static bool operator ==(Person p1, Person p2)
+        public static bool operator ==(Identifier i1, Identifier i2)
         {
             // 0 && 0 --> True
             // 0 && 1 --> False
             // 1 && 0 --> False
             // 1 && 1 --> Result
 
-            if (p1 is null)
-                return p2 is null;
+            if (i1 is null)
+                return i2 is null;
 
-            return p1.Equals(p2);
+            return i1.Equals(i2);
         }
 
-        public static bool operator !=(Person p1, Person p2)
+        public static bool operator !=(Identifier i1, Identifier i2)
         {
-            return !(p1 == p2);
+            return !(i1 == i2);
         }
         #endregion
 

@@ -1,6 +1,6 @@
 namespace BusinessObjects
 {
-    public class Star : Person
+    public class Star : Identifier
     {
         #region Attributes
         DateOnly birthDate;
