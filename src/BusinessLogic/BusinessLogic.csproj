@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../BusinessObjects/BusinessObjects.csproj" />
-    <ProjectReference Include="../Data/Data.csproj" />
+    <ProjectReference Include="../BusinessObjects/BusinessObjects.csproj" PrivateAssets="All" />
+    <ProjectReference Include="../Data/Data.csproj" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../BusinessLogic/BusinessLogic.csproj" />
-    <ProjectReference Include="../BusinessObjects/BusinessObjects.csproj" />
+    <ProjectReference Include="../BusinessLogic/BusinessLogic.csproj" PrivateAssets="All" />
+    <ProjectReference Include="../BusinessObjects/BusinessObjects.csproj" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
