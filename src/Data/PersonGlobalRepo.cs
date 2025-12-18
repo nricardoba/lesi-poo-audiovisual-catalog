@@ -69,22 +69,6 @@ namespace Data
 
             return repository[index];
         }
-
-        // não sei se está correto!!!
-        public static List<PersonDTO>? Clone()
-        {
-            if (repository.Count == 0)
-                return null;
-
-            List<PersonDTO> cloneList = new List<PersonDTO>();
-
-            foreach (T element in repository)
-            {
-                cloneList.Add(element.Clone());
-            }
-
-            return cloneList;
-        }
         #endregion
     }
 }

@@ -95,10 +95,6 @@ namespace BusinessObjects
         }
         #endregion
 
-        #region Abstract
-        public abstract PersonDTO Clone();
-        #endregion
-
         #endregion
     }
 }

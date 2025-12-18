@@ -6,17 +6,6 @@ namespace BusinessLogic
     public static class PersonControl<T> where T : Person
     {
         #region Star
-        public static Star CreateStar(StarDTO element)
-        {
-            if (!RuleValidator.IsNameOrTitleValid(element.Name))
-                element.Name = Config.DefaultName;
-
-            if (!RuleValidator.IsBirthDateValid(element.Birthdate.Year,
-                element.Birthdate.Month, element.Birthdate.Day))
-                element.Birthdate = Config.DefaultDate;
-
-            return new Star(element.Name, element.Birthdate, element.Job);
-        }
         #endregion
 
         #region Generic
@@ -48,11 +37,6 @@ namespace BusinessLogic
         public static T? GetElementByIndex(int index)
         {
             return PersonGlobalRepo<T>.GetElementByIndex(index);
-        }
-
-        public static List<PersonDTO>? Clone()
-        {
-            return PersonGlobalRepo<T>.Clone();
         }
         #endregion
     }
