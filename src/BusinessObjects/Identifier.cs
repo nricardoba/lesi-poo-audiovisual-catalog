@@ -95,6 +95,10 @@ namespace BusinessObjects
         }
         #endregion
 
+        #region Abstract
+        public abstract IdentifierDTO Clone();
+        #endregion
+
         #endregion
     }
 }

@@ -43,6 +43,10 @@ namespace BusinessObjects
         #endregion
 
         #region Overrides
+        public override StarDTO Clone()
+        {
+            return new StarDTO(Id, Name, BirthDate, Job);
+        }
         #endregion
 
         #region Other Methods

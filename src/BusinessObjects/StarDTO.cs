@@ -3,8 +3,8 @@ namespace BusinessObjects
     public class StarDTO : IdentifierDTO
     {
         #region Attributes
-        DateOnly birthDate;
-        JobType job;
+        readonly DateOnly birthDate;
+        readonly JobType job;
         #endregion
 
         #region Methods
