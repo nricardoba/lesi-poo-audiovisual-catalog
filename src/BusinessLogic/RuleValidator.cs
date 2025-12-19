@@ -4,8 +4,11 @@ namespace BusinessLogic
 {
     public static class RuleValidator
     {
-        public static bool IsElementValid(object element)
+        public static bool IsElementValid(object? element)
         {
+            if (element is null)
+                return false;
+
             var elementType = element.GetType();
 
             if (elementType == typeof(Star))
@@ -15,6 +18,8 @@ namespace BusinessLogic
                     return false;
                 return true;
             }
+
+            // vais adicionando tipos de objetos...
 
             return false;
         }
@@ -42,9 +47,23 @@ namespace BusinessLogic
 
         public static bool IsBirthDateValid(int year, int month, int day)
         {
-            if (IsDayValid(year, month, day) && year <= Config.CurrentYear)
-                return true;
-            return false;
+            if (!IsDayValid(year, month, day))
+                return false;
+
+            if (year > Config.CurrentYear)
+                return false;
+
+            if (year == Config.CurrentYear)
+            {
+                if (month > Config.CurrentMonth)
+                    return false;
+
+                if (month == Config.CurrentMonth
+                    && day > Config.CurrentDay)
+                    return false;
+            }
+
+            return true;
         }
 
         public static bool IsYearValid(int year)

@@ -5,11 +5,8 @@ namespace BusinessLogic
 {
     public static class GlobalRepoControl<T> where T : Identifier
     {
-        #region Star
-        #endregion
-
         #region Generic
-        public static bool AddElement(T element)
+        public static bool AddElement(T? element)
         {
             if (!RuleValidator.IsElementValid(element))
                 return false;
@@ -17,7 +14,7 @@ namespace BusinessLogic
             return GlobalRepo<T>.AddElement(element);
         }
 
-        public static bool RemoveElement(T element)
+        public static bool RemoveElement(T? element)
         {
             return GlobalRepo<T>.RemoveElement(element);
         }

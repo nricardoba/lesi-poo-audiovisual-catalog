@@ -13,7 +13,7 @@ namespace Data
         #region Methods
         // o metodo 'Contains' usa o metodo 'Equals' para comparar objetos
         // ( deste override a esse metodo na class Person )
-        public static bool AddElement(T element)
+        public static bool AddElement(T? element)
         {
             if (element is null || repository.Contains(element))
                 return false;
@@ -24,8 +24,11 @@ namespace Data
 
         // o metodo 'Remove' usa o metodo 'Equals' para comparar objetos
         // ( deste override a esse metodo na class Person )
-        public static bool RemoveElement(T element)
+        public static bool RemoveElement(T? element)
         {
+            if (element is null)
+                return false;
+                
             // retorna true se encontrou e removeu
             // retorna false se não existe na lista
             return repository.Remove(element);
