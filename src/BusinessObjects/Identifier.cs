@@ -76,7 +76,7 @@ namespace BusinessObjects
             return id.CompareTo(other.id);
         }
 
-        public static bool operator ==(Identifier i1, Identifier i2)
+        public static bool operator ==(Identifier? i1, Identifier? i2)
         {
             // 0 && 0 --> True
             // 0 && 1 --> False
@@ -89,7 +89,7 @@ namespace BusinessObjects
             return i1.Equals(i2);
         }
 
-        public static bool operator !=(Identifier i1, Identifier i2)
+        public static bool operator !=(Identifier? i1, Identifier? i2)
         {
             return !(i1 == i2);
         }
