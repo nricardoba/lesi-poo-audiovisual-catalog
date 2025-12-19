@@ -34,9 +34,9 @@ namespace BusinessObjects
             job = Config.DefaultJob;
         }
 
-        public Star(string name, DateOnly date, JobType job) : base(name)
+        public Star(string name, DateOnly birthDate, JobType job) : base(name)
         {
-            birthDate = date;
+            this.birthDate = birthDate;
             this.job = IntegrityValidator.IsJobValid((int)job)
                 ? job : Config.DefaultJob;
         }

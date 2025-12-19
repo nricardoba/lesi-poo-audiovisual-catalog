@@ -1,0 +1,35 @@
+namespace BusinessObjects
+{
+    public class StarDTO : IdentifierDTO
+    {
+        #region Attributes
+        DateOnly birthDate;
+        JobType job;
+        #endregion
+
+        #region Methods
+
+        #region Properties
+        public DateOnly BirthDate
+        {
+            get { return birthDate; }
+        }
+
+        public JobType Job
+        {
+            get { return job; }
+        }
+        #endregion
+
+        #region Constructors
+        public StarDTO(Guid id, string name, DateOnly birthDate, JobType job)
+            : base(id, name)
+        {
+            this.birthDate = birthDate;
+            this.job = job;
+        }
+        #endregion
+
+        #endregion
+    }
+}
