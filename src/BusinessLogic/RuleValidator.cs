@@ -12,16 +12,23 @@ namespace BusinessLogic
             var elementType = element.GetType();
 
             if (elementType == typeof(Star))
-            {
-                Star aux = (Star)element;
-                if (!IsNameValid(aux.Name) || !IsBirthDateValid(aux.BirthDate))
-                    return false;
-                return true;
-            }
+                return IsStarValid((Star)element);
 
             // vais adicionando tipos de objetos...
 
             return false;
+        }
+
+        public static bool IsStarValid(Star? element)
+        {
+            if (element is null)
+                return false;
+
+            if (!IsNameValid(element.Name)
+                || !IsBirthDateValid(element.BirthDate))
+                return false;
+
+            return true;
         }
 
         public static bool IsNameValid(string text)
