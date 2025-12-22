@@ -29,14 +29,37 @@ namespace BusinessLogic
             return GlobalRepo<T>.RemoveElementByIndex(index);
         }
 
-        public static T? GetElementById(Guid id)
+        public static object? GetElementById(Guid id)
         {
-            return GlobalRepo<T>.GetElementById(id);
+            T? element = GlobalRepo<T>.GetElementById(id);
+
+            if (element is null)
+                return null;
+
+            return element.Clone();
         }
 
-        public static T? GetElementByIndex(int index)
+        public static object? GetElementByIndex(int index)
         {
-            return GlobalRepo<T>.GetElementByIndex(index);
+            T? element = GlobalRepo<T>.GetElementByIndex(index);
+
+            if (element is null)
+                return null;
+
+            return element.Clone();
+        }
+
+        public static List<object> GetRepository()
+        {
+            List<T> repository = GlobalRepo<T>.GetRepository();
+            List<object> cloneList = new List<object>();
+
+            foreach (T element in repository)
+            {
+                cloneList.Add(element.Clone());
+            }
+
+            return cloneList;
         }
         #endregion
     }

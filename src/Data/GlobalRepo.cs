@@ -72,6 +72,11 @@ namespace Data
 
             return repository[index];
         }
+
+        public static List<T> GetRepository()
+        {
+            return new List<T>(repository);
+        }
         #endregion
     }
 }
