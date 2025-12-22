@@ -31,14 +31,14 @@ namespace BusinessLogic
             return true;
         }
 
-        public static bool IsNameValid(string text)
+        public static bool IsNameValid(string? name)
         {
             // se chamares isto antes de chamar o construtor, estás a quebrar o DRY
             // (ver melhor se dá para resolver)
-            if (!IntegrityValidator.IsNameValid(text))
+            if (name is null || !IntegrityValidator.IsNameValid(name))
                 return false;
 
-            foreach (char c in text)
+            foreach (char c in name)
             {
                 if (!char.IsLetterOrDigit(c) && c != ' ')
                     return false;
@@ -47,9 +47,9 @@ namespace BusinessLogic
             return true;
         }
 
-        public static bool IsBirthDateValid(DateOnly date)
+        public static bool IsBirthDateValid(DateOnly birthDate)
         {
-            return IsBirthDateValid(date.Year, date.Month, date.Day);
+            return IsBirthDateValid(birthDate.Year, birthDate.Month, birthDate.Day);
         }
 
         public static bool IsBirthDateValid(int year, int month, int day)
