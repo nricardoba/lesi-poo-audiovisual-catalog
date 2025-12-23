@@ -38,7 +38,7 @@ namespace BusinessLogic
             return element.EditAttributes(dto);
         }
 
-        public static bool EditAttributesById(Guid id, object? dto)
+        public static bool EditElementById(Guid id, object? dto)
         {
             T? element = GlobalRepo<T>.GetElementById(id);
 
@@ -48,7 +48,7 @@ namespace BusinessLogic
             return element.EditAttributes(dto);
         }
         
-        public static bool EditAttributesByIndex(int index, object? dto)
+        public static bool EditElementByIndex(int index, object? dto)
         {
             T? element = GlobalRepo<T>.GetElementByIndex(index);
 

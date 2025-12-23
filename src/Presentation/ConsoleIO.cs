@@ -7,7 +7,7 @@ namespace Presentation
     {
         public static string? ReadString(string message)
         {
-            Console.Write(message + ": ");
+            Console.Write(message);
             return Console.ReadLine();
         }
 
