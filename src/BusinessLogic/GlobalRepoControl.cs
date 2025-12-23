@@ -29,6 +29,35 @@ namespace BusinessLogic
             return GlobalRepo<T>.RemoveElementByIndex(index);
         }
 
+        public static bool EditElement(T? element, object? dto)
+        {
+            if (element is null
+                || !GlobalRepo<T>.DoesElementExist(element))
+                return false;
+
+            return element.EditAttributes(dto);
+        }
+
+        public static bool EditAttributesById(Guid id, object? dto)
+        {
+            T? element = GlobalRepo<T>.GetElementById(id);
+
+            if (element is null)
+                return false;
+
+            return element.EditAttributes(dto);
+        }
+        
+        public static bool EditAttributesByIndex(int index, object? dto)
+        {
+            T? element = GlobalRepo<T>.GetElementByIndex(index);
+
+            if (element is null)
+                return false;
+
+            return element.EditAttributes(dto);
+        }
+
         public static object? GetElementById(Guid id)
         {
             T? element = GlobalRepo<T>.GetElementById(id);

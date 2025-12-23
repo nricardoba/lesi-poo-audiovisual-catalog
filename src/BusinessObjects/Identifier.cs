@@ -97,6 +97,7 @@ namespace BusinessObjects
 
         #region Abstract
         public abstract IdentifierDTO Clone();
+        public abstract bool EditAttributes(object? dto);
         #endregion
 
         #endregion

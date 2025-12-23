@@ -15,7 +15,7 @@ namespace Data
         // ( deste override a esse metodo na class Person )
         public static bool AddElement(T? element)
         {
-            if (element is null || repository.Contains(element))
+            if (element is null || DoesElementExist(element))
                 return false;
 
             repository.Add(element);
@@ -76,6 +76,20 @@ namespace Data
         public static List<T> GetRepository()
         {
             return new List<T>(repository);
+        }
+
+        public static bool DoesElementExist(T? obj)
+        {
+            if (obj is null)
+                return false;
+
+            foreach (T element in repository)
+            {
+                if (element.Equals(obj))
+                    return true;
+            }
+
+            return false;
         }
         #endregion
     }
