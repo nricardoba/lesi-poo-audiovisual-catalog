@@ -21,46 +21,27 @@ namespace Presentation
             return num;
         }
 
-        public static string GetName(string message)
-        {
-            string? name = ReadString(message);
-
-            if (name is null || !RuleValidator.IsNameValid(name))
-                name = Config.DefaultName;
-
-            return name;
-        }
-
-        public static DateOnly GetBirthDay(string message)
+        public static DateOnly? GetDate(string message)
         {
             const int InvalidNum = 0;
 
             int? input = ReadInt(message + " year: ");
-            int year = input != null ? (int)input : InvalidNum;
+            int year = input ?? InvalidNum;
 
             input = ReadInt(message + " month: ");
-            int month = input != null ? (int)input : InvalidNum;
+            int month = input ?? InvalidNum;
 
             input = ReadInt(message + " day: ");
-            int day = input != null ? (int)input : InvalidNum;
+            int day = input ?? InvalidNum;
 
-            if (!RuleValidator.IsBirthDateValid(year, month, day))
-                return Config.DefaultDate;
-
-            return new DateOnly(year, month, day);
-        }
-
-        public static JobType GetJob(string message)
-        {
-            const int InvalidJob = -1;
-
-            int? input = ReadInt(message);
-            int jobNum = input != null ? (int)input : InvalidJob;
-
-            if (!IntegrityValidator.IsJobValid(jobNum))
-                return Config.DefaultJob;
-
-            return (JobType)jobNum;
+            try
+            {
+                return new DateOnly(year, month, day);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
