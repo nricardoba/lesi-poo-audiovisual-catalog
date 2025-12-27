@@ -5,29 +5,33 @@ namespace Presentation
 {
     public static class StarExec
     {
-        public static void RepoMenu()
+        const int InvalidIndex = -1;
+
+        public static void StarMenu()
         {
             bool end = false;
             while (!end)
             {
-                // const int InvalidIndex = -1;
                 int option = ConsoleUI.StarMenu();
                 switch (option)
                 {
                     case 1:
-                        ConsoleUI.ShowRepo(GlobalRepoControl<Star>.GetRepository());
+                        GenericExec.ShowRepo(GlobalRepoControl<Star>.GetRepository());
                         break;
                     case 2:
                         Console.WriteLine("Work in progress!");
                         break;
                     case 3:
+                        ShowByIndex();
                         break;
                     case 4:
+                        CreateAndAdd();
                         break;
                     case 5:
                         Console.WriteLine("Work in progress!");
                         break;
                     case 6:
+                        RemoveByIndex();
                         break;
                     case 7:
                         Console.WriteLine("Work in progress!");
@@ -36,12 +40,33 @@ namespace Presentation
                         Console.WriteLine("Work in progress!");
                         break;
                     default:
+                        end = true;
                         break;
                 }
+
+                if (!end)
+                    ConsoleUI.Pause();
             }
         }
 
-        public static bool ShowStar(StarDTO? element)
+        public static void ShowRepo()
+        {
+            List<object> repository = GlobalRepoControl<Star>.GetRepository();
+
+            if (repository.Count == 0)
+            {
+                Console.WriteLine("The repository is empty!");
+                return;
+            }
+            
+            foreach (object element in repository)
+            {
+                StarDTO aux = (StarDTO)element;
+                ShowElement(aux);
+            }
+        }
+
+        public static bool ShowElement(StarDTO? element)
         {
             if (element is null)
             {
@@ -57,14 +82,38 @@ namespace Presentation
             return true;
         }
 
-        public static bool CreateAndAdd()
+        public static void ShowByIndex()
+        {
+            int? index = ConsoleIO.ReadInt("index");
+            var element = GlobalRepoControl<Star>.GetElementByIndex(index ?? InvalidIndex);
+            ShowElement((StarDTO?)element);
+        }
+
+        public static void CreateAndAdd()
         {
             string? name = ConsoleIO.ReadString("name");
             DateOnly? birthDate = ConsoleIO.GetDate();
             int? jobNum = ConsoleIO.ReadInt("job number");
 
             Star aux = StarService.Create(name, birthDate, jobNum);
-            return GlobalRepoControl<Star>.AddElement(aux);
+            bool success = GlobalRepoControl<Star>.AddElement(aux);
+
+            Console.WriteLine();
+            string message = success ? "Star added successfully!"
+                : "Star is invalid or already exists!";
+
+            Console.WriteLine(message);
+        }
+
+        public static void RemoveByIndex()
+        {
+            int? index = ConsoleIO.ReadInt("index");
+            bool success = GlobalRepoControl<Star>.RemoveElementByIndex(index ?? InvalidIndex);
+
+            string message = success ? "Star removed successfully!"
+                : "Index is invalid!";
+
+            Console.WriteLine(message);
         }
     }
 }

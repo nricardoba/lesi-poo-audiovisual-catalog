@@ -19,7 +19,7 @@ namespace Presentation
 
                 Console.WriteLine("\n0 - Quit\n");
 
-                option = ConsoleIO.ReadInt("Option: ");
+                option = ConsoleIO.ReadInt("option");
                 Console.WriteLine();
 
                 // ver melhor o is not!!!
@@ -58,7 +58,7 @@ namespace Presentation
 
                 Console.WriteLine("\n0 - Go Back\n");
 
-                option = ConsoleIO.ReadInt("Option: ");
+                option = ConsoleIO.ReadInt("option");
                 Console.WriteLine();
 
                 // ver melhor o is not!!!
@@ -72,42 +72,6 @@ namespace Presentation
             }
 
             return option ?? 0;
-        }
-
-        public static bool ShowElement(object? element)
-        {
-            if (element is null)
-            {
-                Console.WriteLine("Invalid Element!");
-                return false;
-            }
-
-            var elementType = element.GetType();
-
-            if (elementType == typeof(Star))
-                return StarExec.ShowStar((StarDTO)element);
-
-            // vais adicionando tipos de objetos...
-
-            Console.WriteLine("Invalid Element!");
-            return false;
-        }
-
-        public static bool ShowRepo(List<object>? repository)
-        {
-            if (repository is null || repository.Count == 0)
-            {
-                Console.WriteLine("The repository is null or empty!");
-                return false;
-            }
-
-            foreach (object element in repository)
-            {
-                ShowElement(element);
-                Console.WriteLine();
-            }
-
-            return true;
         }
 
         public static void Pause()
