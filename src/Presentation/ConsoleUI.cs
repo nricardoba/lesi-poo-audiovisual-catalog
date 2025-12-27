@@ -1,3 +1,5 @@
+using BusinessObjects;
+
 namespace Presentation
 {
     public static class ConsoleUI
@@ -33,7 +35,7 @@ namespace Presentation
             return option ?? 0;
         }
 
-        public static int RepoMenu(string repoName)
+        public static int StarMenu()
         {
             int? option = 0;
             bool success = false;
@@ -41,20 +43,18 @@ namespace Presentation
             while (!success)
             {
                 Console.Clear();
-                Console.WriteLine($"{repoName} repository");
+                Console.WriteLine("Star repository");
                 Console.WriteLine("Choose an option: ");
 
                 int count = 1;
                 Console.WriteLine($"{count++} - Show full repository");
-                Console.WriteLine($"{count++} - Show element by ID");
-                Console.WriteLine($"{count++} - Show element by index");
-                Console.WriteLine($"{count++} - Add element");
-                Console.WriteLine($"{count++} - Remove element");
-                Console.WriteLine($"{count++} - Remove element by ID");
-                Console.WriteLine($"{count++} - Remove element by index");
-                Console.WriteLine($"{count++} - Edit element");
-                Console.WriteLine($"{count++} - Edit element by ID");
-                Console.WriteLine($"{count++} - Edit element by index");
+                Console.WriteLine($"{count++} - Show Star by ID");
+                Console.WriteLine($"{count++} - Show Star by index");
+                Console.WriteLine($"{count++} - Add Star");
+                Console.WriteLine($"{count++} - Remove Star by ID");
+                Console.WriteLine($"{count++} - Remove Star by index");
+                Console.WriteLine($"{count++} - Edit Star by ID");
+                Console.WriteLine($"{count++} - Edit Star by index");
 
                 Console.WriteLine("\n0 - Go Back\n");
 
@@ -72,6 +72,42 @@ namespace Presentation
             }
 
             return option ?? 0;
+        }
+
+        public static bool ShowElement(object? element)
+        {
+            if (element is null)
+            {
+                Console.WriteLine("Invalid Element!");
+                return false;
+            }
+
+            var elementType = element.GetType();
+
+            if (elementType == typeof(Star))
+                return StarExec.ShowStar((StarDTO)element);
+
+            // vais adicionando tipos de objetos...
+
+            Console.WriteLine("Invalid Element!");
+            return false;
+        }
+
+        public static bool ShowRepo(List<object>? repository)
+        {
+            if (repository is null || repository.Count == 0)
+            {
+                Console.WriteLine("The repository is null or empty!");
+                return false;
+            }
+
+            foreach (object element in repository)
+            {
+                ShowElement(element);
+                Console.WriteLine();
+            }
+
+            return true;
         }
 
         public static void Pause()

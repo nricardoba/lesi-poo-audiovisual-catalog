@@ -47,9 +47,13 @@ namespace BusinessLogic
             return true;
         }
 
-        public static bool IsBirthDateValid(DateOnly birthDate)
+        public static bool IsBirthDateValid(DateOnly? birthDate)
         {
-            return IsBirthDateValid(birthDate.Year, birthDate.Month, birthDate.Day);
+            if (birthDate is null)
+                return false;
+
+            DateOnly aux = (DateOnly)birthDate;
+            return IsBirthDateValid(aux.Year, aux.Month, aux.Day);
         }
 
         public static bool IsBirthDateValid(int year, int month, int day)

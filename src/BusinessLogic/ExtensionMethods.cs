@@ -36,5 +36,13 @@ namespace BusinessLogic
         {
             return GetYearGap(Config.CurrentDate, birthDate);
         }
+
+        public static JobType? ConvertToJob(int? jobNum)
+        {
+            if (jobNum is null || !IntegrityValidator.IsJobValid((int)jobNum))
+                return null;
+
+            return (JobType)jobNum;
+        }
     }
 }

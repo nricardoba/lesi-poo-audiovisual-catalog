@@ -7,7 +7,7 @@ namespace Presentation
     {
         public static string? ReadString(string message)
         {
-            Console.Write(message);
+            Console.Write("Enter the " + message + ": ");
             return Console.ReadLine();
         }
 
@@ -21,17 +21,17 @@ namespace Presentation
             return num;
         }
 
-        public static DateOnly? GetDate(string message)
+        public static DateOnly? GetDate()
         {
             const int InvalidNum = 0;
 
-            int? input = ReadInt(message + " year: ");
+            int? input = ReadInt("year");
             int year = input ?? InvalidNum;
 
-            input = ReadInt(message + " month: ");
+            input = ReadInt("month");
             int month = input ?? InvalidNum;
 
-            input = ReadInt(message + " day: ");
+            input = ReadInt("day");
             int day = input ?? InvalidNum;
 
             try
