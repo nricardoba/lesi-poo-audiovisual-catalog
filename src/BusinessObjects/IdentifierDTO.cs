@@ -27,6 +27,11 @@ namespace BusinessObjects
             this.id = id;
             this.name = name;
         }
+        
+        public IdentifierDTO(string name)
+        {
+            this.name = name;
+        }
         #endregion
         
         #endregion

@@ -14,6 +14,9 @@ namespace BusinessLogic
             if (elementType == typeof(Star))
                 return IsStarValid((Star)element);
 
+            if (elementType == typeof(StarDTO))
+                return IsStarDTOValid((StarDTO)element);
+
             // vais adicionando tipos de objetos...
 
             return false;
@@ -26,6 +29,19 @@ namespace BusinessLogic
 
             if (!IsNameValid(element.Name)
                 || !IsBirthDateValid(element.BirthDate))
+                return false;
+
+            return true;
+        }
+
+        public static bool IsStarDTOValid(StarDTO? element)
+        {
+            if (element is null)
+                return false;
+
+            if (!IsNameValid(element.Name)
+                || !IsBirthDateValid(element.BirthDate)
+                || !IntegrityValidator.IsJobValid((int)element.Job))
                 return false;
 
             return true;

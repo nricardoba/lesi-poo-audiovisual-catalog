@@ -28,6 +28,13 @@ namespace BusinessObjects
             this.birthDate = birthDate;
             this.job = job;
         }
+
+        public StarDTO(string name, DateOnly birthDate, JobType job)
+            : base(name)
+        {
+            this.birthDate = birthDate;
+            this.job = job;
+        }
         #endregion
 
         #endregion

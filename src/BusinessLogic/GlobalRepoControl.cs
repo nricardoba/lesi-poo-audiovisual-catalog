@@ -32,7 +32,8 @@ namespace BusinessLogic
         public static bool EditElement(T? element, object? dto)
         {
             if (element is null
-                || !GlobalRepo<T>.DoesElementExist(element))
+                || !GlobalRepo<T>.DoesElementExist(element)
+                || !RuleValidator.IsElementValid(dto))
                 return false;
 
             return element.EditAttributes(dto);
@@ -42,7 +43,8 @@ namespace BusinessLogic
         {
             T? element = GlobalRepo<T>.GetElementById(id);
 
-            if (element is null)
+            if (element is null
+                || !RuleValidator.IsElementValid(dto))
                 return false;
 
             return element.EditAttributes(dto);
@@ -52,7 +54,8 @@ namespace BusinessLogic
         {
             T? element = GlobalRepo<T>.GetElementByIndex(index);
 
-            if (element is null)
+            if (element is null
+                || !RuleValidator.IsElementValid(dto))
                 return false;
 
             return element.EditAttributes(dto);
