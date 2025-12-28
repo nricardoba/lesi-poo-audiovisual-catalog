@@ -54,9 +54,9 @@ namespace Presentation
             GlobalRepoControl<Star>.AddElement(s3);
             StarExec.ShowRepo();
 
-            bool success = GlobalRepoControl<Star>.Save("src/Bin/Stars.json");
+            bool success = GlobalRepoControl<Star>.Save("src/Bin/Stars.bin");
 
-            // bool success = GlobalRepoControl<Star>.Load("src/Bin/Stars.json");
+            // bool success = GlobalRepoControl<Star>.Load("src/Bin/Stars.bin");
             // StarExec.ShowRepo();
 
             Console.WriteLine(success);

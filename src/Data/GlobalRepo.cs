@@ -1,5 +1,5 @@
 using BusinessObjects;
-using System.Text.Json;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Data
 {
@@ -98,8 +98,16 @@ namespace Data
         {
             try
             {
-                string json = JsonSerializer.Serialize(repository);
-                File.WriteAllText(filePath, json);
+                using (FileStream fs = new FileStream(filePath, FileMode.Create))
+                using (BinaryWriter writer = new BinaryWriter(fs))
+                {
+                    writer.Write(repository.Count);
+                    foreach (T element in repository)
+                    {
+                        string json = System.Text.Json.JsonSerializer.Serialize(element);
+                        writer.Write(json);
+                    }
+                }
                 return true;
             }
             catch
@@ -112,14 +120,20 @@ namespace Data
         {
             try
             {
-                string json = File.ReadAllText(filePath);
-                List<T>? data = JsonSerializer.Deserialize<List<T>>(json);
-                
-                if (data is null)
-                    return false;
-
-                repository.Clear();
-                repository.AddRange(data);
+                using (FileStream fs = new FileStream(filePath, FileMode.Open))
+                using (BinaryReader reader = new BinaryReader(fs))
+                {
+                    int count = reader.ReadInt32();
+                    repository.Clear();
+                    
+                    for (int i = 0; i < count; i++)
+                    {
+                        string json = reader.ReadString();
+                        T? element = System.Text.Json.JsonSerializer.Deserialize<T>(json);
+                        if (element is not null)
+                            repository.Add(element);
+                    }
+                }
                 return true;
             }
             catch
