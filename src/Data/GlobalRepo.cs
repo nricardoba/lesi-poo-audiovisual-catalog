@@ -1,5 +1,5 @@
 using BusinessObjects;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 
 namespace Data
 {
@@ -104,7 +104,7 @@ namespace Data
                     writer.Write(repository.Count);
                     foreach (T element in repository)
                     {
-                        string json = System.Text.Json.JsonSerializer.Serialize(element);
+                        string json = JsonSerializer.Serialize(element);
                         writer.Write(json);
                     }
                 }
@@ -129,7 +129,7 @@ namespace Data
                     for (int i = 0; i < count; i++)
                     {
                         string json = reader.ReadString();
-                        T? element = System.Text.Json.JsonSerializer.Deserialize<T>(json);
+                        T? element = JsonSerializer.Deserialize<T>(json);
                         if (element is not null)
                             repository.Add(element);
                     }
