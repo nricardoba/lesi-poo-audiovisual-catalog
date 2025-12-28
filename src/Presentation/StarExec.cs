@@ -13,10 +13,12 @@ namespace Presentation
             while (!end)
             {
                 int option = ConsoleUI.StarMenu();
+                Console.Clear();
+                
                 switch (option)
                 {
                     case 1:
-                        GenericExec.ShowRepo(GlobalRepoControl<Star>.GetRepository());
+                        ShowRepo();
                         break;
                     case 2:
                         Console.WriteLine("Work in progress!");

@@ -9,6 +9,24 @@ namespace Presentation
         static void Main(string[] args)
         {
             bool end = false;
+
+            int saveOption = ConsoleUI.SaveMenu();
+            switch (saveOption)
+            {
+                case 1:
+                    Console.WriteLine("Load data from binary file");
+                    break;
+                case 2:
+                    Console.WriteLine("Start with a fresh database");
+                    break;
+                default:
+                    end = true;
+                    break;
+            }
+
+            if (!end)
+                ConsoleUI.Pause();
+
             while (!end)
             {
                 int option = ConsoleUI.MainMenu();
@@ -22,9 +40,11 @@ namespace Presentation
                         break;
                 }
 
-                if (!end)
-                    ConsoleUI.Pause();
+                // if (!end)
+                //     ConsoleUI.Pause();
             }
+
+            Console.WriteLine("The End...");
         }
     }
 }

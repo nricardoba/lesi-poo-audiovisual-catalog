@@ -23,7 +23,7 @@ namespace Presentation
             return false;
         }
 
-        public static bool ShowRepo(List<object>? repository)
+        public static bool ShowRepo(List<object> repository)
         {
             if (repository is null || repository.Count == 0)
             {

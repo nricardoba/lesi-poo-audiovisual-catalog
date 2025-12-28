@@ -4,6 +4,40 @@ namespace Presentation
 {
     public static class ConsoleUI
     {
+        public static int SaveMenu()
+        {
+            int? option = 0;
+            bool success = false;
+
+            while (!success)
+            {
+                Console.Clear();
+                Console.WriteLine("Before starting,");
+                Console.WriteLine("Choose an option: ");
+                Console.WriteLine();
+
+                int count = 1;
+                Console.WriteLine($"{count++} - Load data from binary file");
+                Console.WriteLine($"{count++} - Start with a fresh database");
+
+                Console.WriteLine("\n0 - Quit\n");
+
+                option = ConsoleIO.ReadInt("option");
+                Console.WriteLine();
+
+                // ver melhor o is not!!!
+                if (option is not null && option >= 0 && option < count)
+                    success = true;
+                else
+                {
+                    Console.WriteLine("Invalid option!");
+                    Pause();
+                }
+            }
+
+            return option ?? 0;
+        }
+        
         public static int MainMenu()
         {
             int? option = 0;
@@ -13,6 +47,7 @@ namespace Presentation
             {
                 Console.Clear();
                 Console.WriteLine("Choose a repository: ");
+                Console.WriteLine();
 
                 int count = 1;
                 Console.WriteLine($"{count++} - Star");
@@ -45,6 +80,7 @@ namespace Presentation
                 Console.Clear();
                 Console.WriteLine("Star repository");
                 Console.WriteLine("Choose an option: ");
+                Console.WriteLine();
 
                 int count = 1;
                 Console.WriteLine($"{count++} - Show full repository");
@@ -76,7 +112,7 @@ namespace Presentation
 
         public static void Pause()
         {
-            Console.Write("press ENTER to continue...");
+            Console.Write("\npress ENTER to continue...");
             Console.ReadKey();
         }
     }
