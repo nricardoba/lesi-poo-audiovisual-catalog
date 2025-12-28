@@ -93,6 +93,16 @@ namespace BusinessLogic
 
             return cloneList;
         }
+
+        public static bool Save(string filePath)
+        {
+            return GlobalRepo<T>.Save(filePath);
+        }
+
+        public static bool Load(string filePath)
+        {
+            return GlobalRepo<T>.Load(filePath);
+        }
         #endregion
     }
 }

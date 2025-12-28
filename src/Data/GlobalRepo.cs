@@ -1,4 +1,5 @@
 using BusinessObjects;
+using System.Text.Json;
 
 namespace Data
 {
@@ -90,6 +91,41 @@ namespace Data
             }
 
             return false;
+        }
+
+        // podes fazer aqui exceptions
+        public static bool Save(string filePath)
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(repository);
+                File.WriteAllText(filePath, json);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool Load(string filePath)
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                List<T>? data = JsonSerializer.Deserialize<List<T>>(json);
+                
+                if (data is null)
+                    return false;
+
+                repository.Clear();
+                repository.AddRange(data);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
         #endregion
     }

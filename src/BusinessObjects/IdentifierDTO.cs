@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace BusinessObjects
 {
     public abstract class IdentifierDTO
@@ -6,10 +8,11 @@ namespace BusinessObjects
         readonly Guid id;
         readonly string name;
         #endregion
-        
+
         #region Methods
-        
+
         #region Properties
+        [JsonIgnore]
         public Guid Id
         {
             get { return id; }
@@ -20,20 +23,20 @@ namespace BusinessObjects
             get { return name; }
         }
         #endregion
-        
+
         #region Constructors
         public IdentifierDTO(Guid id, string name)
         {
             this.id = id;
             this.name = name;
         }
-        
+
         public IdentifierDTO(string name)
         {
             this.name = name;
         }
         #endregion
-        
+
         #endregion
     }
 }
