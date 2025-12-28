@@ -4,7 +4,7 @@ namespace Presentation
 {
     public static class ConsoleUI
     {
-        public static int SaveMenu()
+        public static int LoadMenu()
         {
             int? option = 0;
             bool success = false;
@@ -46,11 +46,12 @@ namespace Presentation
             while (!success)
             {
                 Console.Clear();
-                Console.WriteLine("Choose a repository: ");
+                Console.WriteLine("Choose an option: ");
                 Console.WriteLine();
 
                 int count = 1;
-                Console.WriteLine($"{count++} - Star");
+                Console.WriteLine($"{count++} - Star Repository");
+                Console.WriteLine($"{count++} - Save data on binary file");
 
                 Console.WriteLine("\n0 - Quit\n");
 

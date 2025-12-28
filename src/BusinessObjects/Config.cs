@@ -17,5 +17,8 @@ namespace BusinessObjects
         public const int MinJobType = 0;
         public const JobType DefaultJob = JobType.Unemployed;
         public static int JobTypeLength = Enum.GetValues<JobType>().Length;
+
+        public const string DefaultFilePath = "src/Bin/";
+        public const string StarFilePath = DefaultFilePath + "Star.bin";
     }
 }

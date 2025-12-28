@@ -1,43 +1,30 @@
 using BusinessObjects;
+using BusinessLogic;
 
 namespace Presentation
 {
     public static class GenericExec
     {
-        public static bool ShowElement(object? element)
+        public static void Save()
         {
-            if (element is null)
-            {
-                Console.WriteLine("Invalid Element!");
-                return false;
-            }
-
-            var elementType = element.GetType();
-
-            if (elementType == typeof(Star))
-                return StarExec.ShowElement((StarDTO)element);
+            string message = GlobalRepoControl<Star>.Save(Config.StarFilePath)
+                ? "Stars information saved successfully!"
+                : "Unable to save Stars information!";
+            Console.WriteLine(message);
 
             // vais adicionando tipos de objetos...
-
-            Console.WriteLine("Invalid Element!");
-            return false;
         }
-
-        public static bool ShowRepo(List<object> repository)
+        
+        public static void Load()
         {
-            if (repository is null || repository.Count == 0)
+            if (GlobalRepoControl<Star>.Load(Config.StarFilePath))
             {
-                Console.WriteLine("The repository is null or empty!");
-                return false;
+                // depois tiras isto
+                Console.WriteLine("Stars information loaded successfully!");
+                // vais adicionando tipos de objetos...
             }
-
-            foreach (object element in repository)
-            {
-                ShowElement(element);
-                Console.WriteLine();
-            }
-
-            return true;
+            else
+                Console.WriteLine("Unable to load Stars information!");
         }
     }
 }
