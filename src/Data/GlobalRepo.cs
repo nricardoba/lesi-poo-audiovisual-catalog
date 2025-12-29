@@ -76,7 +76,7 @@ namespace Data
 
         public static List<T> GetRepository()
         {
-            return new List<T>(repository);
+            return repository;
         }
 
         public static bool DoesElementExist(T? obj)

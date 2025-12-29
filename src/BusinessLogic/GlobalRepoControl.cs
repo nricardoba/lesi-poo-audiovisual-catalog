@@ -31,54 +31,34 @@ namespace BusinessLogic
 
         public static bool EditElement(T? element, object? dto)
         {
-            if (element is null
-                || !GlobalRepo<T>.DoesElementExist(element)
-                || !RuleValidator.IsElementValid(dto))
+            if (!GlobalRepo<T>.DoesElementExist(element))
                 return false;
 
-            return element.EditAttributes(dto);
+            return GlobalService.Edit(element, dto);
         }
 
         public static bool EditElementById(Guid id, object? dto)
         {
             T? element = GlobalRepo<T>.GetElementById(id);
-
-            if (element is null
-                || !RuleValidator.IsElementValid(dto))
-                return false;
-
-            return element.EditAttributes(dto);
+            return GlobalService.Edit(element, dto);
         }
         
         public static bool EditElementByIndex(int index, object? dto)
         {
             T? element = GlobalRepo<T>.GetElementByIndex(index);
-
-            if (element is null
-                || !RuleValidator.IsElementValid(dto))
-                return false;
-
-            return element.EditAttributes(dto);
+            return GlobalService.Edit(element, dto);
         }
 
         public static object? GetElementById(Guid id)
         {
             T? element = GlobalRepo<T>.GetElementById(id);
-
-            if (element is null)
-                return null;
-
-            return element.Clone();
+            return GlobalService.Clone(element);
         }
 
         public static object? GetElementByIndex(int index)
         {
             T? element = GlobalRepo<T>.GetElementByIndex(index);
-
-            if (element is null)
-                return null;
-
-            return element.Clone();
+            return GlobalService.Clone(element);
         }
 
         public static List<object> GetRepository()
@@ -88,7 +68,10 @@ namespace BusinessLogic
 
             foreach (T element in repository)
             {
-                cloneList.Add(element.Clone());
+                object? aux = GlobalService.Clone(element);
+
+                if (aux is not null)
+                    cloneList.Add(aux);
             }
 
             return cloneList;

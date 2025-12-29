@@ -42,30 +42,6 @@ namespace BusinessObjects
         }
         #endregion
 
-        #region Overrides
-        public override StarDTO Clone()
-        {
-            return new StarDTO(Id, Name, BirthDate, Job);
-        }
-
-        public override bool EditAttributes(object? dto)
-        {
-            if (dto is null || dto.GetType() != typeof(StarDTO))
-                return false;
-
-            StarDTO aux = (StarDTO)dto;
-
-            Name = aux.Name;
-            BirthDate = aux.BirthDate;
-            Job = aux.Job;
-
-            return true;
-        }
-        #endregion
-
-        #region Other Methods
-        #endregion
-
         #endregion
     }
 }

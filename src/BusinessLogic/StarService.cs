@@ -20,5 +20,28 @@ namespace BusinessLogic
 
             return new Star(name, (DateOnly)birthDate, (JobType)job);
         }
+
+        public static StarDTO? Clone(Star? element)
+        {
+            if (element is null)
+                return null;
+
+            return new StarDTO(element.Id, element.Name,
+                element.BirthDate, element.Job);
+        }
+
+        // podes ter que mudar o tipo do 'dto' para object
+        public static bool Edit(Star? element, StarDTO? dto)
+        {
+            if (element is null || dto is null
+                || !RuleValidator.IsStarDTOValid(dto))
+                return false;
+
+            element.Name = dto.Name;
+            element.BirthDate = dto.BirthDate;
+            element.Job = dto.Job;
+
+            return true;
+        }
     }
 }
