@@ -104,8 +104,16 @@ namespace Data
                     writer.Write(repository.Count);
                     foreach (T element in repository)
                     {
-                        string json = JsonSerializer.Serialize(element);
-                        writer.Write(json);
+                        // Serializa o Id e Name separadamente
+                        writer.Write(element.Id.ToString());
+                        writer.Write(element.Name);
+                        
+                        // Se for Star, serializa os outros campos
+                        if (element is Star star)
+                        {
+                            writer.Write(star.BirthDate.ToString("O")); // ISO 8601
+                            writer.Write((int)star.Job);
+                        }
                     }
                 }
                 return true;
@@ -128,10 +136,20 @@ namespace Data
                     
                     for (int i = 0; i < count; i++)
                     {
-                        string json = reader.ReadString();
-                        T? element = JsonSerializer.Deserialize<T>(json);
-                        if (element is not null)
-                            repository.Add(element);
+                        // Lê Id e Name
+                        Guid id = Guid.Parse(reader.ReadString());
+                        string name = reader.ReadString();
+                        
+                        // Se for Star, lê e reconstrói
+                        if (typeof(T) == typeof(Star))
+                        {
+                            DateOnly birthDate = DateOnly.Parse(reader.ReadString());
+                            JobType job = (JobType)reader.ReadInt32();
+                            
+                            T? element = (T?)(object)new Star(id, name, birthDate, job);
+                            if (element is not null)
+                                repository.Add(element);
+                        }
                     }
                 }
                 return true;

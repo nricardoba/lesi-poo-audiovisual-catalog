@@ -47,7 +47,6 @@ namespace BusinessObjects
         // este contrutor só vai ser chamado ao ler ficheiros binarios
         public Identifier(Guid id, string name)
         {
-            // acho que aqui podes chamar o construtor sem ID
             this.id = id;
             this.name = IntegrityValidator.IsNameValid(name)
                 ? name : Config.DefaultName;
