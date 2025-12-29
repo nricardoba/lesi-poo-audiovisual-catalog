@@ -105,7 +105,7 @@ namespace Data
 
                         if (element is Star auxStar)
                         {
-                            writer.Write(auxStar.BirthDate.ToString("O")); // ISO 8601
+                            writer.Write(auxStar.BirthDate.DayNumber);
                             writer.Write((int)auxStar.Job);
                         }
 
@@ -135,6 +135,7 @@ namespace Data
                     
                     for (int i = 0; i < count; i++)
                     {
+                        // isto pode atirar uma exception
                         Guid id = Guid.Parse(reader.ReadString());
                         string name = reader.ReadString();
 
@@ -142,7 +143,8 @@ namespace Data
 
                         if (tType == typeof(Star))
                         {
-                            DateOnly birthDate = DateOnly.Parse(reader.ReadString());
+                            int dayNum = reader.ReadInt32();
+                            DateOnly birthDate = DateOnly.FromDayNumber(dayNum);
                             JobType job = (JobType)reader.ReadInt32();
 
                             T element = (T)(object)new Star(id, name, birthDate, job);
