@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace BusinessObjects
 {
     public abstract class Identifier : IEquatable<Identifier>, IComparable<Identifier>
@@ -16,7 +14,6 @@ namespace BusinessObjects
         #region Methods
 
         #region Properties
-        [JsonIgnore]
         public Guid Id
         {
             get { return id; }
@@ -43,6 +40,14 @@ namespace BusinessObjects
         public Identifier(string name)
         {
             id = Guid.NewGuid();
+            this.name = IntegrityValidator.IsNameValid(name)
+                ? name : Config.DefaultName;
+        }
+
+        // este contrutor só vai ser chamado ao ler ficheiros binarios
+        public Identifier(Guid id, string name)
+        {
+            this.id = id;
             this.name = IntegrityValidator.IsNameValid(name)
                 ? name : Config.DefaultName;
         }

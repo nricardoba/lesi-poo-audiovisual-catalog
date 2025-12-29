@@ -40,6 +40,14 @@ namespace BusinessObjects
             this.job = IntegrityValidator.IsJobValid((int)job)
                 ? job : Config.DefaultJob;
         }
+
+        // este contrutor só vai ser chamado ao ler ficheiros binarios
+        public Star(Guid id, string name, DateOnly birthDate, JobType job) : base(id, name)
+        {
+            this.birthDate = birthDate;
+            this.job = IntegrityValidator.IsJobValid((int)job)
+                ? job : Config.DefaultJob;
+        }
         #endregion
 
         #endregion
