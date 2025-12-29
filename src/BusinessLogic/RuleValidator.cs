@@ -6,16 +6,11 @@ namespace BusinessLogic
     {
         public static bool IsElementValid(object? element)
         {
-            if (element is null)
-                return false;
+            if (element is Star auxStar)
+                return IsStarValid(auxStar);
 
-            var elementType = element.GetType();
-
-            if (elementType == typeof(Star))
-                return IsStarValid((Star)element);
-
-            if (elementType == typeof(StarDTO))
-                return IsStarDTOValid((StarDTO)element);
+            if (element is StarDTO auxStarDTO)
+                return IsStarDTOValid(auxStarDTO);
 
             // vais adicionando tipos de objetos...
 

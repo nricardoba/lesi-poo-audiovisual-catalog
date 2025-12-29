@@ -1,8 +1,6 @@
-using BusinessObjects;
-
-namespace BusinessLogic
+namespace BusinessObjects
 {
-    public static class ExtensionMethods
+    public static class Utilities
     {
         // d1 -> Data "atual"
         // d2 -> Data "referencia"
