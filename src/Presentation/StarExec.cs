@@ -136,8 +136,8 @@ namespace Presentation
 
         public static void EditById()
         {
-            StarDTO dto = ConsoleIO.GetStarInfo();
             Guid? id = ConsoleIO.GetId();
+            StarDTO dto = ConsoleIO.GetStarInfo();
             bool success = GlobalRepoControl<Star>.EditElementById(id ?? InvalidId, dto);
 
             string message = success ? "Star edited successfully!"
@@ -148,8 +148,8 @@ namespace Presentation
 
         public static void EditByIndex()
         {
-            StarDTO dto = ConsoleIO.GetStarInfo();
             int? index = ConsoleIO.ReadInt("index");
+            StarDTO dto = ConsoleIO.GetStarInfo();
             bool success = GlobalRepoControl<Star>.EditElementByIndex(index ?? InvalidIndex, dto);
 
             string message = success ? "Star edited successfully!"
