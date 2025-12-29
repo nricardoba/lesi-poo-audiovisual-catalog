@@ -21,6 +21,25 @@ namespace Presentation
             return num;
         }
 
+        public static StarDTO GetStarInfo()
+        {
+            string? name = ConsoleIO.ReadString("name");
+            DateOnly? birthDate = ConsoleIO.GetDate();
+            int? jobNum = ConsoleIO.ReadInt("job number");
+
+            return StarService.CreateDTO(name, birthDate, jobNum);
+        }
+
+        public static Guid? GetId()
+        {
+            string? input = ReadString("ID");
+
+            if (!Guid.TryParse(input, out Guid id))
+                return null;
+
+            return id;
+        }
+
         public static DateOnly? GetDate()
         {
             const int InvalidNum = 0;

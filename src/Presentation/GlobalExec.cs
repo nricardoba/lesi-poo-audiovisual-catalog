@@ -3,7 +3,7 @@ using BusinessLogic;
 
 namespace Presentation
 {
-    public static class GenericExec
+    public static class GlobalExec
     {
         public static void Save()
         {
@@ -24,7 +24,7 @@ namespace Presentation
                 // vais adicionando tipos de objetos...
             }
             else
-                Console.WriteLine("Unable to load Stars information!");
+                Console.WriteLine("Unable to load information!");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Presentation
             switch (loadOption)
             {
                 case 1:
-                    GenericExec.Load();
+                    GlobalExec.Load();
                     break;
                 case 2:
                     Console.WriteLine("Starting with a fresh database...");
@@ -36,7 +36,7 @@ namespace Presentation
                         StarExec.StarMenu();
                         break;
                     case 2:
-                        GenericExec.Save();
+                        GlobalExec.Save();
                         ConsoleUI.Pause();
                         break;
                     default:
