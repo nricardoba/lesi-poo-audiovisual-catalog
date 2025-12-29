@@ -1,5 +1,4 @@
 using BusinessObjects;
-using System.Text.Json;
 
 namespace Data
 {
@@ -12,8 +11,6 @@ namespace Data
         #endregion
 
         #region Methods
-        // o metodo 'Contains' usa o metodo 'Equals' para comparar objetos
-        // ( deste override a esse metodo na class Person )
         public static bool AddElement(T? element)
         {
             if (element is null || DoesElementExist(element))
@@ -93,7 +90,6 @@ namespace Data
             return false;
         }
 
-        // podes fazer aqui exceptions
         public static bool Save(string filePath)
         {
             try
@@ -104,16 +100,19 @@ namespace Data
                     writer.Write(repository.Count);
                     foreach (T element in repository)
                     {
-                        // Serializa o Id e Name separadamente
                         writer.Write(element.Id.ToString());
                         writer.Write(element.Name);
-                        
-                        // Se for Star, serializa os outros campos
-                        if (element is Star star)
+
+                        if (element is Star auxStar)
                         {
-                            writer.Write(star.BirthDate.ToString("O")); // ISO 8601
-                            writer.Write((int)star.Job);
+                            writer.Write(auxStar.BirthDate.ToString("O")); // ISO 8601
+                            writer.Write((int)auxStar.Job);
                         }
+
+                        // vais adicionando tipos de objetos...
+
+                        // else
+                            // tua exception
                     }
                 }
                 return true;
@@ -136,20 +135,27 @@ namespace Data
                     
                     for (int i = 0; i < count; i++)
                     {
-                        // Lê Id e Name
                         Guid id = Guid.Parse(reader.ReadString());
                         string name = reader.ReadString();
-                        
-                        // Se for Star, lê e reconstrói
-                        if (typeof(T) == typeof(Star))
+
+                        var tType = typeof(T);
+
+                        if (tType == typeof(Star))
                         {
                             DateOnly birthDate = DateOnly.Parse(reader.ReadString());
                             JobType job = (JobType)reader.ReadInt32();
-                            
-                            T? element = (T?)(object)new Star(id, name, birthDate, job);
-                            if (element is not null)
-                                repository.Add(element);
+
+                            T element = (T)(object)new Star(id, name, birthDate, job);
+                            AddElement(element);
+
+                            // if (!AddElement(element))
+                            // tua exception
                         }
+                        
+                        // vais adicionando tipos de objetos...
+                        
+                        // else
+                            // tua exception
                     }
                 }
                 return true;
