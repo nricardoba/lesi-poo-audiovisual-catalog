@@ -106,7 +106,8 @@ namespace Presentation
             bool success = GlobalRepoControl<Star>.AddElement(auxStar);
 
             Console.WriteLine();
-            string message = success ? "Star added successfully!"
+            string message = success
+                ? "Star added successfully!"
                 : "Star is invalid or already exists!";
 
             Console.WriteLine(message);
@@ -117,7 +118,8 @@ namespace Presentation
             Guid? id = ConsoleIO.GetId();
             bool success = GlobalRepoControl<Star>.RemoveElementById(id ?? InvalidId);
 
-            string message = success ? "Star removed successfully!"
+            string message = success
+                ? "Star removed successfully!"
                 : "Id is invalid!";
 
             Console.WriteLine(message);
@@ -128,7 +130,8 @@ namespace Presentation
             int? index = ConsoleIO.ReadInt("index");
             bool success = GlobalRepoControl<Star>.RemoveElementByIndex(index ?? InvalidIndex);
 
-            string message = success ? "Star removed successfully!"
+            string message = success
+                ? "Star removed successfully!"
                 : "Index is invalid!";
 
             Console.WriteLine(message);
@@ -140,7 +143,8 @@ namespace Presentation
             StarDTO dto = ConsoleIO.GetStarInfo();
             bool success = GlobalRepoControl<Star>.EditElementById(id ?? InvalidId, dto);
 
-            string message = success ? "Star edited successfully!"
+            string message = success
+                ? "Star edited successfully!"
                 : "Id is invalid!";
 
             Console.WriteLine(message);
@@ -152,7 +156,8 @@ namespace Presentation
             StarDTO dto = ConsoleIO.GetStarInfo();
             bool success = GlobalRepoControl<Star>.EditElementByIndex(index ?? InvalidIndex, dto);
 
-            string message = success ? "Star edited successfully!"
+            string message = success
+                ? "Star edited successfully!"
                 : "Index is invalid!";
 
             Console.WriteLine(message);
