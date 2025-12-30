@@ -7,15 +7,11 @@ namespace Presentation
     {
         public static void Menu()
         {
-            var tType = typeof(T);
-            var starType = typeof(Star);
-            var movieType = typeof(Movie);
-
             string message = string.Empty;
 
-            if (tType == starType)
+            if (typeof(T) == typeof(Star))
                 message = "Star";
-            else if (tType == movieType)
+            else if (typeof(T) == typeof(Movie))
                 message = "Movie";
             else
                 message = Config.DefaultName;
@@ -64,14 +60,10 @@ namespace Presentation
         
         public static void ShowRepo()
         {
-            var tType = typeof(T);
-            var starType = typeof(Star);
-            var movieType = typeof(Movie);
-
-            if (tType == starType)
+            if (typeof(T) == typeof(Star))
                 StarExec.ShowRepo();
 
-            if (tType == movieType)
+            if (typeof(T) == typeof(Movie))
                 MovieExec.ShowRepo();
 
             // vais adicionando tipos de objetos...
@@ -79,14 +71,10 @@ namespace Presentation
 
         public static void ShowById()
         {
-            var tType = typeof(T);
-            var starType = typeof(Star);
-            var movieType = typeof(Movie);
-
-            if (tType == starType)
+            if (typeof(T) == typeof(Star))
                 StarExec.ShowById();
 
-            if (tType == movieType)
+            if (typeof(T) == typeof(Movie))
                 MovieExec.ShowById();
 
             // vais adicionando tipos de objetos...
@@ -94,14 +82,10 @@ namespace Presentation
 
         public static void ShowByIndex()
         {
-            var tType = typeof(T);
-            var starType = typeof(Star);
-            var movieType = typeof(Movie);
-
-            if (tType == starType)
+            if (typeof(T) == typeof(Star))
                 StarExec.ShowByIndex();
             
-            if (tType == movieType)
+            if (typeof(T) == typeof(Movie))
                 MovieExec.ShowByIndex();
 
             // vais adicionando tipos de objetos...
@@ -109,14 +93,10 @@ namespace Presentation
 
         public static void CreateAndAdd()
         {
-            var tType = typeof(T);
-            var starType = typeof(Star);
-            var movieType = typeof(Movie);
-
-            if (tType == starType)
+            if (typeof(T) == typeof(Star))
                 StarExec.CreateAndAdd();
             
-            if (tType == movieType)
+            if (typeof(T) == typeof(Movie))
                 MovieExec.CreateAndAdd();
 
             // vais adicionando tipos de objetos...
@@ -124,14 +104,10 @@ namespace Presentation
 
         public static void RemoveById()
         {
-            var tType = typeof(T);
-            var starType = typeof(Star);
-            var movieType = typeof(Movie);
-
-            if (tType == starType)
+            if (typeof(T) == typeof(Star))
                 StarExec.RemoveById();
             
-            if (tType == movieType)
+            if (typeof(T) == typeof(Movie))
                 MovieExec.RemoveById();
 
             // vais adicionando tipos de objetos...
@@ -139,14 +115,10 @@ namespace Presentation
 
         public static void RemoveByIndex()
         {
-            var tType = typeof(T);
-            var starType = typeof(Star);
-            var movieType = typeof(Movie);
-
-            if (tType == starType)
+            if (typeof(T) == typeof(Star))
                 StarExec.RemoveByIndex();
             
-            if (tType == movieType)
+            if (typeof(T) == typeof(Movie))
                 MovieExec.RemoveByIndex();
 
             // vais adicionando tipos de objetos...
@@ -154,14 +126,10 @@ namespace Presentation
 
         public static void EditById()
         {
-            var tType = typeof(T);
-            var starType = typeof(Star);
-            var movieType = typeof(Movie);
-
-            if (tType == starType)
+            if (typeof(T) == typeof(Star))
                 StarExec.EditById();
             
-            if (tType == movieType)
+            if (typeof(T) == typeof(Movie))
                 MovieExec.EditById();
 
             // vais adicionando tipos de objetos...
@@ -169,14 +137,10 @@ namespace Presentation
 
         public static void EditByIndex()
         {
-            var tType = typeof(T);
-            var starType = typeof(Star);
-            var movieType = typeof(Movie);
-
-            if (tType == starType)
+            if (typeof(T) == typeof(Star))
                 StarExec.EditByIndex();
             
-            if (tType == movieType)
+            if (typeof(T) == typeof(Movie))
                 MovieExec.EditByIndex();
 
             // vais adicionando tipos de objetos...
