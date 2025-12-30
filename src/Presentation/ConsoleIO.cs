@@ -23,11 +23,21 @@ namespace Presentation
 
         public static StarDTO GetStarInfo()
         {
-            string? name = ConsoleIO.ReadString("name");
-            DateOnly? birthDate = ConsoleIO.GetDate();
-            int? jobNum = ConsoleIO.ReadInt("job number");
+            string? name = ReadString("name");
+            DateOnly? birthDate = GetDate();
+            int? jobNum = ReadInt("job number");
 
             return StarService.CreateDTO(name, birthDate, jobNum);
+        }
+
+        public static MovieDTO GetMovieInfo()
+        {
+            string? name = ReadString("name");
+            int? year = ReadInt("year");
+            int? duration = ReadInt("duration");
+            int? ageRatingNum = ReadInt("age rating");
+
+            return MovieService.CreateDTO(name, year, duration, ageRatingNum);
         }
 
         public static Guid? GetId()

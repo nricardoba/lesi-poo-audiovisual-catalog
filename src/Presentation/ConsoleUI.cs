@@ -51,6 +51,7 @@ namespace Presentation
 
                 int count = 1;
                 Console.WriteLine($"{count++} - Star Repository");
+                Console.WriteLine($"{count++} - Movie Repository");
                 Console.WriteLine($"{count++} - Save data on binary file");
 
                 Console.WriteLine("\n0 - Quit\n");
@@ -71,7 +72,7 @@ namespace Presentation
             return option ?? 0;
         }
 
-        public static int StarMenu()
+        public static int RepoMenu(string menuType)
         {
             int? option = 0;
             bool success = false;
@@ -79,19 +80,19 @@ namespace Presentation
             while (!success)
             {
                 Console.Clear();
-                Console.WriteLine("Star repository");
+                Console.WriteLine(menuType + " repository");
                 Console.WriteLine("Choose an option: ");
                 Console.WriteLine();
 
                 int count = 1;
                 Console.WriteLine($"{count++} - Show full repository");
-                Console.WriteLine($"{count++} - Show Star by ID");
-                Console.WriteLine($"{count++} - Show Star by index");
-                Console.WriteLine($"{count++} - Add Star");
-                Console.WriteLine($"{count++} - Remove Star by ID");
-                Console.WriteLine($"{count++} - Remove Star by index");
-                Console.WriteLine($"{count++} - Edit Star by ID");
-                Console.WriteLine($"{count++} - Edit Star by index");
+                Console.WriteLine($"{count++} - Show {menuType} by ID");
+                Console.WriteLine($"{count++} - Show {menuType} by index");
+                Console.WriteLine($"{count++} - Add {menuType}");
+                Console.WriteLine($"{count++} - Remove {menuType} by ID");
+                Console.WriteLine($"{count++} - Remove {menuType} by index");
+                Console.WriteLine($"{count++} - Edit {menuType} by ID");
+                Console.WriteLine($"{count++} - Edit {menuType} by index");
 
                 Console.WriteLine("\n0 - Go Back\n");
 

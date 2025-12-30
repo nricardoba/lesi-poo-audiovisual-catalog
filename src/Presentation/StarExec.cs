@@ -5,53 +5,6 @@ namespace Presentation
 {
     public static class StarExec
     {
-        const int InvalidIndex = -1;
-        static readonly Guid InvalidId = Guid.Empty;
-
-        public static void StarMenu()
-        {
-            bool end = false;
-            while (!end)
-            {
-                int option = ConsoleUI.StarMenu();
-                Console.Clear();
-                
-                switch (option)
-                {
-                    case 1:
-                        ShowRepo();
-                        break;
-                    case 2:
-                        ShowById();
-                        break;
-                    case 3:
-                        ShowByIndex();
-                        break;
-                    case 4:
-                        CreateAndAdd();
-                        break;
-                    case 5:
-                        RemoveById();
-                        break;
-                    case 6:
-                        RemoveByIndex();
-                        break;
-                    case 7:
-                        EditById();
-                        break;
-                    case 8:
-                        EditByIndex();
-                        break;
-                    default:
-                        end = true;
-                        break;
-                }
-
-                if (!end)
-                    ConsoleUI.Pause();
-            }
-        }
-
         public static void ShowRepo()
         {
             List<object> repository = GlobalRepoControl<Star>.GetRepository();
@@ -69,33 +22,30 @@ namespace Presentation
             }
         }
 
-        public static bool ShowElement(StarDTO? element)
+        public static void ShowElement(StarDTO? element)
         {
             if (element is null)
-            {
                 Console.WriteLine("Invalid Star!");
-                return false;
+            else
+            {
+                Console.WriteLine("ID: " + element.Id);
+                Console.WriteLine("Name: " + element.Name);
+                Console.WriteLine("BirthDate: " + element.BirthDate);
+                Console.WriteLine("Job: " + element.Job + "\n");
             }
-
-            Console.WriteLine("ID: " + element.Id);
-            Console.WriteLine("Name: " + element.Name);
-            Console.WriteLine("BirthDate: " + element.BirthDate);
-            Console.WriteLine("Job: " + element.Job + "\n");
-
-            return true;
         }
 
         public static void ShowById()
         {
             Guid? id = ConsoleIO.GetId();
-            var element = GlobalRepoControl<Star>.GetElementById(id ?? InvalidId);
+            var element = GlobalRepoControl<Star>.GetElementById(id ?? Config.InvalidId);
             ShowElement((StarDTO?)element);
         }
 
         public static void ShowByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
-            var element = GlobalRepoControl<Star>.GetElementByIndex(index ?? InvalidIndex);
+            var element = GlobalRepoControl<Star>.GetElementByIndex(index ?? Config.InvalidIndex);
             ShowElement((StarDTO?)element);
         }
 
@@ -116,7 +66,7 @@ namespace Presentation
         public static void RemoveById()
         {
             Guid? id = ConsoleIO.GetId();
-            bool success = GlobalRepoControl<Star>.RemoveElementById(id ?? InvalidId);
+            bool success = GlobalRepoControl<Star>.RemoveElementById(id ?? Config.InvalidId);
 
             string message = success
                 ? "Star removed successfully!"
@@ -128,7 +78,7 @@ namespace Presentation
         public static void RemoveByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
-            bool success = GlobalRepoControl<Star>.RemoveElementByIndex(index ?? InvalidIndex);
+            bool success = GlobalRepoControl<Star>.RemoveElementByIndex(index ?? Config.InvalidIndex);
 
             string message = success
                 ? "Star removed successfully!"
@@ -141,7 +91,7 @@ namespace Presentation
         {
             Guid? id = ConsoleIO.GetId();
             StarDTO dto = ConsoleIO.GetStarInfo();
-            bool success = GlobalRepoControl<Star>.EditElementById(id ?? InvalidId, dto);
+            bool success = GlobalRepoControl<Star>.EditElementById(id ?? Config.InvalidId, dto);
 
             string message = success
                 ? "Star edited successfully!"
@@ -154,12 +104,28 @@ namespace Presentation
         {
             int? index = ConsoleIO.ReadInt("index");
             StarDTO dto = ConsoleIO.GetStarInfo();
-            bool success = GlobalRepoControl<Star>.EditElementByIndex(index ?? InvalidIndex, dto);
+            bool success = GlobalRepoControl<Star>.EditElementByIndex(index ?? Config.InvalidIndex, dto);
 
             string message = success
                 ? "Star edited successfully!"
                 : "Index is invalid!";
 
+            Console.WriteLine(message);
+        }
+
+        public static void Save()
+        {
+            string message = GlobalRepoControl<Star>.Save(Config.StarFilePath)
+                ? "Stars information saved successfully!"
+                : "Unable to save Stars information!";
+            Console.WriteLine(message);
+        }
+        
+        public static void Load()
+        {
+            string message = GlobalRepoControl<Star>.Load(Config.StarFilePath)
+                ? "Stars information loaded successfully!"
+                : "Unable to load Stars information!";
             Console.WriteLine(message);
         }
     }

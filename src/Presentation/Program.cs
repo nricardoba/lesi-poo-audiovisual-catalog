@@ -14,7 +14,8 @@ namespace Presentation
             switch (loadOption)
             {
                 case 1:
-                    GlobalExec.Load();
+                    StarExec.Load();
+                    MovieExec.Load();
                     break;
                 case 2:
                     Console.WriteLine("Starting with a fresh database...");
@@ -24,7 +25,7 @@ namespace Presentation
                     break;
             }
 
-            if (!end)
+            if (!end && loadOption != 2)
                 ConsoleUI.Pause();
 
             while (!end)
@@ -33,10 +34,14 @@ namespace Presentation
                 switch (option)
                 {
                     case 1:
-                        StarExec.StarMenu();
+                        GlobalExec<Star>.Menu();
                         break;
                     case 2:
-                        GlobalExec.Save();
+                        GlobalExec<Movie>.Menu();
+                        break;
+                    case 3:
+                        StarExec.Save();
+                        MovieExec.Save();
                         ConsoleUI.Pause();
                         break;
                     default:

@@ -27,5 +27,8 @@ namespace BusinessObjects
 
         public const string DefaultFilePath = "src/Bin/";
         public const string StarFilePath = DefaultFilePath + "Star.bin";
+
+        public const int InvalidIndex = -1;
+        public static readonly Guid InvalidId = Guid.Empty;
     }
 }
