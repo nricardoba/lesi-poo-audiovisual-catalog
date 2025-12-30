@@ -78,12 +78,6 @@ namespace BusinessObjects
         }
         #endregion
 
-        #region Overrides
-        #endregion
-
-        #region Other Methods
-        #endregion
-
         #endregion
     }
 }
