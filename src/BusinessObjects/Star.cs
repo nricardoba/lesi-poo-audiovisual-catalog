@@ -34,7 +34,8 @@ namespace BusinessObjects
             job = Config.DefaultJob;
         }
 
-        public Star(string name, DateOnly birthDate, JobType job) : base(name)
+        public Star(string name, DateOnly birthDate, JobType job)
+            : base(name)
         {
             this.birthDate = birthDate;
             this.job = IntegrityValidator.IsJobValid((int)job)
@@ -42,7 +43,8 @@ namespace BusinessObjects
         }
 
         // este contrutor só vai ser chamado ao ler ficheiros binarios
-        public Star(Guid id, string name, DateOnly birthDate, JobType job) : base(id, name)
+        public Star(Guid id, string name, DateOnly birthDate, JobType job)
+            : base(id, name)
         {
             this.birthDate = birthDate;
             this.job = IntegrityValidator.IsJobValid((int)job)

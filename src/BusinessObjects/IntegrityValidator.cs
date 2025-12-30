@@ -11,9 +11,21 @@ namespace BusinessObjects
 
         public static bool IsJobValid(int jobNum)
         {
-            if (jobNum >= Config.MinJobType && jobNum < Config.JobTypeLength)
+            if (jobNum >= Config.MinEnumType && jobNum < Config.JobTypeLength)
                 return true;
             return false;
+        }
+
+        public static bool IsAgeRatingValid(int ageRatingNum)
+        {
+            if (ageRatingNum >= Config.MinEnumType && ageRatingNum < Config.AgeRatingTypeLength)
+                return true;
+            return false;
+        }
+
+        public static bool IsMovieIntValid(int num)
+        {
+            return num > 0;
         }
     }
 }

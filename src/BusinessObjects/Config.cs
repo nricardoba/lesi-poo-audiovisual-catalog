@@ -14,9 +14,15 @@ namespace BusinessObjects
         public static readonly DateOnly CurrentDate = new DateOnly(CurrentYear, CurrentMonth, CurrentDay);
         public static readonly DateOnly DefaultDate = new DateOnly(CurrentYear, DefaultMonth, DefaultDay);
 
-        public const int MinJobType = 0;
+        public const int DefaultDuration = 120;
+
+        public const int MinEnumType = 0;
+
         public const JobType DefaultJob = JobType.Unemployed;
         public static readonly int JobTypeLength = Enum.GetValues<JobType>().Length;
+
+        public const AgeRatingType DefaultAgeRating = AgeRatingType.G;
+        public static readonly int AgeRatingTypeLength = Enum.GetValues<AgeRatingType>().Length;
 
         public const string DefaultFilePath = "src/Bin/";
         public const string StarFilePath = DefaultFilePath + "Star.bin";
