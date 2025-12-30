@@ -9,6 +9,9 @@ namespace BusinessLogic
             if (element is Star auxStar)
                 return StarService.Clone(auxStar);
 
+            if (element is Movie auxMovie)
+                return MovieService.Clone(auxMovie);
+
             // vais adicionando tipos de objetos...
 
             return null;
@@ -16,8 +19,11 @@ namespace BusinessLogic
 
         public static bool Edit(object? element, object? dto)
         {
-            if (element is Star auxStar && dto is StarDTO auxDTO)
-                return StarService.Edit(auxStar, auxDTO);
+            if (element is Star auxStar && dto is StarDTO auxStarDTO)
+                return StarService.Edit(auxStar, auxStarDTO);
+
+            if (element is Movie auxMovie && dto is MovieDTO auxMovieDTO)
+                return MovieService.Edit(auxMovie, auxMovieDTO);
 
             // vais adicionando tipos de objetos...
 

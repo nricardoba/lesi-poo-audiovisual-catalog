@@ -108,8 +108,7 @@ namespace Data
                             writer.Write(auxStar.BirthDate.DayNumber);
                             writer.Write((int)auxStar.Job);
                         }
-
-                        if (element is Movie auxMovie)
+                        else if (element is Movie auxMovie)
                         {
                             writer.Write(auxMovie.Year);
                             writer.Write(auxMovie.Duration);
@@ -160,8 +159,7 @@ namespace Data
                             // if (!AddElement(element))
                             // tua exception
                         }
-
-                        if (tType == typeof(Movie))
+                        else if (tType == typeof(Movie))
                         {
                             int year = reader.ReadInt32();
                             int duration = reader.ReadInt32();

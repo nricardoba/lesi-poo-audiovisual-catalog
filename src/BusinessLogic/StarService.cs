@@ -4,8 +4,6 @@ namespace BusinessLogic
 {
     public static class StarService
     {
-        // é neste metodo que podes criar o novo ID
-        // (se usares a abordagem do ID aleatorio como int)
         public static Star Create(StarDTO dto)
         {
             string name = RuleValidator.IsNameValid(dto.Name)
@@ -24,6 +22,7 @@ namespace BusinessLogic
             string auxName = name ?? Config.DefaultName;
             DateOnly auxBirthDate = birthDate ?? Config.DefaultDate;
             JobType auxJob = Config.DefaultJob;
+
             if (jobNum is not null)
                 auxJob = (JobType)jobNum;
 
@@ -39,18 +38,32 @@ namespace BusinessLogic
                 element.BirthDate, element.Job);
         }
 
-        // podes ter que mudar o tipo do 'dto' para object
         public static bool Edit(Star? element, StarDTO? dto)
         {
-            if (element is null || dto is null
-                || !RuleValidator.IsStarDTOValid(dto))
+            if (element is null || dto is null)
                 return false;
 
-            element.Name = dto.Name;
-            element.BirthDate = dto.BirthDate;
-            element.Job = dto.Job;
+            bool success = false;
 
-            return true;
+            if (RuleValidator.IsNameValid(dto.Name))
+            {
+                element.Name = dto.Name;
+                success = true;
+            }
+
+            if (RuleValidator.IsBirthDateValid(dto.BirthDate))
+            {
+                element.BirthDate = dto.BirthDate;
+                success = true;
+            }
+
+            if (IntegrityValidator.IsJobValid((int)dto.Job))
+            {
+                element.Job = dto.Job;
+                success = true;
+            }
+
+            return success;
         }
     }
 }
