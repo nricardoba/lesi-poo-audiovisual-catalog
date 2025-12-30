@@ -116,7 +116,7 @@ namespace Presentation
 
         public static void Save()
         {
-            string message = GlobalRepoControl<Movie>.Save(Config.StarFilePath)
+            string message = GlobalRepoControl<Movie>.Save(Config.MovieFilePath)
                 ? "Movie information saved successfully!"
                 : "Unable to save Movie information!";
             Console.WriteLine(message);
@@ -124,7 +124,7 @@ namespace Presentation
         
         public static void Load()
         {
-            string message = GlobalRepoControl<Movie>.Load(Config.StarFilePath)
+            string message = GlobalRepoControl<Movie>.Load(Config.MovieFilePath)
                 ? "Movie information loaded successfully!"
                 : "Unable to load Movie information!";
             Console.WriteLine(message);
