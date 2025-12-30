@@ -15,6 +15,7 @@ namespace BusinessObjects
         public static readonly DateOnly DefaultDate = new DateOnly(CurrentYear, DefaultMonth, DefaultDay);
 
         public const int DefaultDuration = 120;
+        public const int MaxDuration = 600;
 
         public const int MinEnumType = 0;
 

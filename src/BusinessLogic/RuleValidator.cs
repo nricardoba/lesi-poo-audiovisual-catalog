@@ -12,6 +12,12 @@ namespace BusinessLogic
             if (element is StarDTO auxStarDTO)
                 return IsStarDTOValid(auxStarDTO);
 
+            if (element is Movie auxMovie)
+                return IsMovieValid(auxMovie);
+
+            if (element is MovieDTO auxMovieDTO)
+                return IsMovieDTOValid(auxMovieDTO);
+
             // vais adicionando tipos de objetos...
 
             return false;
@@ -19,27 +25,34 @@ namespace BusinessLogic
 
         public static bool IsStarValid(Star? element)
         {
-            if (element is null)
-                return false;
-
-            if (!IsNameValid(element.Name)
-                || !IsBirthDateValid(element.BirthDate))
-                return false;
-
-            return true;
+            return element is not null
+                && IsNameValid(element.Name)
+                && IsBirthDateValid(element.BirthDate);
         }
 
         public static bool IsStarDTOValid(StarDTO? element)
         {
-            if (element is null)
-                return false;
+            return element is not null
+                && IsNameValid(element.Name)
+                && IsBirthDateValid(element.BirthDate)
+                && IntegrityValidator.IsJobValid((int)element.Job);
+        }
 
-            if (!IsNameValid(element.Name)
-                || !IsBirthDateValid(element.BirthDate)
-                || !IntegrityValidator.IsJobValid((int)element.Job))
-                return false;
+        public static bool IsMovieValid(Movie? element)
+        {
+            return element is not null
+                && IsNameValid(element.Name)
+                && IsMovieYearValid(element.Year)
+                && IsDurationValid(element.Duration);
+        }
 
-            return true;
+        public static bool IsMovieDTOValid(MovieDTO? element)
+        {
+            return element is not null
+                && IsNameValid(element.Name)
+                && IsMovieYearValid(element.Year)
+                && IsDurationValid(element.Duration)
+                && IntegrityValidator.IsAgeRatingValid((int)element.AgeRating);
         }
 
         public static bool IsNameValid(string? name)
@@ -56,6 +69,18 @@ namespace BusinessLogic
             }
 
             return true;
+        }
+
+        public static bool IsMovieYearValid(int year)
+        {
+            return IsYearValid(year)
+                && year <= Config.CurrentYear + 10;
+        }
+
+        public static bool IsDurationValid(int duration)
+        {
+            return IntegrityValidator.IsMovieIntValid(duration)
+                && duration <= Config.MaxDuration;
         }
 
         public static bool IsBirthDateValid(DateOnly? birthDate)
@@ -90,16 +115,13 @@ namespace BusinessLogic
 
         public static bool IsYearValid(int year)
         {
-            if (year >= Config.MinYear && year <= Config.CurrentYear + 100)
-                return true;
-            return false;
+            return year >= Config.MinYear
+                && year <= Config.CurrentYear + 100;
         }
 
         public static bool IsMonthValid(int month)
         {
-            if (month >= 1 && month <= 12)
-                return true;
-            return false;
+            return month >= 1 && month <= 12;
         }
 
         public static bool IsDayValid(int year, int month, int day)
@@ -107,9 +129,7 @@ namespace BusinessLogic
             if (!IsYearValid(year) || !IsMonthValid(month))
                 return false;
 
-            if (day <= 0 || day > DateTime.DaysInMonth(year, month))
-                return false;
-            return true;
+            return day > 0 && day <= DateTime.DaysInMonth(year, month);
         }
     }
 }

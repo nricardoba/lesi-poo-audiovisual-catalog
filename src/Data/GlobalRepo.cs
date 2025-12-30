@@ -109,6 +109,13 @@ namespace Data
                             writer.Write((int)auxStar.Job);
                         }
 
+                        if (element is Movie auxMovie)
+                        {
+                            writer.Write(auxMovie.Year);
+                            writer.Write(auxMovie.Duration);
+                            writer.Write((int)auxMovie.AgeRating);
+                        }
+
                         // vais adicionando tipos de objetos...
 
                         // else
@@ -152,6 +159,16 @@ namespace Data
 
                             // if (!AddElement(element))
                             // tua exception
+                        }
+
+                        if (tType == typeof(Movie))
+                        {
+                            int year = reader.ReadInt32();
+                            int duration = reader.ReadInt32();
+                            AgeRatingType ageRating = (AgeRatingType)reader.ReadInt32();
+
+                            T element = (T)(object)new Movie(id, name, year, duration, ageRating);
+                            AddElement(element);
                         }
                         
                         // vais adicionando tipos de objetos...

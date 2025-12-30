@@ -4,23 +4,20 @@ namespace BusinessObjects
     {
         public static bool IsNameValid(string? name)
         {
-            if (string.IsNullOrWhiteSpace(name) || name.Length > Config.NameMaxLength)
-                return false;
-            return true;
+            return !string.IsNullOrWhiteSpace(name)
+                && name.Length <= Config.NameMaxLength;
         }
 
         public static bool IsJobValid(int jobNum)
         {
-            if (jobNum >= Config.MinEnumType && jobNum < Config.JobTypeLength)
-                return true;
-            return false;
+            return jobNum >= Config.MinEnumType
+                && jobNum < Config.JobTypeLength;
         }
 
         public static bool IsAgeRatingValid(int ageRatingNum)
         {
-            if (ageRatingNum >= Config.MinEnumType && ageRatingNum < Config.AgeRatingTypeLength)
-                return true;
-            return false;
+            return ageRatingNum >= Config.MinEnumType
+                && ageRatingNum < Config.AgeRatingTypeLength;
         }
 
         public static bool IsMovieIntValid(int num)
