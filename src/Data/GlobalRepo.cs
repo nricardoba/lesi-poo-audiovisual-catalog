@@ -1,4 +1,5 @@
 using BusinessObjects;
+using Exceptions;
 
 namespace Data
 {
@@ -117,8 +118,10 @@ namespace Data
 
                         // vais adicionando tipos de objetos...
 
-                        // else
-                            // tua exception
+                        else
+                        {
+                            throw new RepoInvalidTypeException();
+                        }
                     }
                 }
                 return true;
@@ -154,10 +157,11 @@ namespace Data
                             JobType job = (JobType)reader.ReadInt32();
 
                             T element = (T)(object)new Star(id, name, birthDate, job);
-                            AddElement(element);
 
-                            // if (!AddElement(element))
-                            // tua exception
+                            if (!AddElement(element))
+                            {
+                                throw new RepoCannotAddElementException();
+                            }
                         }
                         else if (tType == typeof(Movie))
                         {
@@ -171,8 +175,10 @@ namespace Data
                         
                         // vais adicionando tipos de objetos...
                         
-                        // else
-                            // tua exception
+                        else
+                        {
+                            throw new RepoInvalidTypeException();
+                        }
                     }
                 }
                 return true;
