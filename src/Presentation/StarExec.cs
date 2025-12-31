@@ -4,6 +4,9 @@ using Exceptions;
 
 namespace Presentation
 {
+    /// <summary>
+    /// Execution of star menu options
+    /// </summary>
     public static class StarExec
     {
         public static void ShowRepo()

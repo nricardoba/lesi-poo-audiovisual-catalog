@@ -2,6 +2,9 @@ using BusinessObjects;
 
 namespace Presentation
 {
+    /// <summary>
+    /// Class with console menu methods
+    /// </summary>
     public static class ConsoleUI
     {
         public static int LoadMenu()

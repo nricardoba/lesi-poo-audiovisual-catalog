@@ -3,6 +3,12 @@ using BusinessLogic;
 
 namespace Presentation
 {
+    /// <summary>
+    /// Generic class for execution of any class menu options
+    /// </summary>
+    /// <typeparam name="T">
+    /// T can be Identifier or any class that inherits from it
+    /// </typeparam>
     public static class GlobalExec<T> where T : Identifier
     {
         public static void Menu()

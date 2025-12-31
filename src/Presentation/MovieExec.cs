@@ -4,6 +4,9 @@ using Exceptions;
 
 namespace Presentation
 {
+    /// <summary>
+    /// Execution of movie menu options
+    /// </summary>
     public static class MovieExec
     {
         public static void ShowRepo()
