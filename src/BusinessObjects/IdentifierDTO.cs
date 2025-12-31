@@ -1,5 +1,8 @@
 namespace BusinessObjects
 {
+    /// <summary>
+    /// Data Transfer Object of Identifier class
+    /// </summary>
     public abstract class IdentifierDTO
     {
         #region Attributes

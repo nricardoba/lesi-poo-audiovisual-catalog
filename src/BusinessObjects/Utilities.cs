@@ -1,5 +1,8 @@
 namespace BusinessObjects
 {
+    /// <summary>
+    /// File with the project's utility methods
+    /// </summary>
     public static class Utilities
     {
         // d1 -> Data "atual"

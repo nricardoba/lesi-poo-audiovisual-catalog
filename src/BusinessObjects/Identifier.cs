@@ -1,5 +1,8 @@
 namespace BusinessObjects
 {
+    /// <summary>
+    /// Abstract class that serves as a model for all classes that can be part of a repository
+    /// </summary>
     public abstract class Identifier : IEquatable<Identifier>, IComparable<Identifier>
     {
         #region Attributes

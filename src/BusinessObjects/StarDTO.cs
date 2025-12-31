@@ -1,5 +1,8 @@
 namespace BusinessObjects
 {
+    /// <summary>
+    /// Data Transfer Object of Star class
+    /// </summary>
     public class StarDTO : IdentifierDTO
     {
         #region Attributes

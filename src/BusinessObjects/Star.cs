@@ -1,5 +1,8 @@
 namespace BusinessObjects
 {
+    /// <summary>
+    /// Class containing information about a movie star
+    /// </summary>
     public class Star : Identifier
     {
         #region Attributes

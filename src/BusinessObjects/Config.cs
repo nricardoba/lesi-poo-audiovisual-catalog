@@ -1,5 +1,8 @@
 namespace BusinessObjects
 {
+    /// <summary>
+    /// File containing the project constants
+    /// </summary>
     public static class Config
     {
         public const int NameMaxLength = 50;

@@ -1,5 +1,8 @@
 namespace BusinessObjects
 {
+    /// <summary>
+    /// Data Transfer Object of Movie class
+    /// </summary>
     public class MovieDTO : IdentifierDTO
     {
         #region Attributes

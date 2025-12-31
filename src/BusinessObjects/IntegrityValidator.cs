@@ -1,5 +1,8 @@
 namespace BusinessObjects
 {
+    /// <summary>
+    /// File containing the project integrity validation methods
+    /// </summary>
     public static class IntegrityValidator
     {
         public static bool IsNameValid(string? name)
