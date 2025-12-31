@@ -3,6 +3,12 @@ using Data;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// Global BL generic repository of classes Star and Movie
+    /// </summary>
+    /// <typeparam name="T">
+    /// T can be Identifier or any class that inherits from it
+    /// </typeparam>
     public static class GlobalRepoControl<T> where T : Identifier
     {
         #region Generic

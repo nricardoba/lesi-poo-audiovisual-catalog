@@ -4,7 +4,7 @@ using Exceptions;
 namespace Data
 {
     /// <summary>
-    /// Global repository of classes Star and Movie
+    /// Global DL generic repository of classes Star and Movie
     /// </summary>
     /// <typeparam name="T">
     /// T can be Identifier or any class that inherits from it

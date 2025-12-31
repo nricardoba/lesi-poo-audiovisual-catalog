@@ -2,6 +2,9 @@ using BusinessObjects;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// BL class to provide service methods to the Movie class
+    /// </summary>
     public static class MovieService
     {
         public static Movie Create(MovieDTO dto)

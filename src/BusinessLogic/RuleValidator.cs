@@ -2,6 +2,9 @@ using BusinessObjects;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// File containing the project rule validation methods
+    /// </summary>
     public static class RuleValidator
     {
         public static bool IsElementValid(object? element)

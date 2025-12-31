@@ -2,6 +2,9 @@ using BusinessObjects;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// BL class to provide generic service methods to the project classes
+    /// </summary>
     public static class GlobalService
     {
         public static object? Clone(object? element)

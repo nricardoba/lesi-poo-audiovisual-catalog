@@ -2,6 +2,9 @@ using BusinessObjects;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// BL class to provide service methods to the Star class
+    /// </summary>
     public static class StarService
     {
         public static Star Create(StarDTO dto)
