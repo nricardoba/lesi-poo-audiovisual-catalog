@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="../BusinessObjects/BusinessObjects.csproj" PrivateAssets="All" />
     <ProjectReference Include="../Data/Data.csproj" PrivateAssets="All" />
+    <ProjectReference Include="../Exceptions/Exceptions.csproj" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
