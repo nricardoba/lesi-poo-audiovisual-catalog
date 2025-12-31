@@ -3,6 +3,12 @@ using Exceptions;
 
 namespace Data
 {
+    /// <summary>
+    /// Global repository of classes Star and Movie
+    /// </summary>
+    /// <typeparam name="T">
+    /// T can be Identifier or any class that inherits from it
+    /// </typeparam>
     public static class GlobalRepo<T> where T : Identifier
     {
         #region Attributes
