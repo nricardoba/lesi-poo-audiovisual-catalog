@@ -136,7 +136,7 @@ namespace Data
 
                 for (int i = 0; i < count; i++)
                 {
-                    // isto pode atirar uma exception
+                    // isto pode atirar uma FormatException
                     Guid id = Guid.Parse(reader.ReadString());
                     string name = reader.ReadString();
 
@@ -162,7 +162,11 @@ namespace Data
                         AgeRatingType ageRating = (AgeRatingType)reader.ReadInt32();
 
                         T element = (T)(object)new Movie(id, name, year, duration, ageRating);
-                        AddElement(element);
+
+                        if (!AddElement(element))
+                        {
+                            throw new RepoCannotAddElementException();
+                        }
                     }
 
                     // vais adicionando tipos de objetos...

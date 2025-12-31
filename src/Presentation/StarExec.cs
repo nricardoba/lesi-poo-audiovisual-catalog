@@ -1,5 +1,6 @@
 using BusinessObjects;
 using BusinessLogic;
+using Exceptions;
 
 namespace Presentation
 {
@@ -115,18 +116,52 @@ namespace Presentation
 
         public static void Save()
         {
-            string message = GlobalRepoControl<Star>.Save(Config.StarFilePath)
-                ? "Stars information saved successfully!"
-                : "Unable to save Stars information!";
-            Console.WriteLine(message);
+            try
+            {
+                if (GlobalRepoControl<Star>.Save(Config.StarFilePath))
+                    Console.WriteLine("Stars information saved successfully!");
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            catch (RepoInvalidTypeException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
         }
         
         public static void Load()
         {
-            string message = GlobalRepoControl<Star>.Load(Config.StarFilePath)
-                ? "Stars information loaded successfully!"
-                : "Unable to load Stars information!";
-            Console.WriteLine(message);
+            try
+            {
+                if (GlobalRepoControl<Star>.Load(Config.StarFilePath))
+                    Console.WriteLine("Stars information loaded successfully!");
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            catch (RepoInvalidTypeException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            catch (RepoCannotAddElementException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
         }
     }
 }
