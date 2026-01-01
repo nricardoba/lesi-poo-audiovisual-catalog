@@ -14,6 +14,10 @@ namespace BusinessObjects
         #region Methods
 
         #region Properties
+        /// <summary>
+        /// Property of attribute year.
+        /// If the variable value is valid, it's assigned.
+        /// </summary>
         public int Year
         {
             get { return year; }
@@ -24,6 +28,10 @@ namespace BusinessObjects
             }
         }
 
+        /// <summary>
+        /// Property of attribute duration.
+        /// If the variable value is valid, it's assigned.
+        /// </summary>
         public int Duration
         {
             get { return duration; }
@@ -34,6 +42,10 @@ namespace BusinessObjects
             }
         }
 
+        /// <summary>
+        /// Property of attribute ageRating.
+        /// If the variable value is valid, it's assigned.
+        /// </summary>
         public AgeRatingType AgeRating
         {
             get { return ageRating; }
@@ -46,6 +58,10 @@ namespace BusinessObjects
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Default constructor.
+        /// Assigns the default values.
+        /// </summary>
         public Movie() : base()
         {
             year = Config.CurrentYear;
@@ -53,6 +69,14 @@ namespace BusinessObjects
             ageRating = Config.DefaultAgeRating;
         }
 
+        /// <summary>
+        /// Constructor with all the parameters.
+        /// Checks and assigns the values ​​passed as parameters.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="year"></param>
+        /// <param name="duration"></param>
+        /// <param name="ageRating"></param>
         public Movie(string name, int year, int duration, AgeRatingType ageRating)
             : base(name)
         {
@@ -66,7 +90,15 @@ namespace BusinessObjects
                 ? ageRating : Config.DefaultAgeRating;
         }
 
-        // este contrutor só vai ser chamado ao ler ficheiros binarios
+        /// <summary>
+        /// This constructor will only be called when manipulating binary files.
+        /// Checks and assigns the values ​​passed as parameters.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="year"></param>
+        /// <param name="duration"></param>
+        /// <param name="ageRating"></param>
         public Movie(Guid id, string name, int year, int duration, AgeRatingType ageRating)
             : base(id, name)
         {

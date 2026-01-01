@@ -1,7 +1,7 @@
 namespace BusinessObjects
 {
     /// <summary>
-    /// File containing the project constants
+    /// Class containing the project constants
     /// </summary>
     public static class Config
     {
