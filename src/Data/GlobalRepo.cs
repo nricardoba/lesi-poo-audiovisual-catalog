@@ -18,6 +18,11 @@ namespace Data
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Checks whether the element can be added to the repository. If it can, adds it.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static bool AddElement(T? element)
         {
             if (element is null || DoesElementExist(element))
@@ -29,16 +34,28 @@ namespace Data
 
         // o metodo 'Remove' usa o metodo 'Equals' para comparar objetos
         // ( deste override a esse metodo na class Person )
+
+        /// <summary>
+        /// If the element is not null, try to remove it from the repository.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static bool RemoveElement(T? element)
         {
             if (element is null)
                 return false;
-                
+
             // retorna true se encontrou e removeu
             // retorna false se não existe na lista
             return repository.Remove(element);
         }
 
+        /// <summary>
+        /// Searches for an element with the ID passed by parameters.
+        /// If found, removes it from the repository.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static bool RemoveElementById(Guid id)
         {
             T? element = GetElementById(id);
@@ -49,6 +66,12 @@ namespace Data
             return repository.Remove(element);
         }
 
+        /// <summary>
+        /// Searches for an element with the index passed by parameters.
+        /// If found, removes it from the repository.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public static bool RemoveElementByIndex(int index)
         {
             T? element = GetElementByIndex(index);
@@ -59,6 +82,12 @@ namespace Data
             return repository.Remove(element);
         }
 
+        /// <summary>
+        /// Searches for an element in the repository with the ID passed by parameters.
+        /// If found, returns that element.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static T? GetElementById(Guid id)
         {
             foreach (T element in repository)
@@ -70,6 +99,11 @@ namespace Data
             return null;
         }
 
+        /// <summary>
+        /// If the index passed as a parameter is valid, it returns the element with that index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public static T? GetElementByIndex(int index)
         {
             if (index < 0 || index >= repository.Count)
@@ -78,11 +112,20 @@ namespace Data
             return repository[index];
         }
 
+        /// <summary>
+        /// Returns the repository.
+        /// </summary>
+        /// <returns></returns>
         public static List<T> GetRepository()
         {
             return repository;
         }
 
+        /// <summary>
+        /// Checks whether an object passed by parameters exists in the repository.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static bool DoesElementExist(T? obj)
         {
             if (obj is null)
@@ -97,6 +140,12 @@ namespace Data
             return false;
         }
 
+        /// <summary>
+        /// Save the repository in a binary file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        /// <exception cref="RepoInvalidTypeException"></exception>
         public static bool Save(string filePath)
         {
             using (FileStream fs = new FileStream(filePath, FileMode.Create))
@@ -132,6 +181,13 @@ namespace Data
             return true;
         }
 
+        /// <summary>
+        /// Loads the repository from a binary file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        /// <exception cref="RepoCannotAddElementException"></exception>
+        /// <exception cref="RepoInvalidTypeException"></exception>
         public static bool Load(string filePath)
         {
             using (FileStream fs = new FileStream(filePath, FileMode.Open))
@@ -183,7 +239,7 @@ namespace Data
                     }
                 }
             }
-            
+
             return true;
         }
         #endregion
