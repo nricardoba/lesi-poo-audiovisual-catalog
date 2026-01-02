@@ -7,6 +7,11 @@ namespace BusinessLogic
     /// </summary>
     public static class StarService
     {
+        /// <summary>
+        /// Validates the attributes of the DTO passed by parameters and creates a new object of type Star.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public static Star Create(StarDTO dto)
         {
             string name = RuleValidator.IsNameValid(dto.Name)
@@ -20,6 +25,14 @@ namespace BusinessLogic
             return new Star(name, birthDate, job);
         }
 
+        /// <summary>
+        /// Certifies that the attributes passed by parameters are not null.
+        /// Then creates a new DTO of type Star.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="birthDate"></param>
+        /// <param name="jobNum"></param>
+        /// <returns></returns>
         public static StarDTO CreateDTO(string? name, DateOnly? birthDate, int? jobNum)
         {
             string auxName = name ?? Config.DefaultName;
@@ -32,6 +45,11 @@ namespace BusinessLogic
             return new StarDTO(auxName, auxBirthDate, auxJob);
         }
 
+        /// <summary>
+        /// Based on the attributes of an object of type Star, create a DTO clone.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static StarDTO? Clone(Star? element)
         {
             if (element is null)
@@ -41,6 +59,12 @@ namespace BusinessLogic
                 element.BirthDate, element.Job);
         }
 
+        /// <summary>
+        /// Attempts to edit the attributes of an object of type Star with the attributes present in a DTO.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public static bool Edit(Star? element, StarDTO? dto)
         {
             if (element is null || dto is null)

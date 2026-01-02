@@ -7,6 +7,11 @@ namespace BusinessLogic
     /// </summary>
     public static class GlobalService
     {
+        /// <summary>
+        /// Generic clone method.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static object? Clone(object? element)
         {
             if (element is Star auxStar)
@@ -20,6 +25,12 @@ namespace BusinessLogic
             return null;
         }
 
+        /// <summary>
+        /// Generic edit method.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public static bool Edit(object? element, object? dto)
         {
             if (element is Star auxStar && dto is StarDTO auxStarDTO)

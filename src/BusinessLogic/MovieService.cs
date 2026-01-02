@@ -7,6 +7,11 @@ namespace BusinessLogic
     /// </summary>
     public static class MovieService
     {
+        /// <summary>
+        /// Validates the attributes of the DTO passed by parameters and creates a new object of type Movie.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public static Movie Create(MovieDTO dto)
         {
             string name = RuleValidator.IsNameValid(dto.Name)
@@ -23,6 +28,15 @@ namespace BusinessLogic
             return new Movie(name, year, duration, ageRating);
         }
 
+        /// <summary>
+        /// Certifies that the attributes passed by parameters are not null.
+        /// Then creates a new DTO of type Movie.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="year"></param>
+        /// <param name="duration"></param>
+        /// <param name="ageRatingNum"></param>
+        /// <returns></returns>
         public static MovieDTO CreateDTO(string? name, int? year,
             int? duration, int? ageRatingNum)
         {
@@ -37,6 +51,11 @@ namespace BusinessLogic
             return new MovieDTO(auxName, auxYear, auxDuration, auxAgeRating);
         }
 
+        /// <summary>
+        /// Based on the attributes of an object of type Movie, create a DTO clone.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static MovieDTO? Clone(Movie? element)
         {
             if (element is null)
@@ -46,6 +65,12 @@ namespace BusinessLogic
                 element.Year, element.Duration, element.AgeRating);
         }
 
+        /// <summary>
+        /// Attempts to edit the attributes of an object of type Movie with the attributes present in a DTO.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public static bool Edit(Movie? element, MovieDTO? dto)
         {
             if (element is null || dto is null)
