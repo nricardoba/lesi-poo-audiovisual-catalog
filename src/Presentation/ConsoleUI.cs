@@ -7,6 +7,10 @@ namespace Presentation
     /// </summary>
     public static class ConsoleUI
     {
+        /// <summary>
+        /// Menu to ask the user if they want to read the information from the repositories present in a binary file.
+        /// </summary>
+        /// <returns></returns>
         public static int LoadMenu()
         {
             int? option = 0;
@@ -41,6 +45,10 @@ namespace Presentation
             return option ?? 0;
         }
         
+        /// <summary>
+        /// Menu for selecting a repository to manipulate.
+        /// </summary>
+        /// <returns></returns>
         public static int MainMenu()
         {
             int? option = 0;
@@ -75,6 +83,11 @@ namespace Presentation
             return option ?? 0;
         }
 
+        /// <summary>
+        /// Menu with all options of a repository.
+        /// </summary>
+        /// <param name="menuType"></param>
+        /// <returns></returns>
         public static int RepoMenu(string menuType)
         {
             int? option = 0;

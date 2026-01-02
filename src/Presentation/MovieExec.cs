@@ -9,6 +9,9 @@ namespace Presentation
     /// </summary>
     public static class MovieExec
     {
+        /// <summary>
+        /// Try to display the information of all elements in the Movie repository on the console.
+        /// </summary>
         public static void ShowRepo()
         {
             List<object> repository = GlobalRepoControl<Movie>.GetRepository();
@@ -26,6 +29,10 @@ namespace Presentation
             }
         }
 
+        /// <summary>
+        /// Attempts to display all information about an object of type Movie in the console.
+        /// </summary>
+        /// <param name="element"></param>
         public static void ShowElement(MovieDTO? element)
         {
             if (element is null)
@@ -40,6 +47,10 @@ namespace Presentation
             }
         }
 
+        /// <summary>
+        /// It asks the user for an ID and if there is an element with that ID,
+        /// it displays it in the console.
+        /// </summary>
         public static void ShowById()
         {
             Guid? id = ConsoleIO.GetId();
@@ -47,6 +58,10 @@ namespace Presentation
             ShowElement((MovieDTO?)element);
         }
 
+        /// <summary>
+        /// It asks the user for an index and if there is an element with that index,
+        /// it displays it in the console.
+        /// </summary>
         public static void ShowByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
@@ -54,6 +69,10 @@ namespace Presentation
             ShowElement((MovieDTO?)element);
         }
 
+        /// <summary>
+        /// Asks the user for information about a Movie on the console.
+        /// Attempts to create and add that Movie to the repository.
+        /// </summary>
         public static void CreateAndAdd()
         {
             MovieDTO dto = ConsoleIO.GetMovieInfo();
@@ -68,6 +87,10 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// Asks the user for an ID.
+        /// If there is a Movie with that ID, it removes it from the repository.
+        /// </summary>
         public static void RemoveById()
         {
             Guid? id = ConsoleIO.GetId();
@@ -80,6 +103,10 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// Asks the user for an index.
+        /// If there is a Movie with that index, it removes it from the repository.
+        /// </summary>
         public static void RemoveByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
@@ -92,6 +119,11 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// It asks the user for an ID and new information about the Movie.
+        /// If the ID exists and the information about the Movie is valid,
+        /// it attempts to edit the information in its attributes.
+        /// </summary>
         public static void EditById()
         {
             Guid? id = ConsoleIO.GetId();
@@ -105,6 +137,11 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// It asks the user for an index and new information about the Movie.
+        /// If the index exists and the information about the Movie is valid,
+        /// it attempts to edit the information in its attributes.
+        /// </summary>
         public static void EditByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
@@ -118,6 +155,10 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// Attempts to save the information about the repository in a binary file.
+        /// If an exception occurs, it catches it and displays its message in the console.
+        /// </summary>
         public static void Save()
         {
             try
@@ -139,6 +180,10 @@ namespace Presentation
             }
         }
         
+        /// <summary>
+        /// Attempts to load information about the repository from the console.
+        /// If an exception occurs, it catches it and displays its message in the console.
+        /// </summary>
         public static void Load()
         {
             try

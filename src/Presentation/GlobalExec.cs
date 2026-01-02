@@ -11,6 +11,9 @@ namespace Presentation
     /// </typeparam>
     public static class GlobalExec<T> where T : Identifier
     {
+        /// <summary>
+        /// Execution of RepoMenu.
+        /// </summary>
         public static void Menu()
         {
             string message = string.Empty;
@@ -64,6 +67,9 @@ namespace Presentation
             }
         }
         
+        /// <summary>
+        /// Generic ShowRepo method.
+        /// </summary>
         public static void ShowRepo()
         {
             if (typeof(T) == typeof(Star))
@@ -75,6 +81,9 @@ namespace Presentation
             // vais adicionando tipos de objetos...
         }
 
+        /// <summary>
+        /// Generic ShowById method.
+        /// </summary>
         public static void ShowById()
         {
             if (typeof(T) == typeof(Star))
@@ -86,66 +95,84 @@ namespace Presentation
             // vais adicionando tipos de objetos...
         }
 
+        /// <summary>
+        /// Generic ShowByIndex method.
+        /// </summary>
         public static void ShowByIndex()
         {
             if (typeof(T) == typeof(Star))
                 StarExec.ShowByIndex();
-            
+
             if (typeof(T) == typeof(Movie))
                 MovieExec.ShowByIndex();
 
             // vais adicionando tipos de objetos...
         }
 
+        /// <summary>
+        /// Generic CreateAndAdd method.
+        /// </summary>
         public static void CreateAndAdd()
         {
             if (typeof(T) == typeof(Star))
                 StarExec.CreateAndAdd();
-            
+
             if (typeof(T) == typeof(Movie))
                 MovieExec.CreateAndAdd();
 
             // vais adicionando tipos de objetos...
         }
 
+        /// <summary>
+        /// Generic RemoveById method.
+        /// </summary>
         public static void RemoveById()
         {
             if (typeof(T) == typeof(Star))
                 StarExec.RemoveById();
-            
+
             if (typeof(T) == typeof(Movie))
                 MovieExec.RemoveById();
 
             // vais adicionando tipos de objetos...
         }
 
+        /// <summary>
+        /// Generic RemoveByIndex method.
+        /// </summary>
         public static void RemoveByIndex()
         {
             if (typeof(T) == typeof(Star))
                 StarExec.RemoveByIndex();
-            
+
             if (typeof(T) == typeof(Movie))
                 MovieExec.RemoveByIndex();
 
             // vais adicionando tipos de objetos...
         }
 
+        /// <summary>
+        /// Generic EditById method.
+        /// </summary>
         public static void EditById()
         {
             if (typeof(T) == typeof(Star))
                 StarExec.EditById();
-            
+
             if (typeof(T) == typeof(Movie))
                 MovieExec.EditById();
 
             // vais adicionando tipos de objetos...
         }
 
+        /// <summary>
+        /// Generic EditByIndex method.
+        /// </summary>
         public static void EditByIndex()
         {
             if (typeof(T) == typeof(Star))
                 StarExec.EditByIndex();
-            
+
             if (typeof(T) == typeof(Movie))
                 MovieExec.EditByIndex();
 

@@ -9,6 +9,9 @@ namespace Presentation
     /// </summary>
     public static class StarExec
     {
+        /// <summary>
+        /// Try to display the information of all elements in the Star repository on the console.
+        /// </summary>
         public static void ShowRepo()
         {
             List<object> repository = GlobalRepoControl<Star>.GetRepository();
@@ -26,6 +29,10 @@ namespace Presentation
             }
         }
 
+        /// <summary>
+        /// Attempts to display all information about an object of type Star in the console.
+        /// </summary>
+        /// <param name="element"></param>
         public static void ShowElement(StarDTO? element)
         {
             if (element is null)
@@ -39,6 +46,10 @@ namespace Presentation
             }
         }
 
+        /// <summary>
+        /// It asks the user for an ID and if there is an element with that ID,
+        /// it displays it in the console.
+        /// </summary>
         public static void ShowById()
         {
             Guid? id = ConsoleIO.GetId();
@@ -46,6 +57,10 @@ namespace Presentation
             ShowElement((StarDTO?)element);
         }
 
+        /// <summary>
+        /// It asks the user for an index and if there is an element with that index,
+        /// it displays it in the console.
+        /// </summary>
         public static void ShowByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
@@ -53,6 +68,10 @@ namespace Presentation
             ShowElement((StarDTO?)element);
         }
 
+        /// <summary>
+        /// Asks the user for information about a Star on the console.
+        /// Attempts to create and add that Star to the repository.
+        /// </summary>
         public static void CreateAndAdd()
         {
             StarDTO dto = ConsoleIO.GetStarInfo();
@@ -67,6 +86,10 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// Asks the user for an ID.
+        /// If there is a Star with that ID, it removes it from the repository.
+        /// </summary>
         public static void RemoveById()
         {
             Guid? id = ConsoleIO.GetId();
@@ -79,6 +102,10 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// Asks the user for an index.
+        /// If there is a Star with that index, it removes it from the repository.
+        /// </summary>
         public static void RemoveByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
@@ -91,6 +118,11 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// It asks the user for an ID and new information about the Star.
+        /// If the ID exists and the information about the Star is valid,
+        /// it attempts to edit the information in its attributes.
+        /// </summary>
         public static void EditById()
         {
             Guid? id = ConsoleIO.GetId();
@@ -104,6 +136,11 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// It asks the user for an index and new information about the Star.
+        /// If the index exists and the information about the Star is valid,
+        /// it attempts to edit the information in its attributes.
+        /// </summary>
         public static void EditByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
@@ -117,6 +154,10 @@ namespace Presentation
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// Attempts to save the information about the repository in a binary file.
+        /// If an exception occurs, it catches it and displays its message in the console.
+        /// </summary>
         public static void Save()
         {
             try
@@ -138,6 +179,10 @@ namespace Presentation
             }
         }
         
+        /// <summary>
+        /// Attempts to load information about the repository from the console.
+        /// If an exception occurs, it catches it and displays its message in the console.
+        /// </summary>
         public static void Load()
         {
             try

@@ -8,12 +8,22 @@ namespace Presentation
     /// </summary>
     public static class ConsoleIO
     {
+        /// <summary>
+        /// Reads a string from the console.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public static string? ReadString(string message)
         {
             Console.Write("Enter the " + message + ": ");
             return Console.ReadLine();
         }
 
+        /// <summary>
+        /// Reads an int from the console.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public static int? ReadInt(string message)
         {
             string? input = ReadString(message);
@@ -24,6 +34,10 @@ namespace Presentation
             return num;
         }
 
+        /// <summary>
+        /// Reads information from a Star-type object in the console.
+        /// </summary>
+        /// <returns></returns>
         public static StarDTO GetStarInfo()
         {
             string? name = ReadString("name");
@@ -33,6 +47,10 @@ namespace Presentation
             return StarService.CreateDTO(name, birthDate, jobNum);
         }
 
+        /// <summary>
+        /// Reads information from a Movie-type object in the console.
+        /// </summary>
+        /// <returns></returns>
         public static MovieDTO GetMovieInfo()
         {
             string? name = ReadString("name");
@@ -43,6 +61,10 @@ namespace Presentation
             return MovieService.CreateDTO(name, year, duration, ageRatingNum);
         }
 
+        /// <summary>
+        /// Reads a string from the console and attempts to convert it to a Guid referring to an id.
+        /// </summary>
+        /// <returns></returns>
         public static Guid? GetId()
         {
             string? input = ReadString("ID");
@@ -53,6 +75,10 @@ namespace Presentation
             return id;
         }
 
+        /// <summary>
+        /// Reads information about a date from the console.
+        /// </summary>
+        /// <returns></returns>
         public static DateOnly? GetDate()
         {
             const int InvalidNum = 0;
