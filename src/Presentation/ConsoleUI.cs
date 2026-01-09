@@ -109,6 +109,7 @@ namespace Presentation
                 Console.WriteLine($"{count++} - Remove {menuType} by index");
                 Console.WriteLine($"{count++} - Edit {menuType} by ID");
                 Console.WriteLine($"{count++} - Edit {menuType} by index");
+                Console.WriteLine($"{count++} - Sort repository");
 
                 Console.WriteLine("\n0 - Go Back\n");
 

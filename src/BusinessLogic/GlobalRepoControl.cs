@@ -140,7 +140,16 @@ namespace BusinessLogic
         }
 
         /// <summary>
-        /// It uses the DL layer method to save the repository in a binary file.
+        /// Uses the DL layer method to sort the repository.
+        /// </summary>
+        /// <returns></returns>
+        public static bool SortRepository()
+        {
+            return GlobalRepo<T>.SortRepository();
+        }
+
+        /// <summary>
+        /// Uses the DL layer method to save the repository in a binary file.
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>

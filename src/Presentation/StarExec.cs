@@ -155,6 +155,18 @@ namespace Presentation
         }
 
         /// <summary>
+        /// Sort the repository.
+        /// </summary>
+        public static void SortRepository()
+        {
+            string message = GlobalRepoControl<Star>.SortRepository()
+                ? "Repository successfully sorted!"
+                : "The repository is empty!";
+            
+            Console.WriteLine(message);
+        }
+
+        /// <summary>
         /// Attempts to save the information about the repository in a binary file.
         /// If an exception occurs, it catches it and displays its message in the console.
         /// </summary>

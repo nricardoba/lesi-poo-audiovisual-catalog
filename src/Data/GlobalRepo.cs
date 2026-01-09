@@ -122,6 +122,21 @@ namespace Data
         }
 
         /// <summary>
+        /// Sort the repository.
+        /// </summary>
+        /// <returns></returns>
+        public static bool SortRepository()
+        {
+            if (repository.Count == 0)
+                return false;
+
+            // usa o CompareTo
+            repository.Sort();
+
+            return true;
+        }
+
+        /// <summary>
         /// Checks whether an object passed by parameters exists in the repository.
         /// </summary>
         /// <param name="obj"></param>

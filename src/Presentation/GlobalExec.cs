@@ -57,6 +57,9 @@ namespace Presentation
                     case 8:
                         EditByIndex();
                         break;
+                    case 9:
+                        SortRepository();
+                        break;
                     default:
                         end = true;
                         break;
@@ -177,6 +180,18 @@ namespace Presentation
                 MovieExec.EditByIndex();
 
             // vais adicionando tipos de objetos...
+        }
+
+        /// <summary>
+        /// Generic SortRepository method.
+        /// </summary>
+        public static void SortRepository()
+        {
+            if (typeof(T) == typeof(Star))
+                StarExec.SortRepository();
+
+            if (typeof(T) == typeof(Movie))
+                MovieExec.SortRepository();
         }
     }
 }
