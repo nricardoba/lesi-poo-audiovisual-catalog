@@ -121,6 +121,22 @@ namespace BusinessObjects
         }
 
         /// <summary>
+        /// Method that receives an object of any type and,
+        /// if it is of the same type as the current instance of this class,
+        /// checks whether its ID is less than,
+        /// equal to, or greater than the ID of the current instance of this class.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(object? other)
+        {
+            if (other is null || GetType() != other.GetType())
+                return 1;
+
+            return CompareTo((Identifier)other);
+        }
+
+        /// <summary>
         /// Method that receives an object and checks whether its ID is less than,
         /// equal to, or greater than the ID of the current instance of this class.
         /// </summary>
