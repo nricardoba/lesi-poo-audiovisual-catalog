@@ -137,12 +137,24 @@ namespace BusinessObjects
         }
 
         /// <summary>
+        /// Method that receives an object and checks whether its Name is less than,
+        /// equal to, or greater than the Name of the current instance of this class.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(Identifier? other)
+        {
+            if (other is null) return 1;
+            return name.CompareTo(other.name);
+        }
+
+        /// <summary>
         /// Method that receives an object and checks whether its ID is less than,
         /// equal to, or greater than the ID of the current instance of this class.
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public int CompareTo(Identifier? other)
+        public int CompareToWithId(Identifier? other)
         {
             if (other is null) return 1;
             return id.CompareTo(other.id);
