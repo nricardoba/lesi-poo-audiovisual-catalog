@@ -32,7 +32,6 @@ namespace Presentation
                 option = ConsoleIO.ReadInt("option");
                 Console.WriteLine();
 
-                // ver melhor o is not!!!
                 if (option is not null && option >= 0 && option < count)
                     success = true;
                 else
@@ -70,7 +69,6 @@ namespace Presentation
                 option = ConsoleIO.ReadInt("option");
                 Console.WriteLine();
 
-                // ver melhor o is not!!!
                 if (option is not null && option >= 0 && option < count)
                     success = true;
                 else
@@ -116,7 +114,6 @@ namespace Presentation
                 option = ConsoleIO.ReadInt("option");
                 Console.WriteLine();
 
-                // ver melhor o is not!!!
                 if (option is not null && option >= 0 && option < count)
                     success = true;
                 else

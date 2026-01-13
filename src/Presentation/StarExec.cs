@@ -174,8 +174,8 @@ namespace Presentation
         {
             try
             {
-                if (GlobalRepoControl<Star>.Save(Config.StarFilePath))
-                    Console.WriteLine("Stars information saved successfully!");
+                GlobalRepoControl<Star>.Save(Config.StarFilePath);
+                Console.WriteLine("Stars information saved successfully!");
             }
             catch (IOException e)
             {
@@ -199,8 +199,8 @@ namespace Presentation
         {
             try
             {
-                if (GlobalRepoControl<Star>.Load(Config.StarFilePath))
-                    Console.WriteLine("Stars information loaded successfully!");
+                GlobalRepoControl<Star>.Load(Config.StarFilePath);
+                Console.WriteLine("Stars information loaded successfully!");
             }
             catch (IOException e)
             {

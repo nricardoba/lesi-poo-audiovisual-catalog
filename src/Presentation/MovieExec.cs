@@ -175,8 +175,8 @@ namespace Presentation
         {
             try
             {
-                if (GlobalRepoControl<Movie>.Save(Config.MovieFilePath))
-                    Console.WriteLine("Movies information saved successfully!");
+                GlobalRepoControl<Movie>.Save(Config.MovieFilePath);
+                Console.WriteLine("Movies information saved successfully!");
             }
             catch (IOException e)
             {
@@ -200,8 +200,8 @@ namespace Presentation
         {
             try
             {
-                if (GlobalRepoControl<Movie>.Load(Config.MovieFilePath))
-                    Console.WriteLine("Movies information loaded successfully!");
+                GlobalRepoControl<Movie>.Load(Config.MovieFilePath);
+                Console.WriteLine("Movies information loaded successfully!");
             }
             catch (IOException e)
             {
