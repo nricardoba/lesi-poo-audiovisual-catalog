@@ -1,3 +1,10 @@
+/// <file>MovieService.cs</file>
+/// <author>Nuno Ricardo Araújo (a21150@alunos.ipca.pt)</author>
+/// <date>16-01-2026</date>
+/// 
+/// <copyright>Copyright (c) 2026</copyright>
+/// 
+
 using BusinessObjects;
 
 namespace BusinessLogic

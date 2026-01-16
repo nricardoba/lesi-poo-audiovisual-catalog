@@ -1,4 +1,12 @@
-﻿using System;
+﻿/// <file>Program.cs</file>
+/// <author>Nuno Ricardo Araújo (a21150@alunos.ipca.pt)</author>
+/// <brief>Main file</brief>
+/// <date>16-01-2026</date>
+/// 
+/// <copyright>Copyright (c) 2026</copyright>
+/// 
+
+using System;
 using BusinessObjects;
 using BusinessLogic;
 

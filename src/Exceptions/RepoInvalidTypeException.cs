@@ -1,3 +1,10 @@
+/// <file>RepoInvalidTypeException.cs</file>
+/// <author>Nuno Ricardo Araújo (a21150@alunos.ipca.pt)</author>
+/// <date>16-01-2026</date>
+/// 
+/// <copyright>Copyright (c) 2026</copyright>
+/// 
+
 namespace Exceptions
 {
     /// <summary>
@@ -10,7 +17,7 @@ namespace Exceptions
 
         public RepoInvalidTypeException(string s)
             : base(s) { }
-        
+
         public RepoInvalidTypeException(string s, Exception e)
         {
             throw new RepoInvalidTypeException(e.Message + " - " + s);
