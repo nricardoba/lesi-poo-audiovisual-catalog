@@ -17,7 +17,7 @@ namespace BusinessObjects
         // acho que só pode ser alterado em duas ocasiões
         // 1 - Ao criar a variavel (aqui)
         // 2 - No construtor
-        readonly Guid id;
+        Guid id;
         string name;
         #endregion
 
@@ -31,6 +31,7 @@ namespace BusinessObjects
         public Guid Id
         {
             get { return id; }
+            set { id = value; }
         }
 
         /// <summary>

@@ -170,33 +170,32 @@ namespace Data
         /// <exception cref="RepoInvalidTypeException"></exception>
         public static bool Save(string filePath)
         {
-            using (FileStream fs = new FileStream(filePath, FileMode.Create))
-            using (BinaryWriter writer = new BinaryWriter(fs))
+            using FileStream fs = new FileStream(filePath, FileMode.Create);
+            using BinaryWriter writer = new BinaryWriter(fs);
+
+            writer.Write(repository.Count);
+            foreach (T element in repository)
             {
-                writer.Write(repository.Count);
-                foreach (T element in repository)
+                writer.Write(element.Id.ToString());
+                writer.Write(element.Name);
+
+                if (element is Star auxStar)
                 {
-                    writer.Write(element.Id.ToString());
-                    writer.Write(element.Name);
+                    writer.Write(auxStar.BirthDate.DayNumber);
+                    writer.Write((int)auxStar.Job);
+                }
+                else if (element is Movie auxMovie)
+                {
+                    writer.Write(auxMovie.Year);
+                    writer.Write(auxMovie.Duration);
+                    writer.Write((int)auxMovie.AgeRating);
+                }
 
-                    if (element is Star auxStar)
-                    {
-                        writer.Write(auxStar.BirthDate.DayNumber);
-                        writer.Write((int)auxStar.Job);
-                    }
-                    else if (element is Movie auxMovie)
-                    {
-                        writer.Write(auxMovie.Year);
-                        writer.Write(auxMovie.Duration);
-                        writer.Write((int)auxMovie.AgeRating);
-                    }
+                // vais adicionando tipos de objetos...
 
-                    // vais adicionando tipos de objetos...
-
-                    else
-                    {
-                        throw new RepoInvalidTypeException();
-                    }
+                else
+                {
+                    throw new RepoInvalidTypeException();
                 }
             }
 
@@ -212,53 +211,52 @@ namespace Data
         /// <exception cref="RepoInvalidTypeException"></exception>
         public static bool Load(string filePath)
         {
-            using (FileStream fs = new FileStream(filePath, FileMode.Open))
-            using (BinaryReader reader = new BinaryReader(fs))
+            using FileStream fs = new FileStream(filePath, FileMode.Open);
+            using BinaryReader reader = new BinaryReader(fs);
+            
+            int count = reader.ReadInt32();
+            repository.Clear();
+
+            for (int i = 0; i < count; i++)
             {
-                int count = reader.ReadInt32();
-                repository.Clear();
+                // isto pode atirar uma FormatException
+                Guid id = Guid.Parse(reader.ReadString());
+                string name = reader.ReadString();
 
-                for (int i = 0; i < count; i++)
+                var tType = typeof(T);
+
+                if (tType == typeof(Star))
                 {
-                    // isto pode atirar uma FormatException
-                    Guid id = Guid.Parse(reader.ReadString());
-                    string name = reader.ReadString();
+                    int dayNum = reader.ReadInt32();
+                    DateOnly birthDate = DateOnly.FromDayNumber(dayNum);
+                    JobType job = (JobType)reader.ReadInt32();
 
-                    var tType = typeof(T);
+                    T element = (T)(object)new Star(id, name, birthDate, job);
 
-                    if (tType == typeof(Star))
+                    if (!AddElement(element))
                     {
-                        int dayNum = reader.ReadInt32();
-                        DateOnly birthDate = DateOnly.FromDayNumber(dayNum);
-                        JobType job = (JobType)reader.ReadInt32();
-
-                        T element = (T)(object)new Star(id, name, birthDate, job);
-
-                        if (!AddElement(element))
-                        {
-                            throw new RepoCannotAddElementException();
-                        }
+                        throw new RepoCannotAddElementException();
                     }
-                    else if (tType == typeof(Movie))
+                }
+                else if (tType == typeof(Movie))
+                {
+                    int year = reader.ReadInt32();
+                    int duration = reader.ReadInt32();
+                    AgeRatingType ageRating = (AgeRatingType)reader.ReadInt32();
+
+                    T element = (T)(object)new Movie(id, name, year, duration, ageRating);
+
+                    if (!AddElement(element))
                     {
-                        int year = reader.ReadInt32();
-                        int duration = reader.ReadInt32();
-                        AgeRatingType ageRating = (AgeRatingType)reader.ReadInt32();
-
-                        T element = (T)(object)new Movie(id, name, year, duration, ageRating);
-
-                        if (!AddElement(element))
-                        {
-                            throw new RepoCannotAddElementException();
-                        }
+                        throw new RepoCannotAddElementException();
                     }
+                }
 
-                    // vais adicionando tipos de objetos...
+                // vais adicionando tipos de objetos...
 
-                    else
-                    {
-                        throw new RepoInvalidTypeException();
-                    }
+                else
+                {
+                    throw new RepoInvalidTypeException();
                 }
             }
 
