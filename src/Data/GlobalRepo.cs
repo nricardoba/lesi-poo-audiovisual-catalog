@@ -7,6 +7,8 @@
 
 using BusinessObjects;
 using Exceptions;
+using System.IO.Compression;
+using System.Text.Json;
 
 namespace Data
 {
@@ -162,6 +164,19 @@ namespace Data
             return false;
         }
 
+        public static bool Save(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return false;
+
+            using FileStream fs = new FileStream(filePath, FileMode.Create);
+            using GZipStream gzs = new GZipStream(fs, CompressionMode.Compress);
+
+            JsonSerializer.Serialize(gzs, repository);
+
+            return true;
+        }
+
         // public static bool SaveLegacy(string filePath)
         // {
         //     if (!File.Exists(filePath))
@@ -218,6 +233,21 @@ namespace Data
             return true;
         }
 
+        public static bool Load(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return false;
+
+            using FileStream fs = new FileStream(filePath, FileMode.Open);
+            using GZipStream gzs = new GZipStream(fs, CompressionMode.Decompress);
+
+            repository.Clear();
+
+            repository = JsonSerializer.Deserialize<List<T>>(gzs) ?? new List<T>();
+
+            return repository.Count > 0;
+        }
+
         // public static bool LoadLegacy(string filePath)
         // {
         //     if (!File.Exists(filePath))
@@ -226,9 +256,11 @@ namespace Data
         //     using FileStream fs = new FileStream(filePath, FileMode.Open);
         //     using BinaryFormatter formatter = new BinaryFormatter();
 
-        //     repository = (List<T>)formatter.Deserialize(fs);
+        //     repository.Clear();
 
-        //     return true;
+        //     repository = (List<T>)formatter.Deserialize(fs) ?? new List<T>();
+
+        //     return repository.Count > 0;
         // }
 
         /// <summary>
