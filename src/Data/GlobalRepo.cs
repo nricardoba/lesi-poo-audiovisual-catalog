@@ -21,7 +21,7 @@ namespace Data
         #region Attributes
         // Este readonly deixa manipular a lista, mas não deixa fazer
         // repository = null ou repository = OutraLista
-        static readonly List<T> repository = new List<T>();
+        static List<T> repository = new List<T>();
         #endregion
 
         #region Methods
@@ -162,14 +162,30 @@ namespace Data
             return false;
         }
 
+        // public static bool SaveLegacy(string filePath)
+        // {
+        //     if (!File.Exists(filePath))
+        //         return false;
+
+        //     using FileStream fs = new FileStream(filePath, FileMode.Create);
+        //     using BinaryFormatter formatter = new BinaryFormatter();
+
+        //     formatter.Serialize(fs, repository);
+
+        //     return true;
+        // }
+
         /// <summary>
         /// Save the repository in a binary file.
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
         /// <exception cref="RepoInvalidTypeException"></exception>
-        public static bool Save(string filePath)
+        public static bool SaveManual(string filePath)
         {
+            if (!File.Exists(filePath))
+                return false;
+
             using FileStream fs = new FileStream(filePath, FileMode.Create);
             using BinaryWriter writer = new BinaryWriter(fs);
 
@@ -202,6 +218,19 @@ namespace Data
             return true;
         }
 
+        // public static bool LoadLegacy(string filePath)
+        // {
+        //     if (!File.Exists(filePath))
+        //         return false;
+
+        //     using FileStream fs = new FileStream(filePath, FileMode.Open);
+        //     using BinaryFormatter formatter = new BinaryFormatter();
+
+        //     repository = (List<T>)formatter.Deserialize(fs);
+
+        //     return true;
+        // }
+
         /// <summary>
         /// Loads the repository from a binary file.
         /// </summary>
@@ -209,11 +238,14 @@ namespace Data
         /// <returns></returns>
         /// <exception cref="RepoCannotAddElementException"></exception>
         /// <exception cref="RepoInvalidTypeException"></exception>
-        public static bool Load(string filePath)
+        public static bool LoadManual(string filePath)
         {
+            if (!File.Exists(filePath))
+                return false;
+
             using FileStream fs = new FileStream(filePath, FileMode.Open);
             using BinaryReader reader = new BinaryReader(fs);
-            
+
             int count = reader.ReadInt32();
             repository.Clear();
 
