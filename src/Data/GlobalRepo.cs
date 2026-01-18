@@ -13,15 +13,23 @@ using System.Text.Json;
 namespace Data
 {
     /// <summary>
-    /// Global DL generic repository of classes Star and Movie
+    /// Global DL generic repository of classes Star and Movie.
     /// </summary>
     /// <typeparam name="T">
-    /// T can be Identifier or any class that inherits from it
+    /// T can be Identifier or any class that inherits from it.
     /// </typeparam>
     public class GlobalRepo<T> where T : Identifier
     {
         #region Attributes
-        static List<T> repository = new List<T>();
+        static List<T> repository;
+        #endregion
+
+        #region Constructors
+        // é util para adicionar logica de inicialização no futuro
+        static GlobalRepo()
+        {
+            repository = new List<T>();
+        }
         #endregion
 
         #region Methods
