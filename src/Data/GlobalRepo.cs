@@ -21,8 +21,6 @@ namespace Data
     public static class GlobalRepo<T> where T : Identifier
     {
         #region Attributes
-        // Este readonly deixa manipular a lista, mas não deixa fazer
-        // repository = null ou repository = OutraLista
         static List<T> repository = new List<T>();
         #endregion
 
@@ -51,7 +49,7 @@ namespace Data
         /// <returns></returns>
         public static bool RemoveElement(T? element)
         {
-            if (element is null)
+            if (element is null || !DoesElementExist(element))
                 return false;
 
             // retorna true se encontrou e removeu
@@ -68,11 +66,7 @@ namespace Data
         public static bool RemoveElementById(Guid id)
         {
             T? element = GetElementById(id);
-
-            if (element is null)
-                return false;
-
-            return repository.Remove(element);
+            return RemoveElement(element);
         }
 
         /// <summary>
@@ -84,11 +78,7 @@ namespace Data
         public static bool RemoveElementByIndex(int index)
         {
             T? element = GetElementByIndex(index);
-
-            if (element is null)
-                return false;
-
-            return repository.Remove(element);
+            return RemoveElement(element);
         }
 
         /// <summary>
