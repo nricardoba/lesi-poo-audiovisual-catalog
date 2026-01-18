@@ -16,7 +16,7 @@ namespace Presentation
     /// <typeparam name="T">
     /// T can be Identifier or any class that inherits from it
     /// </typeparam>
-    public static class GlobalExec<T> where T : Identifier
+    public class GlobalExec<T> where T : Identifier
     {
         /// <summary>
         /// Execution of RepoMenu.

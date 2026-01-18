@@ -10,7 +10,7 @@ namespace BusinessObjects
     /// <summary>
     /// File with the project's utility methods
     /// </summary>
-    public static class Utilities
+    public class Utilities
     {
         // d1 -> Data "atual"
         // d2 -> Data "referencia"

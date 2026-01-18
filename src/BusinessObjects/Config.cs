@@ -10,7 +10,7 @@ namespace BusinessObjects
     /// <summary>
     /// Class containing the project constants
     /// </summary>
-    public static class Config
+    public class Config
     {
         public const int NameMaxLength = 50;
         public const string DefaultName = "Unknown";

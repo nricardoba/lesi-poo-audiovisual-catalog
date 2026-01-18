@@ -12,7 +12,7 @@ namespace BusinessLogic
     /// <summary>
     /// BL class to provide service methods to the Star class
     /// </summary>
-    public static class StarService
+    public class StarService
     {
         /// <summary>
         /// Validates the attributes of the DTO passed by parameters and creates a new object of type Star.

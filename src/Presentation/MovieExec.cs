@@ -14,7 +14,7 @@ namespace Presentation
     /// <summary>
     /// Execution of movie menu options
     /// </summary>
-    public static class MovieExec
+    public class MovieExec
     {
         /// <summary>
         /// Try to display the information of all elements in the Movie repository on the console.

@@ -13,7 +13,7 @@ namespace Presentation
     /// <summary>
     /// Class with console input and output methods
     /// </summary>
-    public static class ConsoleIO
+    public class ConsoleIO
     {
         /// <summary>
         /// Reads a string from the console.

@@ -10,7 +10,7 @@ namespace BusinessObjects
     /// <summary>
     /// File containing the project integrity validation methods
     /// </summary>
-    public static class IntegrityValidator
+    public class IntegrityValidator
     {
         /// <summary>
         /// Receives a string referring to a name as a parameter and verifies that its integrity is valid.

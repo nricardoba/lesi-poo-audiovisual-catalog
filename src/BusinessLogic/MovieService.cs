@@ -12,7 +12,7 @@ namespace BusinessLogic
     /// <summary>
     /// BL class to provide service methods to the Movie class
     /// </summary>
-    public static class MovieService
+    public class MovieService
     {
         /// <summary>
         /// Validates the attributes of the DTO passed by parameters and creates a new object of type Movie.

@@ -12,7 +12,7 @@ namespace Presentation
     /// <summary>
     /// Class with console menu methods
     /// </summary>
-    public static class ConsoleUI
+    public class ConsoleUI
     {
         /// <summary>
         /// Menu to ask the user if they want to read the information from the repositories present in a binary file.

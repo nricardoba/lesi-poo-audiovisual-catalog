@@ -14,7 +14,7 @@ namespace Presentation
     /// <summary>
     /// Execution of star menu options
     /// </summary>
-    public static class StarExec
+    public class StarExec
     {
         /// <summary>
         /// Try to display the information of all elements in the Star repository on the console.

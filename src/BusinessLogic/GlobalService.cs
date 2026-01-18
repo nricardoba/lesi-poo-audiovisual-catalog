@@ -12,7 +12,7 @@ namespace BusinessLogic
     /// <summary>
     /// BL class to provide generic service methods to the project classes
     /// </summary>
-    public static class GlobalService
+    public class GlobalService
     {
         /// <summary>
         /// Generic clone method.

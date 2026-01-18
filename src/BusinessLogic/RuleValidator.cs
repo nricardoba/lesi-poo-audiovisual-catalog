@@ -12,7 +12,7 @@ namespace BusinessLogic
     /// <summary>
     /// File containing the project rule validation methods
     /// </summary>
-    public static class RuleValidator
+    public class RuleValidator
     {
         /// <summary>
         /// Generic method to verify whether an object is valid according to business rules.

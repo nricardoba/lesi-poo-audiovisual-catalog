@@ -18,7 +18,7 @@ namespace Data
     /// <typeparam name="T">
     /// T can be Identifier or any class that inherits from it
     /// </typeparam>
-    public static class GlobalRepo<T> where T : Identifier
+    public class GlobalRepo<T> where T : Identifier
     {
         #region Attributes
         static List<T> repository = new List<T>();
