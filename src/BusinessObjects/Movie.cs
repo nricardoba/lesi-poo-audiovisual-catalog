@@ -84,7 +84,7 @@ namespace BusinessObjects
         /// <param name="year"></param>
         /// <param name="duration"></param>
         /// <param name="ageRating"></param>
-        public Movie(string name, int year, int duration, AgeRatingType ageRating)
+        public Movie(string name, int year, int duration, int ageRatingNum)
             : base(name)
         {
             this.year = IntegrityValidator.IsMovieIntValid(year)
@@ -93,8 +93,8 @@ namespace BusinessObjects
             this.duration = IntegrityValidator.IsMovieIntValid(duration)
                 ? duration : Config.DefaultDuration;
 
-            this.ageRating = IntegrityValidator.IsAgeRatingValid((int)ageRating)
-                ? ageRating : Config.DefaultAgeRating;
+            ageRating = IntegrityValidator.IsAgeRatingValid(ageRatingNum)
+                ? (AgeRatingType)ageRatingNum : Config.DefaultAgeRating;
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace BusinessObjects
         /// <param name="year"></param>
         /// <param name="duration"></param>
         /// <param name="ageRating"></param>
-        public Movie(Guid id, string name, int year, int duration, AgeRatingType ageRating)
+        public Movie(Guid id, string name, int year, int duration, int ageRatingNum)
             : base(id, name)
         {
             this.year = IntegrityValidator.IsMovieIntValid(year)
@@ -115,8 +115,8 @@ namespace BusinessObjects
             this.duration = IntegrityValidator.IsMovieIntValid(duration)
                 ? duration : Config.DefaultDuration;
 
-            this.ageRating = IntegrityValidator.IsAgeRatingValid((int)ageRating)
-                ? ageRating : Config.DefaultAgeRating;
+            ageRating = IntegrityValidator.IsAgeRatingValid(ageRatingNum)
+                ? (AgeRatingType)ageRatingNum : Config.DefaultAgeRating;
         }
         #endregion
 

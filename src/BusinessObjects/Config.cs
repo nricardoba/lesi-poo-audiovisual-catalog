@@ -29,9 +29,11 @@ namespace BusinessObjects
 
         public const int MinEnumType = 0;
 
+        public const int DefaultJobNum = 0;
         public const JobType DefaultJob = JobType.Unemployed;
         public static readonly int JobTypeLength = Enum.GetValues<JobType>().Length;
 
+        public const int DefaultAgeRatingNum = 0;
         public const AgeRatingType DefaultAgeRating = AgeRatingType.G;
         public static readonly int AgeRatingTypeLength = Enum.GetValues<AgeRatingType>().Length;
 

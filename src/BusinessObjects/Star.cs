@@ -63,12 +63,13 @@ namespace BusinessObjects
         /// <param name="name"></param>
         /// <param name="birthDate"></param>
         /// <param name="job"></param>
-        public Star(string name, DateOnly birthDate, JobType job)
+        public Star(string name, DateOnly birthDate, int jobNum)
             : base(name)
         {
             this.birthDate = birthDate;
-            this.job = IntegrityValidator.IsJobValid((int)job)
-                ? job : Config.DefaultJob;
+
+            job = IntegrityValidator.IsJobValid(jobNum)
+                ? (JobType)jobNum : Config.DefaultJob;
         }
 
         /// <summary>
@@ -79,12 +80,13 @@ namespace BusinessObjects
         /// <param name="name"></param>
         /// <param name="birthDate"></param>
         /// <param name="job"></param>
-        public Star(Guid id, string name, DateOnly birthDate, JobType job)
+        public Star(Guid id, string name, DateOnly birthDate, int jobNum)
             : base(id, name)
         {
             this.birthDate = birthDate;
-            this.job = IntegrityValidator.IsJobValid((int)job)
-                ? job : Config.DefaultJob;
+
+            job = IntegrityValidator.IsJobValid(jobNum)
+                ? (JobType)jobNum : Config.DefaultJob;
         }
         #endregion
 

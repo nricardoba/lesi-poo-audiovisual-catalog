@@ -28,9 +28,10 @@ namespace BusinessObjects
         /// </summary>
         /// <param name="jobNum"></param>
         /// <returns></returns>
-        public static bool IsJobValid(int jobNum)
+        public static bool IsJobValid(int? jobNum)
         {
-            return jobNum >= Config.MinEnumType
+            return jobNum is not null
+                && jobNum >= Config.MinEnumType
                 && jobNum < Config.JobTypeLength;
         }
 
@@ -39,9 +40,10 @@ namespace BusinessObjects
         /// </summary>
         /// <param name="ageRatingNum"></param>
         /// <returns></returns>
-        public static bool IsAgeRatingValid(int ageRatingNum)
+        public static bool IsAgeRatingValid(int? ageRatingNum)
         {
-            return ageRatingNum >= Config.MinEnumType
+            return ageRatingNum is not null
+                && ageRatingNum >= Config.MinEnumType
                 && ageRatingNum < Config.AgeRatingTypeLength;
         }
 
@@ -50,9 +52,10 @@ namespace BusinessObjects
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static bool IsMovieIntValid(int num)
+        public static bool IsMovieIntValid(int? num)
         {
-            return num > 0;
+            return num is not null
+                && num > 0;
         }
     }
 }

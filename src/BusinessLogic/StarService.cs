@@ -19,17 +19,17 @@ namespace BusinessLogic
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public static Star Create(StarDTO dto)
+        public static Star Create(string? name, DateOnly? birthDate, int? jobNum)
         {
-            string name = RuleValidator.IsNameValid(dto.Name)
-                ? dto.Name : Config.DefaultName;
+            if (name is null || !RuleValidator.IsNameValid(name))
+                name = Config.DefaultName;
 
-            DateOnly birthDate = RuleValidator.IsBirthDateValid(dto.BirthDate)
-                ? dto.BirthDate : Config.DefaultDate;
+            if (birthDate is null || !RuleValidator.IsBirthDateValid(birthDate))
+                birthDate = Config.DefaultDate;
 
-            JobType job = dto.Job;
+            jobNum ??= Config.DefaultJobNum;
 
-            return new Star(name, birthDate, job);
+            return new Star(name, (DateOnly)birthDate, (int)jobNum);
         }
 
         /// <summary>

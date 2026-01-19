@@ -291,9 +291,9 @@ namespace Data
                 {
                     int dayNum = reader.ReadInt32();
                     DateOnly birthDate = DateOnly.FromDayNumber(dayNum);
-                    JobType job = (JobType)reader.ReadInt32();
+                    int jobNum = reader.ReadInt32();
 
-                    T element = (T)(object)new Star(id, name, birthDate, job);
+                    T element = (T)(object)new Star(id, name, birthDate, jobNum);
 
                     if (!AddElement(element))
                     {
@@ -304,9 +304,9 @@ namespace Data
                 {
                     int year = reader.ReadInt32();
                     int duration = reader.ReadInt32();
-                    AgeRatingType ageRating = (AgeRatingType)reader.ReadInt32();
+                    int ageRatingNum = reader.ReadInt32();
 
-                    T element = (T)(object)new Movie(id, name, year, duration, ageRating);
+                    T element = (T)(object)new Movie(id, name, year, duration, ageRatingNum);
 
                     if (!AddElement(element))
                     {

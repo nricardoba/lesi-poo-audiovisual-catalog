@@ -19,20 +19,20 @@ namespace BusinessLogic
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public static Movie Create(MovieDTO dto)
+        public static Movie Create(string? name, int? year, int? duration, int? ageRatingNum)
         {
-            string name = RuleValidator.IsNameValid(dto.Name)
-                ? dto.Name : Config.DefaultName;
+            if (name is null || !RuleValidator.IsNameValid(name))
+                name = Config.DefaultName;
 
-            int year = RuleValidator.IsMovieYearValid(dto.Year)
-                ? dto.Year : Config.CurrentYear;
+            if (year is null || !RuleValidator.IsMovieYearValid((int)year))
+                year = Config.CurrentYear;
 
-            int duration = RuleValidator.IsDurationValid(dto.Duration)
-                ? dto.Duration : Config.DefaultDuration;
+            if (duration is null || !RuleValidator.IsDurationValid((int)duration))
+                duration = Config.DefaultDuration;
 
-            AgeRatingType ageRating = dto.AgeRating;
+            ageRatingNum ??= Config.DefaultAgeRatingNum;
 
-            return new Movie(name, year, duration, ageRating);
+            return new Movie(name, (int)year, (int)duration, (int)ageRatingNum);
         }
 
         /// <summary>
