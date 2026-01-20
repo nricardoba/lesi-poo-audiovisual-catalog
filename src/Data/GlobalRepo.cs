@@ -164,9 +164,6 @@ namespace Data
 
         public static bool Save(string filePath)
         {
-            if (!File.Exists(filePath))
-                return false;
-
             using FileStream fs = new FileStream(filePath, FileMode.Create);
             using GZipStream gzs = new GZipStream(fs, CompressionMode.Compress);
 
@@ -177,9 +174,6 @@ namespace Data
 
         // public static bool SaveLegacy(string filePath)
         // {
-        //     if (!File.Exists(filePath))
-        //         return false;
-
         //     using FileStream fs = new FileStream(filePath, FileMode.Create);
         //     using BinaryFormatter formatter = new BinaryFormatter();
 
@@ -196,9 +190,6 @@ namespace Data
         /// <exception cref="RepoInvalidTypeException"></exception>
         public static bool SaveManual(string filePath)
         {
-            if (!File.Exists(filePath))
-                return false;
-
             using FileStream fs = new FileStream(filePath, FileMode.Create);
             using BinaryWriter writer = new BinaryWriter(fs);
 
