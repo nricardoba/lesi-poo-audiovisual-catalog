@@ -24,14 +24,8 @@ namespace BusinessLogic
             if (element is Star auxStar)
                 return IsStarValid(auxStar);
 
-            if (element is StarDTO auxStarDTO)
-                return IsStarDTOValid(auxStarDTO);
-
             if (element is Movie auxMovie)
                 return IsMovieValid(auxMovie);
-
-            if (element is MovieDTO auxMovieDTO)
-                return IsMovieDTOValid(auxMovieDTO);
 
             // vais adicionando tipos de objetos...
 
@@ -52,20 +46,6 @@ namespace BusinessLogic
         }
 
         /// <summary>
-        /// Receives a Star DTO by parameters and verifies that its attributes
-        /// are valid according to business rules.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static bool IsStarDTOValid(StarDTO? element)
-        {
-            return element is not null
-                && IsNameValid(element.Name)
-                && IsBirthDateValid(element.BirthDate)
-                && IntegrityValidator.IsJobValid((int)element.Job);
-        }
-
-        /// <summary>
         /// Receives a Movie object by parameters and verifies that its attributes
         /// are valid according to business rules.
         /// </summary>
@@ -77,21 +57,6 @@ namespace BusinessLogic
                 && IsNameValid(element.Name)
                 && IsMovieYearValid(element.Year)
                 && IsDurationValid(element.Duration);
-        }
-
-        /// <summary>
-        /// Receives a Movie DTO by parameters and verifies that its attributes
-        /// are valid according to business rules.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static bool IsMovieDTOValid(MovieDTO? element)
-        {
-            return element is not null
-                && IsNameValid(element.Name)
-                && IsMovieYearValid(element.Year)
-                && IsDurationValid(element.Duration)
-                && IntegrityValidator.IsAgeRatingValid((int)element.AgeRating);
         }
 
         /// <summary>
