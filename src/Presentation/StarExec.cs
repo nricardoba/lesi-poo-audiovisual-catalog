@@ -222,10 +222,8 @@ namespace Presentation
         {
             try
             {
-                if (GlobalRepoControl<Star>.Save(Config.StarFilePath))
-                    Console.WriteLine("Stars information saved successfully!");
-                else
-                    Console.WriteLine("Stars file does not exist!");
+                GlobalRepoControl<Star>.Save(Config.StarFilePath);
+                Console.WriteLine("Stars information saved successfully!");
             }
             catch (IOException e)
             {
@@ -252,7 +250,7 @@ namespace Presentation
                 if (GlobalRepoControl<Star>.Load(Config.StarFilePath))
                     Console.WriteLine("Stars information loaded successfully!");
                 else
-                    Console.WriteLine("Stars file does not exist!");
+                    Console.WriteLine("Stars file does not exist or is empty!");
             }
             catch (IOException e)
             {
