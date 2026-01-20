@@ -120,9 +120,10 @@ namespace BusinessLogic
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        public static bool IsMovieYearValid(int year)
+        public static bool IsMovieYearValid(int? year)
         {
-            return IsYearValid(year)
+            return year is not null
+                && IsYearValid((int)year)
                 && year <= Config.CurrentYear + 10;
         }
 
@@ -131,9 +132,10 @@ namespace BusinessLogic
         /// </summary>
         /// <param name="duration"></param>
         /// <returns></returns>
-        public static bool IsDurationValid(int duration)
+        public static bool IsDurationValid(int? duration)
         {
-            return IntegrityValidator.IsMovieIntValid(duration)
+            return duration is not null
+                && IntegrityValidator.IsMovieIntValid(duration)
                 && duration <= Config.MaxDuration;
         }
 

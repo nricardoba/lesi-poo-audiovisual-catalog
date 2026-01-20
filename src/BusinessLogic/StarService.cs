@@ -33,67 +33,33 @@ namespace BusinessLogic
         }
 
         /// <summary>
-        /// Certifies that the attributes passed by parameters are not null.
-        /// Then creates a new DTO of type Star.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="birthDate"></param>
-        /// <param name="jobNum"></param>
-        /// <returns></returns>
-        public static StarDTO CreateDTO(string? name, DateOnly? birthDate, int? jobNum)
-        {
-            string auxName = name ?? Config.DefaultName;
-            DateOnly auxBirthDate = birthDate ?? Config.DefaultDate;
-            JobType auxJob = Config.DefaultJob;
-
-            if (jobNum is not null)
-                auxJob = (JobType)jobNum;
-
-            return new StarDTO(auxName, auxBirthDate, auxJob);
-        }
-
-        /// <summary>
-        /// Based on the attributes of an object of type Star, create a DTO clone.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static StarDTO? Clone(Star? element)
-        {
-            if (element is null)
-                return null;
-
-            return new StarDTO(element.Id, element.Name,
-                element.BirthDate, element.Job);
-        }
-
-        /// <summary>
         /// Attempts to edit the attributes of an object of type Star with the attributes present in a DTO.
         /// </summary>
         /// <param name="element"></param>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public static bool Edit(Star? element, StarDTO? dto)
+        public static bool Edit(Star? element, string? name, DateOnly? birthDate, int? jobNum)
         {
-            if (element is null || dto is null)
+            if (element is null)
                 return false;
 
             bool success = false;
 
-            if (RuleValidator.IsNameValid(dto.Name))
+            if (name is not null && RuleValidator.IsNameValid(name))
             {
-                element.Name = dto.Name;
+                element.Name = name;
                 success = true;
             }
 
-            if (RuleValidator.IsBirthDateValid(dto.BirthDate))
+            if (birthDate is not null && RuleValidator.IsBirthDateValid(birthDate))
             {
-                element.BirthDate = dto.BirthDate;
+                element.BirthDate = (DateOnly)birthDate;
                 success = true;
             }
 
-            if (IntegrityValidator.IsJobValid((int)dto.Job))
+            if (jobNum is not null && IntegrityValidator.IsJobValid(jobNum))
             {
-                element.Job = dto.Job;
+                element.Job = (JobType)jobNum;
                 success = true;
             }
 

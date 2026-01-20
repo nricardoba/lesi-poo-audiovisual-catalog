@@ -111,7 +111,11 @@ namespace BusinessLogic
         public static object? GetElementById(Guid id)
         {
             T? element = GlobalRepo<T>.GetElementById(id);
-            return GlobalService.Clone(element);
+
+            if (element is null)
+                return null;
+
+            return element.Clone();
         }
 
         /// <summary>
@@ -123,7 +127,11 @@ namespace BusinessLogic
         public static object? GetElementByIndex(int index)
         {
             T? element = GlobalRepo<T>.GetElementByIndex(index);
-            return GlobalService.Clone(element);
+
+            if (element is null)
+                return null;
+
+            return element.Clone();
         }
 
         /// <summary>
@@ -137,7 +145,7 @@ namespace BusinessLogic
 
             foreach (T element in repository)
             {
-                object? aux = GlobalService.Clone(element);
+                object? aux = element.Clone();
 
                 if (aux is not null)
                     cloneList.Add(aux);

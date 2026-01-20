@@ -15,24 +15,6 @@ namespace BusinessLogic
     public class GlobalService
     {
         /// <summary>
-        /// Generic clone method.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static object? Clone(object? element)
-        {
-            if (element is Star auxStar)
-                return StarService.Clone(auxStar);
-
-            if (element is Movie auxMovie)
-                return MovieService.Clone(auxMovie);
-
-            // vais adicionando tipos de objetos...
-
-            return null;
-        }
-
-        /// <summary>
         /// Generic edit method.
         /// </summary>
         /// <param name="element"></param>

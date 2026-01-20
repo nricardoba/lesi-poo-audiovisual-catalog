@@ -199,6 +199,10 @@ namespace BusinessObjects
         }
         #endregion
 
+        #region Abstract
+        public abstract Identifier Clone();
+        #endregion
+
         #endregion
     }
 }

@@ -90,6 +90,13 @@ namespace BusinessObjects
         }
         #endregion
 
+        #region Overrides
+        public override Star Clone()
+        {
+            return new Star(Id, Name, BirthDate, (int)Job);
+        }
+        #endregion
+
         #endregion
     }
 }

@@ -120,6 +120,13 @@ namespace BusinessObjects
         }
         #endregion
 
+        #region Overrides
+        public override Movie Clone()
+        {
+            return new Movie(Id, Name, Year, Duration, (int)ageRating);
+        }
+        #endregion
+
         #endregion
     }
 }

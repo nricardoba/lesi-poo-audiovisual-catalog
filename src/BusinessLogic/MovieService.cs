@@ -36,76 +36,39 @@ namespace BusinessLogic
         }
 
         /// <summary>
-        /// Certifies that the attributes passed by parameters are not null.
-        /// Then creates a new DTO of type Movie.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="year"></param>
-        /// <param name="duration"></param>
-        /// <param name="ageRatingNum"></param>
-        /// <returns></returns>
-        public static MovieDTO CreateDTO(string? name, int? year,
-            int? duration, int? ageRatingNum)
-        {
-            string auxName = name ?? Config.DefaultName;
-            int auxYear = year ?? Config.CurrentYear;
-            int auxDuration = duration ?? Config.DefaultDuration;
-            AgeRatingType auxAgeRating = Config.DefaultAgeRating;
-
-            if (ageRatingNum is not null)
-                auxAgeRating = (AgeRatingType)ageRatingNum;
-
-            return new MovieDTO(auxName, auxYear, auxDuration, auxAgeRating);
-        }
-
-        /// <summary>
-        /// Based on the attributes of an object of type Movie, create a DTO clone.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static MovieDTO? Clone(Movie? element)
-        {
-            if (element is null)
-                return null;
-
-            return new MovieDTO(element.Id, element.Name,
-                element.Year, element.Duration, element.AgeRating);
-        }
-
-        /// <summary>
         /// Attempts to edit the attributes of an object of type Movie with the attributes present in a DTO.
         /// </summary>
         /// <param name="element"></param>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public static bool Edit(Movie? element, MovieDTO? dto)
+        public static bool Edit(Movie? element, string? name, int? year, int? duration, int? ageRatingNum)
         {
-            if (element is null || dto is null)
+            if (element is null)
                 return false;
 
             bool success = false;
 
-            if (RuleValidator.IsNameValid(dto.Name))
+            if (name is not null && RuleValidator.IsNameValid(name))
             {
-                element.Name = dto.Name;
+                element.Name = name;
                 success = true;
             }
 
-            if (RuleValidator.IsMovieYearValid(dto.Year))
+            if (year is not null && RuleValidator.IsMovieYearValid(year))
             {
-                element.Year = dto.Year;
+                element.Year = (int)year;
                 success = true;
             }
 
-            if (RuleValidator.IsDurationValid(dto.Duration))
+            if (duration is not null && RuleValidator.IsDurationValid(duration))
             {
-                element.Duration = dto.Duration;
+                element.Duration = (int)duration;
                 success = true;
             }
 
-            if (IntegrityValidator.IsAgeRatingValid((int)dto.AgeRating))
+            if (ageRatingNum is not null && IntegrityValidator.IsAgeRatingValid(ageRatingNum))
             {
-                element.AgeRating = dto.AgeRating;
+                element.AgeRating = (AgeRatingType)ageRatingNum;
                 success = true;
             }
 
