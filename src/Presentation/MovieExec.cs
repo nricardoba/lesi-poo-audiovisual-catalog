@@ -223,8 +223,10 @@ namespace Presentation
         {
             try
             {
-                GlobalRepoControl<Movie>.Save(Config.MovieFilePath);
-                Console.WriteLine("Movies information saved successfully!");
+                if (GlobalRepoControl<Movie>.Save(Config.MovieFilePath))
+                    Console.WriteLine("Movies information saved successfully!");
+                else
+                    Console.WriteLine("Stars file does not exist!");
             }
             catch (IOException e)
             {
@@ -248,8 +250,10 @@ namespace Presentation
         {
             try
             {
-                GlobalRepoControl<Movie>.Load(Config.MovieFilePath);
-                Console.WriteLine("Movies information loaded successfully!");
+                if (GlobalRepoControl<Movie>.Load(Config.MovieFilePath))
+                    Console.WriteLine("Movies information loaded successfully!");
+                else
+                    Console.WriteLine("Stars file does not exist!");
             }
             catch (IOException e)
             {
