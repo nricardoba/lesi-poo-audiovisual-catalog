@@ -28,19 +28,16 @@ namespace Presentation
                 Console.WriteLine("The repository is empty!");
                 return;
             }
-            
+
             foreach (object element in repository)
-            {
-                StarDTO aux = (StarDTO)element;
-                ShowElement(aux);
-            }
+                ShowElement((Star)element);
         }
 
         /// <summary>
         /// Attempts to display all information about an object of type Star in the console.
         /// </summary>
         /// <param name="element"></param>
-        public static void ShowElement(StarDTO? element)
+        public static void ShowElement(Star? element)
         {
             if (element is null)
                 Console.WriteLine("Invalid Star!");
@@ -60,8 +57,8 @@ namespace Presentation
         public static void ShowById()
         {
             Guid? id = ConsoleIO.GetId();
-            var element = GlobalRepoControl<Star>.GetElementById(id ?? Config.InvalidId);
-            ShowElement((StarDTO?)element);
+            object? element = GlobalRepoControl<Star>.GetElementById(id ?? Config.InvalidId);
+            ShowElement((Star?)element);
         }
 
         /// <summary>
@@ -71,8 +68,8 @@ namespace Presentation
         public static void ShowByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
-            var element = GlobalRepoControl<Star>.GetElementByIndex(index ?? Config.InvalidIndex);
-            ShowElement((StarDTO?)element);
+            object? element = GlobalRepoControl<Star>.GetElementByIndex(index ?? Config.InvalidIndex);
+            ShowElement((Star?)element);
         }
 
         /// <summary>
@@ -81,8 +78,10 @@ namespace Presentation
         /// </summary>
         public static void CreateAndAdd()
         {
-            StarDTO dto = ConsoleIO.GetStarInfo();
-            Star auxStar = StarService.Create(dto);
+            bool inputSuccess = ConsoleIO.GetStarInfo(out string? name,
+                out DateOnly? birthDate, out int? jobNum);
+
+            Star auxStar = StarService.Create(name, birthDate, jobNum);
             bool success = GlobalRepoControl<Star>.AddElement(auxStar);
 
             Console.WriteLine();
@@ -133,14 +132,35 @@ namespace Presentation
         public static void EditById()
         {
             Guid? id = ConsoleIO.GetId();
-            StarDTO dto = ConsoleIO.GetStarInfo();
-            bool success = GlobalRepoControl<Star>.EditElementById(id ?? Config.InvalidId, dto);
+            if (id is null)
+            {
+                Console.WriteLine("Invalid ID!");
+                return;
+            }
 
-            string message = success
-                ? "Star edited successfully!"
-                : "Id is invalid!";
+            object? element = GlobalRepoControl<Star>.GetElementById((Guid)id);
+            if (element is null)
+            {
+                Console.WriteLine("There is no element with id: " + id + "!");
+                return;
+            }
+            
+            bool inputSuccess = ConsoleIO.GetStarInfo(out string? name,
+                out DateOnly? birthDate, out int? jobNum);
+            if (!inputSuccess)
+            {
+                Console.WriteLine("Invalid info!");
+                return;
+            }
 
-            Console.WriteLine(message);
+            bool editSuccess = StarService.Edit((Star)element, name, birthDate, jobNum);
+            if (!editSuccess)
+            {
+                Console.WriteLine("Star cannot be edited!");
+                return;
+            }
+
+            Console.WriteLine("Star edited successfully!");
         }
 
         /// <summary>
@@ -151,14 +171,35 @@ namespace Presentation
         public static void EditByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
-            StarDTO dto = ConsoleIO.GetStarInfo();
-            bool success = GlobalRepoControl<Star>.EditElementByIndex(index ?? Config.InvalidIndex, dto);
+            if (index is null)
+            {
+                Console.WriteLine("Invalid index!");
+                return;
+            }
 
-            string message = success
-                ? "Star edited successfully!"
-                : "Index is invalid!";
+            object? element = GlobalRepoControl<Star>.GetElementByIndex((int)index);
+            if (element is null)
+            {
+                Console.WriteLine("There is no element with index: " + index + "!");
+                return;
+            }
+            
+            bool inputSuccess = ConsoleIO.GetStarInfo(out string? name,
+                out DateOnly? birthDate, out int? jobNum);
+            if (!inputSuccess)
+            {
+                Console.WriteLine("Invalid info!");
+                return;
+            }
 
-            Console.WriteLine(message);
+            bool editSuccess = StarService.Edit((Star)element, name, birthDate, jobNum);
+            if (!editSuccess)
+            {
+                Console.WriteLine("Star cannot be edited!");
+                return;
+            }
+
+            Console.WriteLine("Star edited successfully!");
         }
 
         /// <summary>

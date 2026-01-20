@@ -45,27 +45,31 @@ namespace Presentation
         /// Reads information from a Star-type object in the console.
         /// </summary>
         /// <returns></returns>
-        public static StarDTO GetStarInfo()
+        public static bool GetStarInfo(out string? name,
+            out DateOnly? birthDate, out int? jobNum)
         {
-            string? name = ReadString("name");
-            DateOnly? birthDate = GetDate();
-            int? jobNum = ReadInt("job number");
+            name = ReadString("name");
+            birthDate = GetDate();
+            jobNum = ReadInt("job number");
 
-            return StarService.CreateDTO(name, birthDate, jobNum);
+            return name is null && birthDate is null
+                && jobNum is null;
         }
 
         /// <summary>
         /// Reads information from a Movie-type object in the console.
         /// </summary>
         /// <returns></returns>
-        public static MovieDTO GetMovieInfo()
+        public static bool GetMovieInfo(out string? name, out int? year,
+            out int? duration, out int? ageRatingNum)
         {
-            string? name = ReadString("name");
-            int? year = ReadInt("year");
-            int? duration = ReadInt("duration");
-            int? ageRatingNum = ReadInt("age rating");
+            name = ReadString("name");
+            year = ReadInt("year");
+            duration = ReadInt("duration");
+            ageRatingNum = ReadInt("age rating");
 
-            return MovieService.CreateDTO(name, year, duration, ageRatingNum);
+            return name is null && year is null &&
+                duration is null && ageRatingNum is null;
         }
 
         /// <summary>

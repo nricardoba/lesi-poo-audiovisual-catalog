@@ -30,17 +30,14 @@ namespace Presentation
             }
             
             foreach (object element in repository)
-            {
-                MovieDTO aux = (MovieDTO)element;
-                ShowElement(aux);
-            }
+                ShowElement((Movie)element);
         }
 
         /// <summary>
         /// Attempts to display all information about an object of type Movie in the console.
         /// </summary>
         /// <param name="element"></param>
-        public static void ShowElement(MovieDTO? element)
+        public static void ShowElement(Movie? element)
         {
             if (element is null)
                 Console.WriteLine("Invalid Movie!");
@@ -61,8 +58,8 @@ namespace Presentation
         public static void ShowById()
         {
             Guid? id = ConsoleIO.GetId();
-            var element = GlobalRepoControl<Movie>.GetElementById(id ?? Config.InvalidId);
-            ShowElement((MovieDTO?)element);
+            object? element = GlobalRepoControl<Movie>.GetElementById(id ?? Config.InvalidId);
+            ShowElement((Movie?)element);
         }
 
         /// <summary>
@@ -72,8 +69,8 @@ namespace Presentation
         public static void ShowByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
-            var element = GlobalRepoControl<Movie>.GetElementByIndex(index ?? Config.InvalidIndex);
-            ShowElement((MovieDTO?)element);
+            object? element = GlobalRepoControl<Movie>.GetElementByIndex(index ?? Config.InvalidIndex);
+            ShowElement((Movie?)element);
         }
 
         /// <summary>
@@ -82,8 +79,10 @@ namespace Presentation
         /// </summary>
         public static void CreateAndAdd()
         {
-            MovieDTO dto = ConsoleIO.GetMovieInfo();
-            Movie auxMovie = MovieService.Create(dto);
+            bool inputSuccess = ConsoleIO.GetMovieInfo(out string? name, out int? year,
+                out int? duration, out int? ageRatingNum);
+
+            Movie auxMovie = MovieService.Create(name, year, duration, ageRatingNum);
             bool success = GlobalRepoControl<Movie>.AddElement(auxMovie);
 
             Console.WriteLine();
@@ -134,14 +133,35 @@ namespace Presentation
         public static void EditById()
         {
             Guid? id = ConsoleIO.GetId();
-            MovieDTO dto = ConsoleIO.GetMovieInfo();
-            bool success = GlobalRepoControl<Movie>.EditElementById(id ?? Config.InvalidId, dto);
+            if (id is null)
+            {
+                Console.WriteLine("Invalid ID!");
+                return;
+            }
 
-            string message = success
-                ? "Movie edited successfully!"
-                : "Id is invalid!";
+            object? element = GlobalRepoControl<Movie>.GetElementById((Guid)id);
+            if (element is null)
+            {
+                Console.WriteLine("There is no element with id: " + id + "!");
+                return;
+            }
+            
+            bool inputSuccess = ConsoleIO.GetMovieInfo(out string? name, out int? year,
+                out int? duration, out int? ageRatingNum);
+            if (!inputSuccess)
+            {
+                Console.WriteLine("Invalid info!");
+                return;
+            }
 
-            Console.WriteLine(message);
+            bool editSuccess = MovieService.Edit((Movie)element, name, year, duration, ageRatingNum);
+            if (!editSuccess)
+            {
+                Console.WriteLine("Movie cannot be edited!");
+                return;
+            }
+
+            Console.WriteLine("Movie edited successfully!");
         }
 
         /// <summary>
@@ -152,14 +172,35 @@ namespace Presentation
         public static void EditByIndex()
         {
             int? index = ConsoleIO.ReadInt("index");
-            MovieDTO dto = ConsoleIO.GetMovieInfo();
-            bool success = GlobalRepoControl<Movie>.EditElementByIndex(index ?? Config.InvalidIndex, dto);
+            if (index is null)
+            {
+                Console.WriteLine("Invalid index!");
+                return;
+            }
 
-            string message = success
-                ? "Movie edited successfully!"
-                : "Index is invalid!";
+            object? element = GlobalRepoControl<Movie>.GetElementByIndex((int)index);
+            if (element is null)
+            {
+                Console.WriteLine("There is no element with index: " + index + "!");
+                return;
+            }
+            
+            bool inputSuccess = ConsoleIO.GetMovieInfo(out string? name, out int? year,
+                out int? duration, out int? ageRatingNum);
+            if (!inputSuccess)
+            {
+                Console.WriteLine("Invalid info!");
+                return;
+            }
 
-            Console.WriteLine(message);
+            bool editSuccess = MovieService.Edit((Movie)element, name, year, duration, ageRatingNum);
+            if (!editSuccess)
+            {
+                Console.WriteLine("Movie cannot be edited!");
+                return;
+            }
+
+            Console.WriteLine("Movie edited successfully!");
         }
 
         /// <summary>
