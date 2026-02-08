@@ -17,7 +17,7 @@ This project, developed for the Object-Oriented Programming (Programação Orien
 ## Architecture
 
 - **N-Tier Architecture:** The project follows an N-tier layered structure, with clearly separated layers for Presentation, Business Logic, Business Objects, Data Access, and Exceptions, ensuring a clean separation of concerns.
-- **SOLID Principles:** The codebase adheres to the SOLID principles of object-oriented design, promoting single responsibility across classes, open/closed extensibility through inheritance and generics, and dependency inversion between layers.
+- **SOLID Principles:** The codebase respects the SOLID principles of object-oriented design, promoting single responsibility across classes, open/closed extensibility through inheritance and generics, and dependency inversion between layers.
 
 ## Project Structure
 
