@@ -35,3 +35,7 @@ src/
 
 - **Language:** C# (.NET 10.0)
 - **IDE:** Visual Studio Code
+
+## Grade
+
+This project received a grade of **18 out of 20**.
