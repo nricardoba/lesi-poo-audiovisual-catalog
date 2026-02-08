@@ -24,7 +24,7 @@ This project, developed for the Object-Oriented Programming (Programação Orien
 ```
 Cliffhanger.sln
 src/
-  BusinessObjects/    # Domain models (Movie, Star, Identifier), enums, config, and validators
+  BusinessObjects/    # Object classes, enums, config, and validators
   BusinessLogic/      # Service classes and business rule validation
   Data/               # Generic repository (binary file I/O)
   Exceptions/         # Custom exception classes
